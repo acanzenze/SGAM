@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/angular-archwizard/styles/archwizard.css';
+
+
+html,
+body {
+  font-weight: 400;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.container-scroller{
+  zoom: 100%;
+
+}
+
+.modal-content, .modal-header {
+    border-radius: 0;
+  }
+
+.navbar.default-layout .navbar-brand-wrapper .navbar-brand img {
+    width: 20%;
+    max-width: 60%;
+    margin: auto;
+    border-radius: 100px;
+    vertical-align: middle;
+}
+
+.audisoft-logo {
+  width: 100%;
+}
+
+
+.audisoft-logo img {
+  height: 40px;
+  margin: 0;
+  padding: 0;
+}

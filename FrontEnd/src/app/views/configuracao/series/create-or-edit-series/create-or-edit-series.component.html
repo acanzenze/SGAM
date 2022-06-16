@@ -1,0 +1,68 @@
+<div class="modal modal-info fade in" id="{{modal}}">
+    <div class="modal-dialog modal-lg" style="max-width: 800px;">
+        <div class="modal-content">
+            <form [formGroup]="documentoSerieForm" (submit)="createOrEdit();">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{title}}</h5>
+                    <button id="close" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Documento série</label>
+                                <select class="form-control" 
+                                formControlName="documento_serie_id"
+                                 [ngClass]="{ 'is-invalid': submitted && f.documento_serie_id.errors, 'is-valid': f.documento_serie_id.touched && !f.documento_serie_id.errors }">
+                                    <option value="{{item.id}}" *ngFor="let item of documento_series">{{item.nome}}</option>
+                                </select>
+                                <div *ngIf="submitted && f['documento_serie_id'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['documento_serie_id'].errors.required">O campo documento série é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Nome</label>
+                                <input
+                                    type="text"
+                                    formControlName="nome"
+                                    name="nome"
+                                    class="form-control"
+                                    placeholder="nome"
+                                    [ngClass]="{ 'is-invalid': submitted && f.nome.errors, 'is-valid': f.nome.touched && !f.nome.errors }"
+                                />
+                                <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['nome'].errors.required">O campo nome é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> tipo_movimento</label>
+                                <input
+                                    type="text"
+                                    formControlName="tipo_movimento"
+                                    name="tipo_movimento"
+                                    class="form-control"
+                                    placeholder="tipo_movimento"
+                                    [ngClass]="{ 'is-invalid': submitted && f.tipo_movimento.errors, 'is-valid': f.tipo_movimento.touched && !f.tipo_movimento.errors }"
+                                />
+                                <div *ngIf="submitted && f['tipo_movimento'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['tipo_movimento'].errors.required">O campo tipo de movimento é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="documentoSerieForm.pristine && !submitted" (click)="onReset()">Limpar</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="documentoSerieForm.valid">Validar</button>
+                    <button type="submit" [disabled]="documentoSerieForm.pristine || documentoSerieForm.invalid" class="btn btn-primary btn-sm">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

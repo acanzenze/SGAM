@@ -1,0 +1,107 @@
+<div class="modal modal-info fade in" id="{{modal}}">
+    <div class="modal-dialog modal-lg" style="max-width: 1400px;">
+        <div class="modal-content">
+            <form [formGroup]="produtoForm" (submit)="createOrEdit();">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{title}}</h5>
+                    <button id="close" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ngx-loading [show]="loading"></ngx-loading>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Categoria</label>
+                                <select class="form-control" 
+                                formControlName="categoria_id"
+                                 [ngClass]="{ 'is-invalid': submitted && f.categoria_id.errors, 'is-valid': f.categoria_id.touched && !f.categoria_id.errors }">
+                                    <option value="{{item.id}}" *ngFor="let item of categorias">{{item.descricao}}</option>
+                                </select>
+                                <div *ngIf="submitted && f['categoria_id'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['categoria_id'].errors.required">O campo categoria é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Nome</label>
+                                <input type="text" formControlName="nome" name="nome" class="form-control" placeholder="Nome" 
+                                [ngClass]="{ 'is-invalid': submitted && f.nome.errors, 'is-valid': f.nome.touched && !f.nome.errors }" />
+                                <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['nome'].errors.required">O campo nome é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Preço</label>
+                                <input
+                                    type="number"
+                                    formControlName="preco"
+                                    name="preco"
+                                    class="form-control"
+                                    placeholder="Nome"
+                                    [ngClass]="{ 'is-invalid': submitted && f.preco.errors, 'is-valid': f.preco.touched && !f.preco.errors }"
+                                />
+                                <div *ngIf="submitted && f['preco'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['preco'].errors.required">O campo preço é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Quantidade</label>
+                                <input
+                                    type="number"
+                                    formControlName="quantidade"
+                                    name="quantidade"
+                                    class="form-control"
+                                    placeholder="Nome"
+                                    [ngClass]="{ 'is-invalid': submitted && f.quantidade.errors, 'is-valid': f.quantidade.touched && !f.quantidade.errors }"
+                                />
+                                <div *ngIf="submitted && f['quantidade'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['quantidade'].errors.required">O campo quantidade é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Código</label>
+                                <input
+                                    type="text"
+                                    formControlName="codigo"
+                                    name="codigo"
+                                    class="form-control"
+                                    placeholder="Nome"
+                                    [ngClass]="{ 'is-invalid': submitted && f.codigo.errors, 'is-valid': f.codigo.touched && !f.codigo.errors }"
+                                />
+                                <div *ngIf="submitted && f['codigo'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['codigo'].errors.required">O campo código é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Descrição</label>
+                                <textarea
+                                    type="text"
+                                    formControlName="descricao"
+                                    name="descricao"
+                                    class="form-control"
+                                    placeholder="Nome">
+                                </textarea>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="produtoForm.pristine && !submitted" (click)="onReset()">Limpar</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="produtoForm.valid">Validar</button>
+                    <button type="submit" [disabled]="produtoForm.pristine || produtoForm.invalid" class="btn btn-primary btn-sm">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="modal modal-info fade in" id="{{modal}}">
+    <div class="modal-dialog modal-lg" style="max-width: 700px;">
+        <div class="modal-content">
+            <form [formGroup]="clienteForm" (submit)="createOrEdit();">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{title}}</h5>
+                    <button id="close" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ngx-loading [show]="loading"></ngx-loading>
+                    <div class="row">
+
+
+                  <div class="col-md-4">
+                    <div class="form-groupp">
+                      <label class="col-form-label" for="name">Munícipe</label>
+                      <div class="input-group">
+
+                        <input type="text" class="form-control" placeholder="Digite o nome do Munícipe"
+                          formControlName="nome" class="form-control" (keyup)="listaOfClientes();" id="name"
+                          [ngClass]="{ 'is-invalid': submitted && f.nome.errors, 'is-valid': f.nome.touched && !f.nome.errors }">
+                        <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+                          <div *ngIf="f['nome'].errors.required">O campo Munícipe é obrigatório</div>
+                        </div>
+                        <div class="input-group-append">
+                          <div class="input-group-text" style="background-color: transparent;"><i
+                              class="fa fa-search"></i></div>
+                        </div>
+                      </div>
+
+                      <div class="autocomplete-container" *ngIf="view_client" style="overflow-y: auto;">
+                        <ul>
+                          <li *ngFor="let cliente of clientes">
+                            <a href="javascript:void(0)" (click)="setCliente(cliente)">{{cliente.nome}}</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <!-- /.input group getConta()   [selected]="conta?.contaDescricao"-->
+                    </div>
+                  </div>
+
+
+                        <div class="col-md-6">
+                          <label class="control-label"><i class="fa fa-edit"></i>Tipo de Solicitação</label>
+                          <div class="form-group">
+                              <select class="form-control"
+                                formControlName="tipo_solicitacao_id">
+                                  <option value="1">Agregado Familiar</option>
+                                  <option value="2">Cartão de Residência</option>
+                              </select>
+                              <div *ngIf="submitted && f['tipo_solicitacao_id'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['tipo_solicitacao_id'].errors.required">O campo Tipo de Identificação é obrigatório</div>
+                              </div>
+                          </div>
+                      </div>
+
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="clienteForm.pristine && !submitted" (click)="onReset()">Limpar</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="clienteForm.valid">Validar</button>
+                    <button type="submit" [disabled]="clienteForm.invalid" class="btn btn-primary btn-sm">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

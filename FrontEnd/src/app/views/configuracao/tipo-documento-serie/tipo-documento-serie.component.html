@@ -1,0 +1,105 @@
+<div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <app-navbar></app-navbar>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+        <app-sidebar></app-sidebar>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <!-- Page Title Header Starts-->
+                <app-header></app-header>
+                <!-- Page Title Header Ends-->
+                <div class="row">
+                    <div class="col-lg-10 offset-md-1 grid-margin stretch-card">
+                        <div class="col-md-2">
+                            <select class="form-control">
+                                <option>5</option>
+                                <option>10</option>
+                                <option>15</option>
+                                <option>20</option>
+                                <option>25</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 offset-md-1 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Listagem de Documento Série</h4>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" placeholder="Pesquisar..." class="form-control">
+                                    </div>
+                                    <div class="col-md-6" style="text-align:right;">
+                                        <button class="btn btn-primary btn-flat" data-toggle="modal"
+                                            data-target="#createOrEditDucomentoSerieModal">Registar Documento Série</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <tbody *ngIf="documento_series">
+                                            <tr style="color: white;background: #1c45ef;position: sticky;top: 0;">
+                                                <th>#</th>
+                                                <th with="200px">Descricao</th>
+                                                <th with="200px">Sigla</th>
+                                                <th with="200px">Data</th>
+                                                <th with="200px">Opções</th>
+                                            </tr>
+                                            <tr *ngFor="let item of documento_series | paginate: { itemsPerPage: this.filters.pagination.perPage, currentPage: this.filters.pagination.page, totalItems: this.filters.pagination.total }; index as i">
+                                                <td> {{i+1}} </td>
+                                                <td>{{ item.nome}}</td>
+                                                <td>{{ item.sigla}}</td>
+                                                <td>{{ item.created_at | date: 'dd-MM-yyyy'}}</td>
+                                                <td>
+                                                    <div class="dropdown ml-lg-auto ml-3 toolbar-item">
+                                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                                            id="dropdownexport" data-toggle="dropdown"
+                                                            aria-haspopup="true"
+                                                            aria-expanded="false">Operações</button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownexport">
+                                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                                (click)="setCategoria(item)" data-toggle="modal"
+                                                                data-target="#createOrEditDucomentoSerieModal">Editar</a>
+                                                            <a class="dropdown-item"
+                                                                href="javascript:void(0)">Elimnar</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="footer">
+                                    <div class="row">
+                                      <div class="col-sm-12 col-md-5">
+                                        <div class="dataTables_info">Mostrando de {{this.filters.pagination.page}} a
+                                          {{this.filters.pagination.perPage}} de
+                                          {{this.filters.pagination.total}} categorias
+                                        </div>
+                                      </div>
+                                      <!--<div class="col-sm-12 col-md-7">
+                                        <div class="pull-right">
+                                          <pagination-controls (pageChange)="getPageFilterData($event)" previousLabel="Anterior" maxSize="6"
+                                            nextLabel="Proximo" directionLinks="true" responsive="true"></pagination-controls>
+                                        </div>
+                                      </div>-->
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:../../partials/_footer.html -->
+            <app-footer></app-footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    <createOrEditDucomentoSerie [documento_serie]="documento_serie" [modal]=""></createOrEditDucomentoSerie>
+</div>

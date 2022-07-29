@@ -1,0 +1,69 @@
+<div class="modal modal-info fade in" id="{{modal}}">
+    <div class="modal-dialog modal-lg" style="max-width: 1000px;">
+        <div class="modal-content">
+            <form [formGroup]="fecharCaixaForm" (submit)="fecharCaixa();">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{title}}</h5>
+                    <button id="close" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ngx-loading [show]="loading"></ngx-loading>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Selecione Caixa</label>
+                                <select class="form-control" formControlName="caixa_id" (change)="changeCaixa($event)">
+                                    <option selected>Selecione um caixa</option>
+                                    <option value="{{caixa.id}}" *ngFor="let caixa of caixas">Caixa Nº /{{caixa.id}}</option>
+                                </select>
+                                <div *ngIf="submitted && f['caixa_id'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['caixa_id'].errors.required">O campo caixa_id é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Valor Fecho</label>
+                                <input
+                                    type="text"
+                                    formControlName="valor_fecho"
+                                    name="valor_fecho"
+                                    class="form-control"
+                                    placeholder="valor fecho"
+                                    [ngClass]="{ 'is-invalid': submitted && f.valor_fecho.errors, 'is-valid': f.valor_fecho.touched && !f.valor_fecho.errors }"
+                                />
+                                <div *ngIf="submitted && f['valor_fecho'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['valor_fecho'].errors.required">O campo valor fecho é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Total Vendas</label>
+                                <input
+                                    readonly
+                                    type="text"
+                                    formControlName="total_vendas"
+                                    name="total_vendas"
+                                    class="form-control"
+                                    placeholder="total vendas"
+                                    [ngClass]="{ 'is-invalid': submitted && f.total_vendas.errors, 'is-valid': f.total_vendas.touched && !f.total_vendas.errors }"
+                                />
+                                <div *ngIf="submitted && f['total_vendas'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['total_vendas'].errors.required">O campo total vendas é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="fecharCaixaForm.pristine && !submitted" (click)="onReset()">Limpar</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="fecharCaixaForm.valid">Validar</button>
+                    <button type="submit" [disabled]="fecharCaixaForm.pristine || fecharCaixaForm.invalid" class="btn btn-primary btn-sm">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

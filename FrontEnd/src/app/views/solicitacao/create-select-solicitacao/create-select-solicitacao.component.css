@@ -1,0 +1,96 @@
+:root {
+  --progress: 0%;
+}
+
+.progressbars{
+  width: var(--progress);
+}
+
+.btn-dropdown {
+  position: absolute;
+  will-change: transform;
+  top: 0px;
+  left: 0px;
+  transform: translate3d(67px, 38px, 0px);
+}
+
+.table td, .table th {
+    padding: 8px 10px 5px;
+
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table .btn{
+    font-size: 14px;
+}
+
+.autocomplete-container {
+    position: absolute;
+    width: 97.4%;
+    z-index: 1;
+    background: #fff;
+    height: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    box-sizing: border-box;
+}
+
+.autocomplete-container ul {
+    padding: 0;
+    margin: 0;
+    max-height: 494px;
+   /*  overflow-y: auto; */
+}
+
+.autocomplete-container ul li {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+
+.autocomplete-container ul li a {
+    padding: 14px 15px;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    color: rgba(0,0,0,.87);
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.autocomplete-container ul li a:hover {
+    background: #f4f4f5;
+}
+
+div .modal-body .table-responsive{
+  display: block;
+  width: 100%;
+}
+
+div.swal2-container.swal2-shown,
+.backdrop-filter {
+  backdrop-filter: none !important;
+}
+
+:host {
+  display: block;
+}
+.uploader-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.inputHidden{
+    display: none;
+}
+.btns{
+  border: none;
+}

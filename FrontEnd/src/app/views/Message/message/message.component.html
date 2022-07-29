@@ -1,0 +1,8 @@
+<div class="alert alert-danger" role="alert" *ngIf="messageService.message">
+    <div class="message-header">
+        <button class="fa-secundary" (click)="messageService.clear()">
+            <i class="fa-clear"></i>
+        </button>
+    </div>
+    <p>{{messageService.message}}</p>
+</div> 

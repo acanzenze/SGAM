@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/providers/auth.service';
 import { ConfigService } from 'src/app/providers/config.service';
 import { HttpService } from 'src/app/providers/http.service';
 import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +18,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private router: Router
   ) {
     //this.get_ultimas_notificacoes()
   }
@@ -25,6 +28,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.removeTokenOfUser()
+    this.router.navigateByUrl('/login')
   }
 
   get_ultimas_notificacoes() {

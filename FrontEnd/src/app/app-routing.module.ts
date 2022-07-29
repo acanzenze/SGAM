@@ -29,6 +29,11 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   {
+    path: "login",
+    component: LoginComponent,
+  },
+  
+  {
     path: 'operacoes',
     children: [
       { path: 'categorias-produto', component: CategoriasComponent },

@@ -1,0 +1,112 @@
+<div class="modal modal-info fade in" id="{{modal}}">
+    <div class="modal-dialog modal-lg" style="max-width: 1150px;">
+        <div class="modal-content">
+            <form [formGroup]="userForm" (submit)="createOrEdit();">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{title}}</h5>
+                    <button id="close" type="button" class="close" data-dismiss="modal" (click)="resetOcultarForm()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ngx-loading [show]="loading"></ngx-loading>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Role</label>
+                                <select class="form-control" formControlName="perfil_id"
+                                    [ngClass]="{ 'is-invalid': submitted && f.perfil_id.errors, 'is-valid': f.perfil_id.touched && !f.perfil_id.errors }">
+                                    <option *ngFor="let item of roles" value="{{item.id}}">{{item.nome}}</option>
+                                </select>
+                                <div *ngIf="submitted && f['perfil_id'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['perfil_id'].errors.required">O campo role é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Instituição</label>
+                                <select class="form-control" formControlName="instituicao_id"
+                                    [ngClass]="{ 'is-invalid': submitted && f.instituicao_id.errors, 'is-valid': f.instituicao_id.touched && !f.instituicao_id.errors }">
+                                    <option *ngFor="let item of instituicaos" value="{{item.id}}">{{item.nome}}</option>
+                                </select>
+                                <div *ngIf="submitted && f['instituicao_id'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['instituicao_id'].errors.required">O campo Instituição é obrigatório
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Nome</label>
+                                <input type="text" formControlName="nome" name="nome" class="form-control"
+                                    placeholder="Nome"
+                                    [ngClass]="{ 'is-invalid': submitted && f.nome.errors, 'is-valid': f.nome.touched && !f.nome.errors }" />
+                                <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['nome'].errors.required">O campo nome é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Email</label>
+                                <input type="email" formControlName="email" name="email" class="form-control"
+                                    placeholder="Email" ngModel email="true"
+                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'is-valid': f.email.touched && !f.email.errors }" />
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="ocultar">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> UserName</label>
+                                <input type="text" formControlName="username" name="username" class="form-control"
+                                    placeholder="username"
+                                    [ngClass]="{ 'is-invalid': submitted && f.username.errors, 'is-valid': f.username.touched && !f.username.errors }" />
+                                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['username'].errors.required">O campo username é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="ocultar">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Password</label>
+                                <input type="password" formControlName="password" name="password" class="form-control"
+                                    placeholder="Password"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors, 'is-valid': f.password.touched && !f.password.errors }" />
+                                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['password'].errors.required">O campo password é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="ocultar">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Password</label>
+                                <input type="password" formControlName="confirmPassword" name="confirmPassword" class="form-control"
+                                    placeholder="Password"/>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="!ocultar">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Estado</label>
+                                <select type="password" FormControlName="estado" name="estado" class="form-control">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="userForm.pristine && !submitted"
+                        (click)="onReset()">Limpar</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit"
+                        [disabled]="userForm.valid">Validar</button>
+                    <button type="submit" [disabled]="userForm.pristine"
+                        class="btn btn-primary btn-sm">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<app-message></app-message>

@@ -22,6 +22,22 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Tipo de solicitação</label>
+                                <select class="form-control" 
+                                formControlName="tipo_solicitacao_id"
+                                 [ngClass]="{ 'is-invalid': submitted && f.tipo_solicitacao_id.errors, 'is-valid': f.tipo_solicitacao_id.touched && !f.tipo_solicitacao_id.errors }">
+                                    <option value="{{item.id}}" *ngFor="let item of tipoSolicitacaos">{{item.descricao}}</option>
+                                </select>
+                                <div *ngIf="submitted && f['tipo_solicitacao_id'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['tipo_solicitacao_id'].errors.required">O campo Tipo de solicitação é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Nome</label>

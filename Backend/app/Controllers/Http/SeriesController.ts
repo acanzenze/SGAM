@@ -3,8 +3,8 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import Serie from 'App/Models/Serie'
 
 export default class SeriesController {
-  async index({ request, response }: HttpContextContract) {
-
+  async index({  }: HttpContextContract) {
+      return Serie.all()
   }
   async store({ request, response }: HttpContextContract) {
 

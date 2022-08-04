@@ -3,14 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/providers/auth.service';
 import { ConfigService } from 'src/app/providers/config.service';
 import { HttpService } from 'src/app/providers/http.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-produtos',
-  templateUrl: './produtos.component.html',
-  styleUrls: ['./produtos.component.css']
+  selector: 'app-faturacao',
+  templateUrl: './faturacao.component.html',
+  styleUrls: ['./faturacao.component.css']
 })
-export class ProdutosComponent implements OnInit {
+export class FaturacaoComponent implements OnInit {
 
   public filters = {
     search: null,
@@ -22,7 +21,10 @@ export class ProdutosComponent implements OnInit {
     }
   }
   public produto: any
-  public produtos: any = []
+  public clientes: any = []
+  public produtos: any = [
+    {nome : 'Arroz', preco : '20.000kz', quantidade : '10', categoria: 'Sereais', created_at: '02.05.2022'}
+  ]
   public loading = false;
 
   constructor(
@@ -31,24 +33,24 @@ export class ProdutosComponent implements OnInit {
     private authService: AuthService,
     private httpService: HttpService
   ) {
-    this.listaOfProdutos();
+    this.listaOfClientes();
   }
 
   ngOnInit(): void { }
 
   searchProdutos() {
-    this.listaOfProdutos()
+    this.listaOfClientes()
   }
 
-  public listaOfProdutos() {
+  public listaOfClientes() {
     this.loading = false
-    this.http.post(`${this.httpService.api}/produto/list`, this.filters)
+    this.http.post(`${this.httpService.api}/clientes/list`, this.filters)
       .subscribe(res => {
         this.filters.pagination.lastPage = Object(res).lastPage;
         this.filters.pagination.page = Object(res).page;
         this.filters.pagination.total = Object(res).total;
         this.filters.pagination.perPage = Object(res).perPage;
-        this.produtos = Object(res)
+        this.clientes = Object(res).data
         this.loading = false
       })
   }

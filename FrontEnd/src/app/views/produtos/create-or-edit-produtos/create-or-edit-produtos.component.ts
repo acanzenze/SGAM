@@ -21,6 +21,7 @@ export class CreateOrEditProdutosComponent implements OnInit {
   submitted = false;
   public loading = false;
   public categorias: any = []
+  public tipoSolicitacaos: any = []
 
   constructor(
     private http: HttpClient,
@@ -36,28 +37,38 @@ export class CreateOrEditProdutosComponent implements OnInit {
       nome: [null, Validators.required],
       preco: [null, Validators.required],
       quantidade: [null, Validators.required],
-      codigo: [null, Validators.required],
-      categoria_id: [null, Validators.required],
+      tipo_solicitacao_id: [null, Validators.required],
+      codigo: [null],
+      categoria_id: [null],
       descricao: [null],
     });
 
     this.selectBoxCategorias()
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.listTipoSolicitacao()
+   }
 
   // convenience getter for easy access to form fields
   get f() {
     return this.produtoForm.controls;
   }
-
+  listTipoSolicitacao() {
+    this.loading = true
+     this.http.post(`${this.httpService.api}/tipo-solicitacao/list`,null)
+       .subscribe(res => {
+         this.tipoSolicitacaos = Object(res).data
+         this.loading = false
+       })
+   }
   onReset() {
     this.submitted = false;
     this.produtoForm.reset();
   }
 
   selectBoxCategorias() {
-    this.http.get(`${this.httpService.apiUrl}/configuracao/categorias/listagem`, { headers: this.authService.headers })
+    this.http.get(`${this.httpService.api}/configuracao/categorias/listagem`, { headers: this.authService.headers })
       .subscribe(res => {
         this.categorias = Object(res).data
       })
@@ -82,8 +93,8 @@ export class CreateOrEditProdutosComponent implements OnInit {
 
     this.loading = true;
     const url = this.produtoForm.getRawValue().id == null ?
-      `${this.httpService.apiUrl}/produtos/create` :
-      `${this.httpService.apiUrl}/produtos/update/` + this.produtoForm.getRawValue().id
+      `${this.httpService.api}/produto/create` :
+      `${this.httpService.api}/produto/update/` + this.produtoForm.getRawValue().id
 
     this.http
       .post(url, this.produtoForm.value, { headers: this.authService.headers })

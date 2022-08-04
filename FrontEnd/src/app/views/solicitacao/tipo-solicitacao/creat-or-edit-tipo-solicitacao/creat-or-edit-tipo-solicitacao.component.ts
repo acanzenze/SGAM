@@ -9,14 +9,14 @@ import { ProvinciaService } from '../tipo-solicitacao.service';
 
 
 @Component({
-  selector: 'creatOrEditProvincia',
-  templateUrl: './creat-or-edit-provincias.component.html',
-  styleUrls: ['./creat-or-edit-provincias.component.css']
+  selector: ' CreatOrEditTipoSolicitacao',
+  templateUrl: './creat-or-edit-tipo-solicitacao.component.html',
+  styleUrls: ['./creat-or-edit-tipo-solicitacao.component.css']
 })
-export class CreatOrEditProvinciasComponent implements OnInit {
+export class CreatOrEditTipoSolicitacaoComponent implements OnInit {
 
-  @Input() modal: any = "creatOrEditProvinciaModal";
-  @Input() title: string = "Registar Provincia";
+  @Input() modal: any = "CreatOrEditTipoSolicitacao";
+  @Input() title: string = "Registar Tipo de Solicitação";
   @Input() provincia: any;
   @Output() onSubmit = new EventEmitter<Provincias>();
 
@@ -24,7 +24,7 @@ export class CreatOrEditProvinciasComponent implements OnInit {
   submitted = false;
   public loading = false;
 
-  provinciaForm!: FormGroup;
+  tipoSolicitacaoForm!: FormGroup;
 
   constructor(
     private http: HttpClient,
@@ -33,7 +33,7 @@ export class CreatOrEditProvinciasComponent implements OnInit {
     private provinciaService: ProvinciaService
   ) {
 
-    /*this.provinciaForm = this.fb.group({
+    /*this.tipoSolicitacaoForm = this.fb.group({
       id: new FormControl(''),
       descricao: new FormControl ('',[Validators.required]),
       estado: new FormControl ('',[Validators.required]),
@@ -42,9 +42,9 @@ export class CreatOrEditProvinciasComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.provinciaForm = this.fb.group({
+    this.tipoSolicitacaoForm = this.fb.group({
       id: [{ value: null, disabled: true }],
-      nome: [null, Validators.required],
+      descricao: [null, Validators.required],
       estado: [null, Validators.required],
     })
   }
@@ -52,54 +52,61 @@ export class CreatOrEditProvinciasComponent implements OnInit {
   // convenience getter for easy access to form fields
 
   get nome() {
-    return this.provinciaForm.get("nome")
+    return this.tipoSolicitacaoForm.get("descricao")
   }
   get estado() {
-    return this.provinciaForm.get("estado")
+    return this.tipoSolicitacaoForm.get("estado")
   }
   get f() {
-    return this.provinciaForm.controls;
+    return this.tipoSolicitacaoForm.controls;
   }
 
   onReset() {
     this.submitted = false;
-    this.provinciaForm.reset();
+    this.tipoSolicitacaoForm.reset();
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     if (this.provincia !== undefined) {
-      this.title = "Editar Provincia";
-      this.provinciaForm.patchValue(this.provincia);
+      this.title = "Editar tipo de Solicitação";
+      this.tipoSolicitacaoForm.patchValue(this.provincia);
     } else {
-      this.title = "Registar Provincia";
+      this.title = "Registar tipo de Solicitação";
     }
   }
 
   submit() {
-    if (this.provinciaForm.invalid) {
+    if (this.tipoSolicitacaoForm.invalid) {
       return
     }
 
-    this.onSubmit.emit(this.provinciaForm.value)
+    this.onSubmit.emit(this.tipoSolicitacaoForm.value)
   }
   save() {
-    console.log(this.provincia)
-
-    //const url = this.provinciaForm.getRawValue().id == null ? `${this.httpService.apiUrl}/configuracao/provincias/create` : `${this.httpService.apiUrl}/configuracao/provincias/update/` + this.provinciaForm.getRawValue().id
-    if (this.provinciaForm.getRawValue().id == null) {
-      this.provinciaService.create(this.provinciaForm.value)
-        .subscribe(res => {
-          console.log(res)
-        });
-      //this.messageService.add("Registado com sucesso")
-    }
-    else {
-      this.provinciaService.update(this.provinciaForm.getRawValue().id, this.provinciaForm.value)
-        .subscribe(res => {
-          console.log(res)
-        })
+    this.submitted = true;
+    if (this.tipoSolicitacaoForm.invalid) {
+      return;
     }
 
+    this.tipoSolicitacaoForm.patchValue({ tipo_documento_id: 1 });
+
+    this.loading = true;
+    const url =
+      this.tipoSolicitacaoForm.getRawValue().id == null
+        ? `${this.httpService.api}/tipo-solicitacao/create`
+        : `${this.httpService.api}/tipo-solicitacao/update/${this.tipoSolicitacaoForm.getRawValue().id} `
+   
+    this.http
+      .post(url, this.tipoSolicitacaoForm.value)
+      .subscribe((res) => {
+        this.loading = false;
+        this.submitted = false;
+        if (Object(res).code == 200) {
+          this.tipoSolicitacaoForm.reset();
+        }
+        this.loading = false;
+      });
+  
   }
 
 }

@@ -26,7 +26,7 @@
                     <div class="col-lg-10 offset-md-1 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Listagem de Província</h4>
+                                <h4 class="card-title">Listagem de Tipo de Solicitação</h4>
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="col-md-6" style="text-align:right;">
                                         <button class="btn btn-primary btn-flat" data-toggle="modal"
-                                            data-target="#creatOrEditProvinciaModal">Registar Província</button>
+                                            data-target="#CreatOrEditTipoSolicitacao">Registar tipo de Solicitação</button>
                                     </div>
                                 </div>
                                 <br>
@@ -50,10 +50,10 @@
                                                 <th style="color: white;" with="200px">Operações</th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngIf="provincias">
-                                            <tr *ngFor="let item of provincias; index as i">
+                                        <tbody >
+                                            <tr *ngFor="let item of tipoSolicitacaos; index as i">
                                                 <td> {{i+1}} </td>
-                                                <td>{{ item.nome}}</td>
+                                                <td>{{ item.descricao}}</td>
                                                 <td>{{ item.estado=="1"?"Activo":"Inactivo"}}</td>
                                                 <td>{{ item.created_at | date: 'dd-MM-yyyy'}}</td>
                                                 <td>
@@ -65,7 +65,7 @@
                                                         <div class="dropdown-menu" aria-labelledby="dropdownexport">
                                                             <a class="dropdown-item" href="javascript:void(0)"
                                                                 (click)="setCategoria(item)" data-toggle="modal"
-                                                                data-target="#creatOrEditProvinciaModal">Editar</a>
+                                                                data-target="#CreatOrEditTipoSolicitacao">Editar</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -102,5 +102,5 @@
         <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
-    <creatOrEditProvincia [provincia]="provincia" [modal]=""></creatOrEditProvincia>
+    <CreatOrEditTipoSolicitacao [provincia]="provincia" [modal]=""></CreatOrEditTipoSolicitacao>
 </div>

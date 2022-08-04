@@ -2,18 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ProvinciaService } from './tipo-solicitacao.service';
 import { Provincias } from 'src/app/Interfaces/Provincias';
-import { MessageService } from '../../../Message/message.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { MessageService } from '../../Message/message.service';
+import { HttpService } from 'src/app/providers/http.service';
 
 @Component({
-  selector: 'app-provincias',
-  templateUrl: './provincias.component.html',
-  styleUrls: ['./provincias.component.css']
+  selector: 'app-tipo-solicitacao',
+  templateUrl: './tipo-solicitacao.component.html',
+  styleUrls: ['./tipo-solicitacao.component.css']
 })
 
-export class ProvinciasComponent implements OnInit {
-  public provincias: any = []
+export class TipoSolicitacaoComponent implements OnInit {
+  public tipoSolicitacaos: any = []
   public provincia:any
   baseApi = environment.apiUrl
 
@@ -37,23 +38,20 @@ export class ProvinciasComponent implements OnInit {
     private provinciaService: ProvinciaService,
     private messageService: MessageService,
     private router: Router,
-    private http: HttpClient
-
+    private http: HttpClient,
+    private httpService: HttpService,
 
   ) { }
   ngOnInit(): void {
-    //this.loading = true
-    this.provinciaService.getAllProvincia().subscribe(items => {
-      this.provincias = Object(items).data
-      console.log(this.provincias,'ola')
-    })
+    //this.loading = tru
+    this.listTipoSolicitacao()
   }
 
-  listaOfProvincias() {
+  listTipoSolicitacao() {
    this.loading = true
-    this.http.get(`http://127.0.0.1:3333/provincias/list`)
+    this.http.post(`${this.httpService.api}/tipo-solicitacao/list`,null)
       .subscribe(res => {
-        this.provincias = Object(res).data
+        this.tipoSolicitacaos = Object(res).data
         this.filters.pagination.lastPage = Object(res).lastPage;
         this.filters.pagination.page = Object(res).page;
         this.filters.pagination.total = Object(res).total;

@@ -5,7 +5,7 @@ export default class Clientes extends BaseSchema {
 
   public async up () {
     this.schema.alterTable(this.tableName, (table) => {
-      table.string("genero").alter()
+      table.string("genero_id").alter()
     })
   }
 }

@@ -25,7 +25,6 @@ export default class ClientesController {
     const client = await Cliente.create({
       nome: data.nome,
       telefone: data.telefone,
-      generoId: '1', //data.generoId,
       email: data.email,
       dataNascimento: data.dataNascimento,
       bairroId: data.bairroId,
@@ -34,7 +33,7 @@ export default class ClientesController {
       pai: data.nomePai,
       mae: data.nomeMae,
       endereco: data.enderecoId,
-      genero: data.generoId,
+      genero_id: data.generoId,
       dataEmissao: data.dataEmissao,
       dataValidade: data.dataValidade,
       numeroDocumento: data.numeroDocumento
@@ -54,7 +53,7 @@ export default class ClientesController {
 
     const client = await Database.from('clientes')
       .select(
-        '*',
+        'clientes.*',
         'clientes.id as cliente_id',
         'bairros.nome as bairro',
         'distritos.nome as distrito',
@@ -79,7 +78,7 @@ export default class ClientesController {
 
     const client = await Database.from('clientes')
     .select(
-      '*',
+      'clientes.*',
       'clientes.id as cliente_id',
       'bairros.nome as bairro',
       'distritos.nome as distrito',
@@ -106,6 +105,7 @@ export default class ClientesController {
   }
 
   public async update({ params, request, response }: HttpContextContract) {
+   
     const data = request.only([
       'nome',
       'telefone',
@@ -118,17 +118,32 @@ export default class ClientesController {
       'numeroDocumento',
       'estado',
       'residencia',
-      'endereco_id',
+      'enderecoId',
       'dataEmissao',
       'dataValidade'
     ])
+    console.log('edite', data)
+    const cliente = await Cliente.find(params.id)
+    if (!cliente) throw new Error('erro ao cadastrar')
 
-    const user = await Cliente.find(params.id)
-    if (!user) throw new Error('erro ao cadastrar')
+    cliente.merge({
+      nome: data.nome,
+      telefone: data.telefone,
+      email: data.email,
+      dataNascimento: data.dataNascimento,
+      bairroId: data.bairroId,
+      estado: data.estado,
+      residencia: data.residencia,
+      pai: data.nomePai,
+      mae: data.nomeMae,
+      endereco: data.enderecoId,
+      genero_id: data.generoId,
+      dataEmissao: data.dataEmissao,
+      dataValidade: data.dataValidade,
+      numeroDocumento: data.numeroDocumento
+    })
 
-    user.merge({ ...data, numeroDocumento: data.numeroDocumento })
-
-    const result = await user.save()
+    const result = await cliente.save()
 
     return response.json({
       msg: 'dados actualizados com sucesso',

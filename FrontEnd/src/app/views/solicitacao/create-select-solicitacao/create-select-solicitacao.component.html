@@ -45,8 +45,8 @@
                           <div class="form-group">
                               <select class="form-control"
                                 formControlName="tipo_solicitacao_id">
-                                  <option value="1">Agregado Familiar</option>
-                                  <option value="2">Cartão de Residência</option>
+                                <option value="null">Tipo Solicitação</option>
+                                  <option [value]="item.id" *ngFor="let item of tipoSolicitacaos">Agregado Familiar</option>
                               </select>
                               <div *ngIf="submitted && f['tipo_solicitacao_id'].errors" class="invalid-feedback">
                                   <div *ngIf="f['tipo_solicitacao_id'].errors.required">O campo Tipo de Identificação é obrigatório</div>

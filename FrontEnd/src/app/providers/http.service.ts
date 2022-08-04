@@ -9,4 +9,5 @@ export class HttpService {
   constructor() { }
   
   public apiUrl = 'http://127.0.0.1:3333/api/v1';
+  public api = 'http://127.0.0.1:3333';
 }

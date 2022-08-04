@@ -32,6 +32,7 @@ Route.get('/distritos/list', 'DistritosController.index')
 Route.get('/distritos/show/:id', 'DistritosController.show') */
 
 Route.post('clientes/create', 'ClientesController.store')
+Route.post('clientes/update/:id', 'ClientesController.update')
 Route.post('clientes/list', 'ClientesController.index')
 Route.post('clientes/select', 'ClientesController.searchMunicipe')
 
@@ -40,6 +41,11 @@ Route.post('solicitacao/create', 'SolicitacaosController.store')
 Route.post('solicitacao/update/:id', 'SolicitacaosController.update')
 Route.post('solicitacao/list', 'SolicitacaosController.index')
 Route.post('solicitacao/select', 'SolicitacaosController.show')
+
+Route.post('tipo-solicitacao/create', 'TipoSolicitacaosController.store')
+Route.post('tipo-solicitacao/update/:id', 'TipoSolicitacaosController.update')
+Route.post('tipo-solicitacao/list', 'TipoSolicitacaosController.index')
+Route.post('tipo-solicitacao/select', 'TipoSolicitacaosController.show')
 
 
 
@@ -60,3 +66,7 @@ Route.post('linha_factura/create', 'LinhaFacturasController.store')
 Route.post('linha_factura/update/:id', 'LinhaFacturasController.update')
 Route.post('linha_factura/list', 'LinhaFacturasController.index')
 Route.post('linha_factura/select', 'LinhaFacturasController.show')
+
+Route.post('produto/create', 'ProdutosController.store')
+Route.post('produto/update/:id', 'ProdutosController.update')
+Route.post('produto/list', 'ProdutosController.index')

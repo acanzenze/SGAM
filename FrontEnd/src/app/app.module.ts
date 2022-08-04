@@ -48,9 +48,17 @@ import { CreatOrEditBairrosComponent } from './views/configuracao/morada/bairros
 import { SolicitacaoComponent } from './views/solicitacao/solicitacao.component';
 import { CreateOrEditSolicitacaoComponent } from './views/solicitacao/create-or-edit-solicitacao/create-or-edit-solicitacao.component';
 import { CreateSelectSolicitacaoComponent } from './views/solicitacao/create-select-solicitacao/create-select-solicitacao.component';
+import { FaturacaoComponent } from './views/faturacao/faturacao.component';
+import { CreateOrEditFacturaComponent } from './views/faturacao/create-or-edit-factura/create-or-edit-factura.component';
+import { TipoSolicitacaoComponent } from './views/solicitacao/tipo-solicitacao/tipo-solicitacao.component';
+import { CreatOrEditTipoSolicitacaoComponent } from './views/solicitacao/tipo-solicitacao/creat-or-edit-tipo-solicitacao/creat-or-edit-tipo-solicitacao.component';
+import { ListagemDeFacturaComponent } from './views/listagemFactura/listagem-de-factura.component';
 
 @NgModule({
   declarations: [
+    TipoSolicitacaoComponent,
+    ListagemDeFacturaComponent,
+    CreatOrEditTipoSolicitacaoComponent,
     BairrosComponent,
     CreateOrEditSolicitacaoComponent,
     CreateSelectSolicitacaoComponent,
@@ -93,6 +101,8 @@ import { CreateSelectSolicitacaoComponent } from './views/solicitacao/create-sel
     DistritosComponent,
     CreatOrEditDistritosComponent,
     InstituicaoComponent,
+    FaturacaoComponent,
+    CreateOrEditFacturaComponent,
   ],
   imports: [
     HttpClientModule,

@@ -33,7 +33,8 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
     search: null
   };
   public bairros: any = []
-  public clientes:any = []
+  public clientes: any = []
+  public tipoSolicitacaos: any = []
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
@@ -65,7 +66,18 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
   ngOnInit(): void {
     this.listaOfMuicipios();
     this.getDistrito(1)
+    this.listTipoSolicitacao()
   }
+
+  listTipoSolicitacao() {
+    this.loading = true
+     this.http.post(`${this.httpService.api}/tipo-solicitacao/list`,null)
+       .subscribe(res => {
+         this.tipoSolicitacaos = Object(res).data
+         this.loading = false
+       })
+   }
+ 
 
   public setCliente(cliente: any) {
     console.log('client=',cliente)

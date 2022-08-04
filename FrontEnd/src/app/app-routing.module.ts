@@ -17,6 +17,9 @@ import { MovimentoCaixaComponent } from './views/configuracao/movimento-caixa/mo
 import { DistritosComponent } from './views/configuracao/morada/distritos/distritos.component';
 import { BairrosComponent } from './views/configuracao/morada/bairros/bairros.component';
 import { SolicitacaoComponent } from './views/solicitacao/solicitacao.component';
+import { FaturacaoComponent } from './views/faturacao/faturacao.component';
+import { TipoSolicitacaoComponent } from './views/solicitacao/tipo-solicitacao/tipo-solicitacao.component';
+import { ListagemDeFacturaComponent } from './views/listagemFactura/listagem-de-factura.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -32,6 +35,15 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent,
   },
+  {
+    path: "faturacao",
+    component: FaturacaoComponent,
+  },
+  {
+    path: "listar-faturacao",
+    component: ListagemDeFacturaComponent,
+  },
+  
   
   {
     path: 'operacoes',
@@ -46,6 +58,7 @@ const routes: Routes = [
     path: 'configuracao',
     children: [
       { path: 'provincias', component: ProvinciasComponent },
+      { path: 'tipo-solicitacao', component: TipoSolicitacaoComponent },
       { path: 'municipios', component: MunicipiosComponent },
       { path: 'tipo-documentos', component: TipoDocumentosComponent },
       { path: 'documento-series', component: TipoDocumentoSerieComponent },

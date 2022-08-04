@@ -1,7 +1,7 @@
 <div class="modal modal-info fade in" id="{{modal}}">
     <div class="modal-dialog modal-lg" style="max-width: 800px;">
         <div class="modal-content">
-            <form [formGroup]="provinciaForm" (ngSubmit)="save()" #formDir="ngForm">
+            <form [formGroup]="tipoSolicitacaoForm" (ngSubmit)="save()" #formDir="ngForm">
                 <div class="modal-header">
                     <h5 class="modal-title">{{title}}</h5>
                     <button id="close" type="button" class="close" data-dismiss="modal">&times;</button>
@@ -14,7 +14,7 @@
                                 <label class="control-label"><i class="fa fa-edit"></i> Descrição</label>
                                 <input
                                     type="text"
-                                    formControlName="nome"
+                                    formControlName="descricao"
                                     name="nome"
                                     class="form-control"
                                     placeholder="nome"
@@ -42,9 +42,9 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="provinciaForm.pristine && !submitted" (click)="onReset()">Limpar</button>
-                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="provinciaForm.valid">Validar</button>
-                    <button type="submit" [disabled]="provinciaForm.pristine || provinciaForm.invalid" class="btn btn-primary btn-sm">Salvar</button>
+                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="tipoSolicitacaoForm.pristine && !submitted" (click)="onReset()">Limpar</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="tipoSolicitacaoForm.valid">Validar</button>
+                    <button type="submit" [disabled]="tipoSolicitacaoForm.pristine || tipoSolicitacaoForm.invalid" class="btn btn-primary btn-sm">Salvar</button>
                 </div>
             </form>
         </div>

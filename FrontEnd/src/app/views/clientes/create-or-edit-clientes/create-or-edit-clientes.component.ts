@@ -100,9 +100,10 @@ export class CreateOrEditClientesComponent implements OnInit {
       });
   }
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    if (this.cliente !== undefined) {
+    if (this.cliente.id !== undefined) {
       this.title = 'Editar Cliente';
       this.clienteForm.patchValue({
+        id: this.cliente.id,
         nome: this.cliente.nome,
         telefone: this.cliente.telefone,
         generoId: this.cliente.genero,

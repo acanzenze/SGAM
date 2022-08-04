@@ -1,17 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/providers/auth.service';
-import { ConfigService } from 'src/app/providers/config.service';
-import { HttpService } from 'src/app/providers/http.service';
-import { environment } from 'src/environments/environment';
+import { HttpService } from '../../providers/http.service';
 
 @Component({
-  selector: 'app-produtos',
-  templateUrl: './produtos.component.html',
-  styleUrls: ['./produtos.component.css']
+  selector: 'app-listagem-de-factura',
+  templateUrl: './listagem-de-factura.component.html',
+  styleUrls: ['./listagem-de-factura.component.css']
 })
-export class ProdutosComponent implements OnInit {
+export class ListagemDeFacturaComponent implements OnInit {
 
+  
   public filters = {
     search: null,
     pagination: {
@@ -21,34 +19,33 @@ export class ProdutosComponent implements OnInit {
       lastPage: 0
     }
   }
-  public produto: any
+  public produto: any = {}
+  public facturas: any = []
   public produtos: any = []
   public loading = false;
 
   constructor(
     private http: HttpClient,
-    private configService: ConfigService,
-    private authService: AuthService,
     private httpService: HttpService
   ) {
-    this.listaOfProdutos();
+    this.listFacturas();
   }
 
   ngOnInit(): void { }
 
   searchProdutos() {
-    this.listaOfProdutos()
+    this.listFacturas()
   }
 
-  public listaOfProdutos() {
+  public listFacturas() {
     this.loading = false
-    this.http.post(`${this.httpService.api}/produto/list`, this.filters)
+    this.http.post(`${this.httpService.api}/factura/list`, this.filters)
       .subscribe(res => {
         this.filters.pagination.lastPage = Object(res).lastPage;
         this.filters.pagination.page = Object(res).page;
         this.filters.pagination.total = Object(res).total;
         this.filters.pagination.perPage = Object(res).perPage;
-        this.produtos = Object(res)
+        this.facturas = Object(res).data
         this.loading = false
       })
   }
@@ -63,3 +60,4 @@ export class ProdutosComponent implements OnInit {
 
 
 }
+

@@ -49,7 +49,7 @@ export default class Cliente extends BaseModel {
   public endereco: number
 
   @column()
-  public genero: string
+  public genero_id: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -25,7 +25,7 @@ import { CreateOrEditTipoDocumentosComponent } from './views/configuracao/tipo-d
 import { SeriesComponent } from './views/configuracao/series/series.component';
 import { CreateOrEditSeriesComponent } from './views/configuracao/series/create-or-edit-series/create-or-edit-series.component';
 import { CategoriasComponent } from './views/configuracao/categorias/categorias.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RolesComponent } from './views/configuracao/roles/roles.component';
 import { ArchwizardModule } from 'angular-archwizard';
 import { MovimentoCaixaComponent } from './views/configuracao/movimento-caixa/movimento-caixa.component';
@@ -53,6 +53,7 @@ import { CreateOrEditFacturaComponent } from './views/faturacao/create-or-edit-f
 import { TipoSolicitacaoComponent } from './views/solicitacao/tipo-solicitacao/tipo-solicitacao.component';
 import { CreatOrEditTipoSolicitacaoComponent } from './views/solicitacao/tipo-solicitacao/creat-or-edit-tipo-solicitacao/creat-or-edit-tipo-solicitacao.component';
 import { ListagemDeFacturaComponent } from './views/listagemFactura/listagem-de-factura.component';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,13 @@ import { ListagemDeFacturaComponent } from './views/listagemFactura/listagem-de-
       tertiaryColour: '#ffffff'
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

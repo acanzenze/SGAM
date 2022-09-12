@@ -13,42 +13,33 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Produto</label>
-                                <select class="form-control" 
-                                (change)="setFacturaData($event.target)"
-                                formControlName="produto"
-                                 [ngClass]="{ 'is-invalid': submitted && f.produto.errors, 'is-valid': f.produto.touched && !f.produto.errors }">
-                                    <option value="null">Produto</option>
-                                    <option value="{{item.id}}" *ngFor="let item of produtos"  >{{item.nome}}</option>
-                                </select>
-                                <div *ngIf="submitted && f['produto'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['produto'].errors.required">O campo nº documento é obrigatório</div>
-                                </div>
+                                <input class="form-control" class="form-control" [value]="factura.produto" readonly />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Preço</label>
+                                <input class="form-control" [value]="factura.preco" readonly />
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Tipo de Solicitação</label>
-                                <select class="form-control" 
-                                formControlName="tipo_solicitacao"
-                                 [ngClass]="{ 'is-invalid': submitted && f.tipo_solicitacao.errors, 'is-valid': f.tipo_solicitacao.touched && !f.tipo_solicitacao.errors }">
-                                 <option value="null">Solicitação</option>  
-                                 <option value="{{item.id}}" *ngFor="let item of tipoSolicitacaos">{{item.descricao}}</option>
-                                </select>
-                                <div *ngIf="submitted && f['tipo_solicitacao'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['tipo_solicitacao'].errors.required">O campo tipo de Solicitação é obrigatório</div>
-                                </div>
+                                <input class="form-control" [value]="factura.tipo_solicitacao" readonly />
+
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Série</label>
-                                <select class="form-control" 
-                                formControlName="serie_id"
-                                 [ngClass]="{ 'is-invalid': submitted && f.serie_id.errors, 'is-valid': f.serie_id.touched && !f.serie_id.errors }">
-                                    <option value="null">Série</option> 
-                                    <option [value]="item.id" *ngFor="let item of series">{{item.tipo_documento + '-' +item.nome + '/'+ item.numero}}</option>
+                                <select class="form-control" formControlName="serie_id"
+                                    [ngClass]="{ 'is-invalid': submitted && f.serie_id.errors, 'is-valid': f.serie_id.touched && !f.serie_id.errors }">
+                                    <option value="null">Série</option>
+                                    <option [value]="item.id" *ngFor="let item of series">{{item.tipo_documento + '-'
+                                        +item.nome + '/'+ item.numero}}</option>
                                 </select>
                                 <div *ngIf="submitted && f['serie_id'].errors" class="invalid-feedback">
                                     <div *ngIf="f['serie_id'].errors.required">O campo série é obrigatório</div>
@@ -61,9 +52,12 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button class="btn btn-danger btn-sm" type="reset" [disabled]="facturacaoForm.pristine && !submitted" (click)="onReset()">Limpar</button>
-                    <button class="btn btn-success btn-sm mr-1" type="submit" [disabled]="facturacaoForm.valid">Validar</button>
-                    <button type="submit" [disabled]="facturacaoForm.pristine || facturacaoForm.invalid" class="btn btn-primary btn-sm">Salvar</button>
+                    <button class="btn btn-danger btn-sm" type="reset"
+                        [disabled]="facturacaoForm.pristine && !submitted" (click)="onReset()">Limpar</button>
+                    <button class="btn btn-success btn-sm mr-1" type="submit"
+                        [disabled]="facturacaoForm.valid">Validar</button>
+                    <button type="submit" [disabled]="facturacaoForm.pristine || facturacaoForm.invalid"
+                        class="btn btn-primary btn-sm">Salvar</button>
                 </div>
             </form>
         </div>

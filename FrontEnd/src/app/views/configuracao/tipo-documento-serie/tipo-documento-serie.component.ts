@@ -32,7 +32,7 @@ export class TipoDocumentoSerieComponent implements OnInit {
   ngOnInit(): void { }
 
   listaOfDocumentoSeries() {
-    this.http.get(`${this.httpService.apiUrl}/configuracao/documento_series/listagem`, { headers: this.authService.headers })
+    this.http.get(`${this.httpService.api}/configuracao/documento_series/listagem`, { headers: this.authService.headers })
       .subscribe(res => {
         this.documento_series = Object(res).data
         this.filters.pagination.lastPage = Object(res).lastPage;

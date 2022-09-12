@@ -24,18 +24,14 @@ export default class UsersController {
   public async login({ request, response, auth }) {
     const { email, password } = request.all()
 
-    // Lookup user manually
     const user = await User.query().where('email', email).firstOrFail()
 
-    // Verify password
     if (!(await Hash.verify(user.password, password))) {
       return response.unauthorized('Invalid credentials')
     }
 
-    // Generate token
     const token = await auth.use('api').generate(user)
-
-    return token
+    return { user, token }
   }
 
   public async show({ params }: HttpContextContract) {

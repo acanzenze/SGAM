@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.removeTokenOfUser()
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('/')
   }
 
   get_ultimas_notificacoes() {

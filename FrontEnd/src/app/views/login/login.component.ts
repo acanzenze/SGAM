@@ -11,6 +11,7 @@ import { ConfigService } from 'src/app/providers/config.service';
 export class LoginComponent implements OnInit {
 
   admin: any = {
+    email: null,
     username: null,
     password: null
   }
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     private configService: ConfigService,
     private router: Router
   ) {
-    if (this.isLoggedIn ===true) {
+    if (this.isLoggedIn === true) {
       this.router.navigateByUrl('/dashboard')
     }
   }
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   _signIn() {
-    if (this.admin.username == null) {
+    if (this.admin.email == null) {
       this.configService.SwalSuccess("O campo E-mail é obrigatório")
       return
     }

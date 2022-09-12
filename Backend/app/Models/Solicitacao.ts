@@ -28,6 +28,9 @@ export default class Solicitacao extends BaseModel {
   public is_publicado: boolean
 
   @column()
+  public is_facturado: boolean
+
+  @column()
   public is_notificado: boolean
 
   @column()

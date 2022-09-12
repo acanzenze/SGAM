@@ -74,7 +74,7 @@ export class CreateOrEditClientesComponent implements OnInit {
   }
 
   listaOfBairro(event: any) {
-    if(!event) return
+    if (!event) return
     this.bairrosService.getAllBairrosById(event.value)
       .subscribe(res => {
         this.bairros = Object(res)
@@ -100,7 +100,7 @@ export class CreateOrEditClientesComponent implements OnInit {
       });
   }
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    if (this.cliente.id !== undefined) {
+    if (this.cliente?.id !== undefined) {
       this.title = 'Editar Cliente';
       this.clienteForm.patchValue({
         id: this.cliente.id,
@@ -117,10 +117,10 @@ export class CreateOrEditClientesComponent implements OnInit {
         enderecoId: this.cliente.endereco,
         municipioId: this.cliente.municipio,
         distritoId: this.cliente.distrito,
-        bairroId:this.cliente.bairro ,
+        bairroId: this.cliente.bairro,
         /* tipoDocumentoId:, */
         dataEmissao: this.cliente.data_emissao,
-        dataValidade:this.cliente.enderecoId ,
+        dataValidade: this.cliente.enderecoId,
 
       });
     } else {
@@ -142,7 +142,7 @@ export class CreateOrEditClientesComponent implements OnInit {
       this.clienteForm.getRawValue().id == null
         ? `http://127.0.0.1:3333/clientes/create`
         : `http://127.0.0.1:3333/clientes/update/` +
-          this.clienteForm.getRawValue().id;
+        this.clienteForm.getRawValue().id;
     console.log(url);
     this.http
       .post(url, this.clienteForm.value, { headers: this.authService.headers })
@@ -164,8 +164,8 @@ export class CreateOrEditClientesComponent implements OnInit {
     });
   }
 
-  getDistrito(event:any) {
-    if(!event.value) return
+  getDistrito(event: any) {
+    if (!event.value) return
     this.http
     this.distritoService.getAllDistritosById(event.value)
       .subscribe((res) => {

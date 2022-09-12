@@ -1,158 +1,162 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-      <br>
-      <br>
-      <li class="nav-item nav-profile">
-        <a href="#" class="nav-link">
-          <div class="profile-image">
-            <i class="mdi mdi-account-circle" style="font-size: 45px"></i>
-           
-          </div>
-          <div class="text-wrapper">
-            <p class="profile-name">Alexandre Canzenze</p>
-            <p class="designation">Super Admin</p>
-          </div>
-        </a>
-      </li>
-      <li class="nav-item nav-category">Menu Principal</li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/dashboard" routerLinkActive>
-          <i class="menu-icon typcn typcn-document-text"></i>
-          <span class="menu-title">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#clientes" aria-expanded="false" aria-controls="clientes">
-          <i class="menu-icon typcn typcn-coffee"></i>
-          <span class="menu-title">Clientes</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="clientes">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/clientes" routerLinkActive>Listagem</a>
-            </li>
-             <li class="nav-item">
-              <a class="nav-link" routerLink="/solicitacao" routerLinkActive>Solicitação</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#produtos" aria-expanded="false" aria-controls="produtos">
-          <i class="menu-icon typcn typcn-coffee"></i>
-          <span class="menu-title">Produtos</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="produtos">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/produtos" routerLinkActive>Listagem</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#facturacao" aria-expanded="false" aria-controls="facturacao">
-          <i class="menu-icon typcn typcn-coffee"></i>
-          <span class="menu-title">Facturação</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="facturacao">
-          <ul class="nav flex-column sub-menu">
+  <ul class="nav">
+    <br>
+    <br>
+    <li class="nav-item nav-profile">
+      <a href="#" class="nav-link">
+        <div class="profile-image">
+          <i class="mdi mdi-account-circle" style="font-size: 45px"></i>
 
-            <li class="nav-item">
+        </div>
+        <div class="text-wrapper">
+          <p class="profile-name">Alexandre Canzenze</p>
+          <p class="designation">Super Admin</p>
+        </div>
+      </a>
+    </li>
+    <li class="nav-item nav-category">Menu Principal</li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive>
+        <i class="menu-icon typcn typcn-document-text"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#clientes" aria-expanded="false" aria-controls="clientes">
+        <i class="menu-icon typcn typcn-coffee"></i>
+        <span class="menu-title">Clientes</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="clientes">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/clientes" routerLinkActive>Listagem</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/solicitacao" routerLinkActive>Solicitação</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#produtos" aria-expanded="false" aria-controls="produtos">
+        <i class="menu-icon typcn typcn-coffee"></i>
+        <span class="menu-title">Produtos</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="produtos">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/produtos" routerLinkActive>Listagem</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#facturacao" aria-expanded="false" aria-controls="facturacao">
+        <i class="menu-icon typcn typcn-coffee"></i>
+        <span class="menu-title">Facturação</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="facturacao">
+        <ul class="nav flex-column sub-menu">
+
+          <!-- <li class="nav-item">
               <a class="nav-link"  routerLink="/faturacao" routerLinkActive>Registar</a>
-            </li>
+            </li> -->
 
-            <li class="nav-item">
-              <a class="nav-link"  routerLink="/listar-faturacao" routerLinkActive>Listagem</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#operacoes" aria-expanded="false" aria-controls="operacoes">
-          <i class="menu-icon typcn typcn-document-add"></i>
-          <span class="menu-title">Operações</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="operacoes">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link"  href="javascript:void(0)" data-toggle="modal" data-target="#abrirCaixaModal" routerLinkActive> Abrir Caixa </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"  href="javascript:void(0)" data-toggle="modal" data-target="#fecharCaixaModal" routerLinkActive> Fechar Caixa </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"  href="javascript:void(0)" routerLink="/configuracao/movimento-caixa" routerLinkActive> Movimento Caixa </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#configuracoes" aria-expanded="false" aria-controls="configuracoes">
-          <i class="menu-icon typcn typcn-document-add"></i>
-          <span class="menu-title">Configurações</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="configuracoes">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/operacoes/utilizadores" routerLinkActive> Usuários </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/operacoes/roles" routerLinkActive> Roles </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/operacoes/permissoes" routerLinkActive> Permissions </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/operacoes/categorias-produto" routerLinkActive> Categória </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/configuracao/documento-series" routerLinkActive> Documentos </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/configuracao/series" routerLinkActive> Séries </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/listar-faturacao" routerLinkActive>Listagem</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#operacoes" aria-expanded="false" aria-controls="operacoes">
+        <i class="menu-icon typcn typcn-document-add"></i>
+        <span class="menu-title">Operações</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="operacoes">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#abrirCaixaModal"
+              routerLinkActive> Abrir Caixa </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#fecharCaixaModal"
+              routerLinkActive> Fechar Caixa </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" routerLink="/configuracao/movimento-caixa" routerLinkActive>
+              Movimento Caixa </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#configuracoes" aria-expanded="false"
+        aria-controls="configuracoes">
+        <i class="menu-icon typcn typcn-document-add"></i>
+        <span class="menu-title">Configurações</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="configuracoes">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operacoes/utilizadores" routerLinkActive> Usuários </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operacoes/roles" routerLinkActive> Roles </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operacoes/permissoes" routerLinkActive> Permissions </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operacoes/categorias-produto" routerLinkActive> Categória </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/configuracao/documento-series" routerLinkActive> Documentos </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/configuracao/series" routerLinkActive> Séries </a>
+          </li>
 
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/configuracao/tipo-solicitacao" routerLinkActive> Tipo de Solicitação </a>
-            </li>
-
-
-            <li class="nav-item pr-3">
-              <a class="nav-link" data-toggle="collapse" href="#morada" aria-expanded="false" aria-controls="morada">
-                <i class="menu-icon typcn typcn-coffee"></i>
-                <span class="menu-title">Morada</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="morada">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item p-2">
-                    <a class="nav-link" routerLink="/configuracao/provincias" routerLinkActive> Províncias </a>
-                  </li>
-                  <li class="nav-item p-2">
-                    <a class="nav-link" routerLink="/configuracao/municipios" routerLinkActive> Municipios </a>
-                  </li>
-                  <li class="nav-item p-2">
-                    <a class="nav-link" routerLink="/configuracao/distritos" routerLinkActive> Distritos </a>
-                  </li>
-                  <li class="nav-item p-2">
-                    <a class="nav-link" routerLink="/configuracao/bairros" routerLinkActive> Bairros </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/configuracao/tipo-solicitacao" routerLinkActive> Tipo de Solicitação </a>
+          </li>
 
 
-          </ul>
-        </div>
-      </li>
-    </ul>
+          <li class="nav-item pr-3">
+            <a class="nav-link" data-toggle="collapse" href="#morada" aria-expanded="false" aria-controls="morada">
+              <i class="menu-icon typcn typcn-coffee"></i>
+              <span class="menu-title">Morada</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="morada">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item p-2">
+                  <a class="nav-link" routerLink="/configuracao/provincias" routerLinkActive> Províncias </a>
+                </li>
+                <li class="nav-item p-2">
+                  <a class="nav-link" routerLink="/configuracao/municipios" routerLinkActive> Municipios </a>
+                </li>
+                <li class="nav-item p-2">
+                  <a class="nav-link" routerLink="/configuracao/distritos" routerLinkActive> Distritos </a>
+                </li>
+                <li class="nav-item p-2">
+                  <a class="nav-link" routerLink="/configuracao/bairros" routerLinkActive> Bairros </a>
+                </li>
+              </ul>
+            </div>
+          </li>
 
-    <abrirCaixa></abrirCaixa>
-    <fecharCaixa></fecharCaixa>
-  </nav>
+
+        </ul>
+      </div>
+    </li>
+  </ul>
+
+  <abrirCaixa></abrirCaixa>
+  <fecharCaixa></fecharCaixa>
+</nav>

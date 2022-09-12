@@ -22,19 +22,19 @@ import { TipoSolicitacaoComponent } from './views/solicitacao/tipo-solicitacao/t
 import { ListagemDeFacturaComponent } from './views/listagemFactura/listagem-de-factura.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  /*{
-    path: "dashboard",
+  //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  {
+    path: "",
     component: LoginComponent,
-  }, */
+  },
   {
     path: "dashboard",
     component: DashboardComponent,
   },
-  {
-    path: "login",
-    component: LoginComponent,
-  },
+  /*   {
+      path: "login",
+      component: LoginComponent,
+    }, */
   {
     path: "faturacao",
     component: FaturacaoComponent,
@@ -43,8 +43,8 @@ const routes: Routes = [
     path: "listar-faturacao",
     component: ListagemDeFacturaComponent,
   },
-  
-  
+
+
   {
     path: 'operacoes',
     children: [
@@ -65,7 +65,7 @@ const routes: Routes = [
       { path: 'series', component: SeriesComponent },
       { path: 'movimento-caixa', component: MovimentoCaixaComponent },
       { path: 'bairros', component: BairrosComponent },
-      {path:  'distritos', component: DistritosComponent}
+      { path: 'distritos', component: DistritosComponent }
     ]
   },
   {

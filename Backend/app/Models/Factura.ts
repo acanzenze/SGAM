@@ -24,6 +24,9 @@ export default class Factura extends BaseModel {
   @column()
   public clinte_id: number
 
+  @column()
+  public solicitacao_id: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

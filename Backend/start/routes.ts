@@ -40,6 +40,8 @@ Route.post('clientes/select', 'ClientesController.searchMunicipe')
 Route.post('solicitacao/create', 'SolicitacaosController.store')
 Route.post('solicitacao/update/:id', 'SolicitacaosController.update')
 Route.post('solicitacao/list', 'SolicitacaosController.index')
+
+Route.post('tipo-solicitacao/list/:id', 'SolicitacaosController.selectBoxProdutos')
 Route.post('solicitacao/select', 'SolicitacaosController.show')
 
 Route.post('tipo-solicitacao/create', 'TipoSolicitacaosController.store')

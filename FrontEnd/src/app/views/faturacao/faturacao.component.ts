@@ -23,7 +23,7 @@ export class FaturacaoComponent implements OnInit {
   public produto: any
   public clientes: any = []
   public produtos: any = [
-    {nome : 'Arroz', preco : '20.000kz', quantidade : '10', categoria: 'Sereais', created_at: '02.05.2022'}
+    { nome: 'Arroz', preco: '20.000kz', quantidade: '10', categoria: 'Sereais', created_at: '02.05.2022' }
   ]
   public loading = false;
 
@@ -60,7 +60,7 @@ export class FaturacaoComponent implements OnInit {
   }
 
   getPageFilterData(event: any) {
-
+    this.listaOfClientes()
   }
 
 

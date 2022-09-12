@@ -28,14 +28,16 @@ export class AuthService {
   ) { }
 
   signIn(user: any) {
+
     this._http_client.post<any>(
-      `${this.httpService.apiUrl}/auth/sign_in`,
+      `${this.httpService.api}/login`,
       user
     ).subscribe(
       response => {
-        let data = response.data
-        sessionStorage.setItem('sessionToken', data.token.token)
-        sessionStorage.setItem('currentUser', JSON.stringify(data));
+        console.log(response)
+        let data = response
+        sessionStorage.setItem('sasam:sessionToken', JSON.stringify(data.token))
+        sessionStorage.setItem('sasam:currentUser', JSON.stringify(data.user));
         this.userLogged = true
 
         this.configService.SwalSuccess('Sessão iniciada com sucesso')
@@ -69,8 +71,8 @@ export class AuthService {
   }
 
   removeTokenOfUser() {
-    sessionStorage.removeItem('currentUser')
-    sessionStorage.removeItem('sessionToken')
+    sessionStorage.removeItem('sasam:currentUser')
+    sessionStorage.removeItem('sasam:sessionToken')
     this.userLogged = false
     this.router.navigateByUrl('/')
   }

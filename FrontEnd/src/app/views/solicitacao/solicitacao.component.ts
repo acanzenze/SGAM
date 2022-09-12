@@ -19,6 +19,8 @@ export class SolicitacaoComponent implements OnInit {
       lastPage: 0,
     },
   };
+  public produto: any = {}
+  public tipoSolicitacaos: any = {}
   public cliente: any;
   public Solicitacao: any = [];
   public loading = false;
@@ -44,7 +46,7 @@ export class SolicitacaoComponent implements OnInit {
       this.filters.pagination.total = Object(res).meta.total;
       this.filters.pagination.perPage = Object(res).meta.per_page;
       this.loading = false;
-      console.log('cliente',this.Solicitacao)
+      console.log('cliente', this.Solicitacao)
     });
   }
 
@@ -52,18 +54,32 @@ export class SolicitacaoComponent implements OnInit {
     this.cliente = item;
   }
 
-
+  setFacturacao(item: any) {
+    console.log(item)
+    this.listTipoSolicitacao(item.tipo_solicitacao_id)
+    this.produto = item;
+  }
   getPageFilterData(event: any) {
     console.log(event.target.value)
     if (this.filters.pagination.perPage == null) {
       return;
     }
 
-   // this.filters.pagination.page = Number(event.target.value);
+    // this.filters.pagination.page = Number(event.target.value);
     this.listaOfSolicitacao();
   }
 
   filterData() {
     this.listaOfSolicitacao();
+  }
+
+  listTipoSolicitacao(id: any) {
+    this.loading = true
+    this.http.post(`${this.httpService.api}/tipo-solicitacao/list/${id}`, null)
+      .subscribe(res => {
+        this.produto = Object(res)
+        console.log(res, this.produto)
+        this.loading = false
+      })
   }
 }

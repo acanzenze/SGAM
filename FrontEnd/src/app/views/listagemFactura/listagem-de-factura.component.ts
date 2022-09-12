@@ -9,7 +9,7 @@ import { HttpService } from '../../providers/http.service';
 })
 export class ListagemDeFacturaComponent implements OnInit {
 
-  
+
   public filters = {
     search: null,
     pagination: {
@@ -39,23 +39,27 @@ export class ListagemDeFacturaComponent implements OnInit {
 
   public listFacturas() {
     this.loading = false
+    this.facturas = []
+    console.log(this.filters)
     this.http.post(`${this.httpService.api}/factura/list`, this.filters)
       .subscribe(res => {
-        this.filters.pagination.lastPage = Object(res).lastPage;
-        this.filters.pagination.page = Object(res).page;
-        this.filters.pagination.total = Object(res).total;
-        this.filters.pagination.perPage = Object(res).perPage;
+        console.log(res)
+        this.filters.pagination.lastPage = Object(res).meta.last_page;
+        this.filters.pagination.page = Object(res).meta.current_page;
+        this.filters.pagination.total = Object(res).meta.total;
+        this.filters.pagination.perPage = Object(res).meta.per_page;
         this.facturas = Object(res).data
         this.loading = false
       })
+
   }
 
   setCategoria(item: any) {
     this.produto = item;
   }
 
-  getPageFilterData(event: any) {
-
+  getPageFilterData(event: any = null) {
+    this.listFacturas()
   }
 
 

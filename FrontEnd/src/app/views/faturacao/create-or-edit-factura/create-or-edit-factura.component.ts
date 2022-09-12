@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/providers/http.service';
 export class CreateOrEditFacturaComponent implements OnInit {
   @Input() factura: any
   @Input() modal: any = 'createOrEditFacturaModal'
-  @Input() title: string = "Registar Produto";
+  @Input() title: string = "Registar Factura";
 
   submitted = false;
   public loading = false;
@@ -33,16 +33,17 @@ export class CreateOrEditFacturaComponent implements OnInit {
 
     this.facturacaoForm = this.fb.group({
       id: [{ value: null, disabled: true }],
-      produto: [null, Validators.required],
-      tipo_solicitacao: [null, Validators.required],
-      serie_id:  [null, Validators.required],
+      produto: [null],
+      tipo_solicitacao: [null],
+      serie_id: [null, Validators.required],
     });
 
   }
 
   ngOnInit(): void {
+    console.log('factura', this.factura)
     this.listaOfProdutos()
-    this.listTipoSolicitacao()
+    // this.listTipoSolicitacao(this.factura.tipo_solicitacao_id)
     this.listSerie()
   }
   get f() {
@@ -52,31 +53,32 @@ export class CreateOrEditFacturaComponent implements OnInit {
     let produto_id = target.value || null
     let produto = this.produtos.filter((item: any) => item.id == produto_id)
     console.log(this.facturacaoForm.value)
-     this.factura = { ...this.factura, ...produto[0] }
+    this.factura = { ...this.factura, ...produto[0] }
   }
 
-  listTipoSolicitacao() {
+  listTipoSolicitacao(id: any) {
     this.loading = true
-     this.http.post(`${this.httpService.api}/tipo-solicitacao/list`,null)
-       .subscribe(res => {
-         this.tipoSolicitacaos = Object(res).data
-         this.loading = false
-       })
-   }
+    this.http.post(`${this.httpService.api}/tipo-solicitacao/list/${id}`, null)
+      .subscribe(res => {
+        this.tipoSolicitacaos = Object(res).data
+        console.log(res)
+        this.loading = false
+      })
+  }
 
-   listSerie() {
-     this.loading = true
-     this.http.post(`${this.httpService.api}/serie/list`,null)
-       .subscribe(res => {
-         this.series = Object(res)
-         this.loading = false
-       })
-   }
- 
+  listSerie() {
+    this.loading = true
+    this.http.post(`${this.httpService.api}/serie/list`, null)
+      .subscribe(res => {
+        this.series = Object(res)
+        this.loading = false
+      })
+  }
+
 
   public listaOfProdutos() {
     this.loading = false
-    this.http.post(`${this.httpService.api}/produto/list`,null)
+    this.http.post(`${this.httpService.api}/produto/list`, null)
       .subscribe(res => {
         this.produtos = Object(res)
         this.loading = false
@@ -88,25 +90,38 @@ export class CreateOrEditFacturaComponent implements OnInit {
     this.facturacaoForm.reset();
   }
 
+  updateSolicitacao(id: number) {
+    const url = `${this.httpService.api}/solicitacao/update/${id}`
+    this.http
+      .post(url, { ...this.factura, is_facturado: true }, { headers: this.authService.headers })
+      .subscribe(res => { })
+  }
+
   createOrEdit() {
 
-   this.factura = { ...this.factura, ...this.facturacaoForm.value}
-   
+    this.factura = { ...this.factura, ...this.facturacaoForm.value, total: this.factura.preco }
+
     this.submitted = true
     if (this.facturacaoForm.invalid) {
       return
     }
 
     this.loading = true;
-    const url = `${this.httpService.api}/factura/create` 
+    const url = `${this.httpService.api}/factura/create`
 
     this.http
       .post(url, this.factura, { headers: this.authService.headers })
       .subscribe(res => {
         this.submitted = false
-        if (Object(res).code == 200) {
+        if (Object(res).status == 201) {
           this.configService.SwalSuccess('Produto registado com sucesso!')
-          this.facturacaoForm.reset()
+        }
+        this.updateSolicitacao(this.factura.solicitacao_id)
+        this.facturacaoForm.reset()
+        this.factura = {
+          produto: null,
+          tipo_solicitacao: null,
+          preco: null
         }
         this.loading = false;
       })

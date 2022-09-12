@@ -43,8 +43,8 @@ export default class SolicitacaosController {
     if (page === null) page = 1
     console.log(request.all())
 
-    let setPage =  perPage === 'T' ? 1 : page
-    let setPerPage =  perPage === 'T' ? total : perPage
+    let setPage = perPage === 'T' ? 1 : page
+    let setPerPage = perPage === 'T' ? total : perPage
     const client = await Database.from('solicitacaos')
       .select(
         '*',
@@ -53,19 +53,43 @@ export default class SolicitacaosController {
         'clientes.id as cliente_id',
         'bairros.nome as bairro',
         'distritos.nome as distrito',
-        'municipios.nome as municipio'
-        )
+        'municipios.nome as municipio',
+        'tipo_solicitacaos.descricao as tipo_solicitacao',
+      )
       .where((query) => {
         if (search && search !== 'null') {
-          console.log('debug code',search)
+          console.log('debug code', search)
           query.where('clientes.nome', 'like', '%' + search + '%')
         }
       })
-      .innerJoin("clientes","clientes.id","solicitacaos.municipe_id")
-      .leftJoin("bairros","bairros.id","clientes.bairro_id")
-      .leftJoin("distritos","distritos.id","bairros.distrito_id")
-      .leftJoin("municipios","municipios.id","distritos.municipio_id")
+      .innerJoin("clientes", "clientes.id", "solicitacaos.municipe_id")
+      .innerJoin("tipo_solicitacaos", "tipo_solicitacaos.id", "solicitacaos.tipo_solicitacao_id")
+      .leftJoin("bairros", "bairros.id", "clientes.bairro_id")
+      .leftJoin("distritos", "distritos.id", "bairros.distrito_id")
+      .leftJoin("municipios", "municipios.id", "distritos.municipio_id")
       .paginate(setPage, setPerPage)
+
+    return response.json(client)
+  }
+
+
+  public async selectBoxProdutos({ params, response }: HttpContextContract) {
+
+
+    const client = await Database.from('solicitacaos')
+      .select(
+        //'*',
+        'solicitacaos.id as solicitacao_id',
+        'solicitacaos.id as tipo_solicitacao_id',
+        'tipo_solicitacaos.descricao as tipo_solicitacao',
+        'produtos.id as produto_id',
+        'produtos.nome as produto',
+        'produtos.preco'
+      )
+      .innerJoin("produtos", "produtos.tipo_solicitacao_id", "solicitacaos.tipo_solicitacao_id")
+      .innerJoin("tipo_solicitacaos", "tipo_solicitacaos.id", "produtos.tipo_solicitacao_id")
+      .where('produtos.tipo_solicitacao_id', params.id)
+      .first()
 
     return response.json(client)
   }
@@ -89,8 +113,9 @@ export default class SolicitacaosController {
       'is_notificado',
       'estado',
       'user_id',
+      'is_facturado'
     ])
-
+    console.log(data)
     const solicitacao = await Solicitacao.find(params.id)
     if (!solicitacao) throw new Error('erro ao cadastrar')
 

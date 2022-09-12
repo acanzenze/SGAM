@@ -34,7 +34,7 @@ export class SeriesComponent implements OnInit {
   ngOnInit(): void { }
 
   listaOfSeries() {
-    this.http.get(`${this.httpService.apiUrl}/configuracao/series/listagem`, { headers: this.authService.headers })
+    this.http.post(`${this.httpService.api}/serie/list`, { headers: this.authService.headers })
       .subscribe(res => {
         this.series = Object(res).data
         this.filters.pagination.lastPage = Object(res).lastPage;

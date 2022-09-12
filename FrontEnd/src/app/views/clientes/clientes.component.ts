@@ -21,6 +21,7 @@ export class ClientesComponent implements OnInit {
   };
   public cliente: any;
   public clientes: any = [];
+
   public loading = false;
 
   constructor(
@@ -34,8 +35,10 @@ export class ClientesComponent implements OnInit {
     this.listaOfClientes();
   }
 
+
+
   public listaOfClientes() {
-   // this.clientes = []
+    // this.clientes = []
     this.loading = true;
     this.http.post(`http://127.0.0.1:3333/clientes/list`, this.filters).subscribe((res) => {
       this.clientes = Object(res).data;
@@ -44,7 +47,7 @@ export class ClientesComponent implements OnInit {
       this.filters.pagination.total = Object(res).meta.total;
       this.filters.pagination.perPage = Object(res).meta.first_page;
       this.loading = false;
-      console.log('cliente',this.clientes)
+      console.log('cliente', this.clientes)
     });
   }
 

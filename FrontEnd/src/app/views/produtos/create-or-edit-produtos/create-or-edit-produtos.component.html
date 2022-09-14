@@ -13,12 +13,12 @@
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Categoria</label>
                                 <select class="form-control" 
-                                formControlName="categoria_id"
-                                 [ngClass]="{ 'is-invalid': submitted && f.categoria_id.errors, 'is-valid': f.categoria_id.touched && !f.categoria_id.errors }">
-                                    <option value="{{item.id}}" *ngFor="let item of categorias">{{item.descricao}}</option>
+                                formControlName="categoria"
+                                 [ngClass]="{ 'is-invalid': submitted && f.categoria.errors, 'is-valid': f.categoria.touched && !f.categoria.errors }">
+                                    <option value="Serviço">Serviço</option>
                                 </select>
-                                <div *ngIf="submitted && f['categoria_id'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['categoria_id'].errors.required">O campo categoria é obrigatório</div>
+                                <div *ngIf="submitted && f['categoria'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['categoria'].errors.required">O campo categoria é obrigatório</div>
                                 </div>
                             </div>
                         </div>
@@ -66,21 +66,20 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label"><i class="fa fa-edit"></i> Quantidade</label>
-                                <input
-                                    type="number"
-                                    formControlName="quantidade"
-                                    name="quantidade"
+                                <label class="control-label"><i class="fa fa-edit"></i> Imposto</label>
+                                <select
+                                    formControlName="imposto"
                                     class="form-control"
-                                    placeholder="Nome"
-                                    [ngClass]="{ 'is-invalid': submitted && f.quantidade.errors, 'is-valid': f.quantidade.touched && !f.quantidade.errors }"
-                                />
-                                <div *ngIf="submitted && f['quantidade'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['quantidade'].errors.required">O campo quantidade é obrigatório</div>
-                                </div>
+                                    >
+                                    <option value="0">Regime Simplificado - 0</option>
+                                    <option value="0.14">Regime de IVA - 14%</option>
+                                </select>
+                                <!--<div *ngIf="submitted && f['imposto'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['imposto'].errors.required">O campo quantidade é obrigatório</div>
+                                </div>-->
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!--<div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Código</label>
                                 <input
@@ -95,7 +94,7 @@
                                     <div *ngIf="f['codigo'].errors.required">O campo código é obrigatório</div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Descrição</label>

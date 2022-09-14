@@ -5,20 +5,40 @@ import User from 'App/Models/User'
 
 export default class UsersController {
   public async store({ request, response }: HttpContextContract) {
-    const data = request.only(['nome', 'email', 'username', 'password'])
-    const user = await User.create(data)
+    const data = request.only(['nome', 'email', 'username', 'password','instituicao_id','perfil_id','estado'])
+    
+    if(data){
+      const user = await User.create({
+        nome: data.nome,
+        email:data.email,
+        username:data.email,
+        password:data.password,
+        estado:true,
+        perfil_id:data.perfil_id,
+        instituicao_id:data.instituicao_id
+      })
 
-    response.status(201)
+      response.status(201)
     return {
       msg: 'Registado com sucesso',
-      dados: user,
+      dados: user
+    }
     }
   }
 
-  public async index({ requets, response }) {
-    const user = await Database.from('users').select('*')
+  public async index({response }) {
+    const user = await Database.from('users')
+    .select(
+      'users.*',
+      'instituicaos.nome as empresa',
+      'perfils.nome as perfil'
+      )
+      .innerJoin('perfils','perfils.id','users.perfil_id')
+      .innerJoin('instituicaos','instituicaos.id','users.instituicao_id')
 
-    return response.json({ data: user })
+    return{
+      dados:user
+    }
   }
 
   public async login({ request, response, auth }) {

@@ -35,6 +35,7 @@ Route.post('clientes/create', 'ClientesController.store')
 Route.post('clientes/update/:id', 'ClientesController.update')
 Route.post('clientes/list', 'ClientesController.index')
 Route.post('clientes/select', 'ClientesController.searchMunicipe')
+Route.post('clientes/count', 'ClientesController.countCliente')
 
 
 Route.post('solicitacao/create', 'SolicitacaosController.store')
@@ -49,6 +50,9 @@ Route.post('tipo-solicitacao/update/:id', 'TipoSolicitacaosController.update')
 Route.post('tipo-solicitacao/list', 'TipoSolicitacaosController.index')
 Route.post('tipo-solicitacao/select', 'TipoSolicitacaosController.show')
 
+Route.get('prioridades/list', 'SolicitacaoPrioridadesController.index')
+
+Route.get('estados/list', 'SolicitacaoEstadosController.index')
 
 
 Route.post('serie/create', 'SeriesController.store')
@@ -62,6 +66,11 @@ Route.post('factura/create', 'FacturasController.store')
 Route.post('factura/update/:id', 'FacturasController.update')
 Route.post('factura/list', 'FacturasController.index')
 Route.post('factura/select', 'FacturasController.show')
+Route.post('factura/totalhoje', 'FacturasController.facturacaoHoje')
+Route.post('factura/totalontem', 'FacturasController.facturacaoOntem')
+Route.post('factura/totalgeral', 'FacturasController.facturacaoGeral')
+Route.post('factura/countdocmunicipe', 'FacturasController.countDocMunicipe')
+Route.post('factura/countdocumentos', 'FacturasController.countDocumento')
 
 
 Route.post('linha_factura/create', 'LinhaFacturasController.store')

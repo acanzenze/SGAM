@@ -12,7 +12,7 @@ export default class Produto extends BaseModel {
   public preco: number
 
   @column()
-  public quantidade: string
+  public imposto: string
 
   @column()
   public categoria: string

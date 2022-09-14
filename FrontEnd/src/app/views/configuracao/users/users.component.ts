@@ -31,17 +31,18 @@ export class UsersComponent implements OnInit {
     private authService: AuthService,
     private userService:UserService
   ) {
-    this.listaOfUsers();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.listaOfUsers();
+  }
 
  public listaOfUsers() {
     this.loading = true
     this.userService.getAllUser()
       .subscribe(res => {
         this.users = Object(res).dados
-        console.log(this.users)
+        console.log("users:",this.users)
         this.filters.pagination.lastPage = Object(res).lastPage;
         this.filters.pagination.page = Object(res).page;
         this.filters.pagination.total = Object(res).total;

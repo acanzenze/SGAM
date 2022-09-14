@@ -55,9 +55,12 @@ export class SolicitacaoComponent implements OnInit {
   }
 
   setFacturacao(item: any) {
-    console.log(item)
-    this.listTipoSolicitacao(item.tipo_solicitacao_id)
+    console.log("F:",item)
+    this.listTipoSolicitacao(item.solicitacao_id)
     this.produto = item;
+  }
+  setPublicado(item:any){
+
   }
   getPageFilterData(event: any) {
     console.log(event.target.value)
@@ -74,11 +77,12 @@ export class SolicitacaoComponent implements OnInit {
   }
 
   listTipoSolicitacao(id: any) {
+    console.log("fa",id)
     this.loading = true
     this.http.post(`${this.httpService.api}/tipo-solicitacao/list/${id}`, null)
       .subscribe(res => {
         this.produto = Object(res)
-        console.log(res, this.produto)
+        console.log("res",res, this.produto)
         this.loading = false
       })
   }

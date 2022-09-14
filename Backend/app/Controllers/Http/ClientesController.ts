@@ -55,6 +55,7 @@ export default class ClientesController {
       .select(
         'clientes.*',
         'clientes.id as cliente_id',
+        'clientes.nome',
         'bairros.nome as bairro',
         'distritos.nome as distrito',
         'municipios.nome as municipio'
@@ -80,6 +81,7 @@ export default class ClientesController {
     .select(
       'clientes.*',
       'clientes.id as cliente_id',
+      'clientes.nome as cliente_nome',
       'bairros.nome as bairro',
       'distritos.nome as distrito',
       'municipios.nome as municipio'
@@ -101,6 +103,14 @@ export default class ClientesController {
 
     return {
       dados: user,
+    }
+  }
+
+  public async countCliente(){
+    const data = await Database.from('clientes')  .count("* as total") 
+
+    return{
+      dados: data[0].total 
     }
   }
 

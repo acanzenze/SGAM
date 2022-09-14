@@ -36,10 +36,10 @@ export class CreateOrEditProdutosComponent implements OnInit {
       id: [{ value: null, disabled: true }],
       nome: [null, Validators.required],
       preco: [null, Validators.required],
-      quantidade: [null, Validators.required],
+      imposto: [null],
       tipo_solicitacao_id: [null, Validators.required],
       codigo: [null],
-      categoria_id: [null],
+      categoria: [null],
       descricao: [null],
     });
 

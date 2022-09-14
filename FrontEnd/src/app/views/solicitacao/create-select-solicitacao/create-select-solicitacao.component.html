@@ -11,7 +11,7 @@
                     <div class="row">
 
 
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <div class="form-groupp">
                       <label class="col-form-label" for="name">Munícipe</label>
                       <div class="input-group">
@@ -46,13 +46,41 @@
                               <select class="form-control"
                                 formControlName="tipo_solicitacao_id">
                                 <option value="null">Tipo Solicitação</option>
-                                  <option [value]="item.id" *ngFor="let item of tipoSolicitacaos">Agregado Familiar</option>
+                                  <option [value]="item.id" *ngFor="let item of tipoSolicitacaos">{{item.descricao}}</option>
                               </select>
                               <div *ngIf="submitted && f['tipo_solicitacao_id'].errors" class="invalid-feedback">
-                                  <div *ngIf="f['tipo_solicitacao_id'].errors.required">O campo Tipo de Identificação é obrigatório</div>
+                                  <div *ngIf="f['tipo_solicitacao_id'].errors.required">O campo Tipo de Solicitação é obrigatório</div>
                               </div>
                           </div>
                       </div>
+
+                      <div class="col-md-6">
+                        <label class="control-label"><i class="fa fa-edit"></i>Prioridade</label>
+                        <div class="form-group">
+                          <select class="form-control"
+                            formControlName="prioridade_id">
+                            <option value="null">Prioridade</option>
+                              <option [value]="prioridade.id" *ngFor="let prioridade of prioridades">{{prioridade?.descricao}}</option>
+                          </select>
+                          <div *ngIf="submitted && f['prioridade_id'].errors" class="invalid-feedback">
+                              <div *ngIf="f['prioridade_id'].errors.required">O campo prioridade é obrigatório</div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="control-label"><i class="fa fa-edit"></i>Estado</label>
+                      <div class="form-group">
+                        <select class="form-control"
+                          formControlName="estado_id">
+                          <option value="null">Estado</option>
+                            <option [value]="estado.id" *ngFor="let estado of estados">{{estado?.descricao}}</option>
+                        </select>
+                        <div *ngIf="submitted && f['estado_id'].errors" class="invalid-feedback">
+                            <div *ngIf="f['estado_id'].errors.required">O campo prioridade é obrigatório</div>
+                        </div>
+                    </div>
+                  </div>
 
                     </div>
                 </div>

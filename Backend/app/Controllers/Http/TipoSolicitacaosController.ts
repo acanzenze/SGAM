@@ -1,4 +1,5 @@
  import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Database from '@ioc:Adonis/Lucid/Database'
  import TipoSolicitacao from 'App/Models/TipoSolicitacao'
 
 export default class TipoSolicitacaosController {
@@ -21,6 +22,7 @@ export default class TipoSolicitacaosController {
 
   public async index({ request, response }: HttpContextContract) {
     const res = await TipoSolicitacao.all()
+    console.log("entrou")
 
     return response.status(201).json({
       data: res,
@@ -52,7 +54,8 @@ export default class TipoSolicitacaosController {
     const data = await TipoSolicitacao.all()
 
     return response.status(201).json({
-      data: data,
+      data: data[0],
     })
   }
+
 }

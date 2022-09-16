@@ -55,6 +55,8 @@ import { CreatOrEditTipoSolicitacaoComponent } from './views/solicitacao/tipo-so
 import { ListagemDeFacturaComponent } from './views/listagemFactura/listagem-de-factura.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 //import { EditUsersComponent } from './users/edit-users/edit-users.component';
+import { EditUsersComponent } from './views/configuracao/users/edit-users/edit-users.component';
+import { AlterPassworComponent } from './views/configuracao/users/alter-passwor/alter-passwor.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +108,8 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
     FaturacaoComponent,
     CreateOrEditFacturaComponent,
     //EditUsersComponent,
+    EditUsersComponent,
+    AlterPassworComponent,
   ],
   imports: [
     HttpClientModule,

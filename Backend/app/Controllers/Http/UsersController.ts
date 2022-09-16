@@ -63,6 +63,8 @@ export default class UsersController {
   }
 
   public async update({ params, request }: HttpContextContract) {
+    console.log("bck")
+
     const user = await User.findOrFail(params.id)
 
     if (user) {
@@ -73,7 +75,9 @@ export default class UsersController {
       user.instituicao_id = paramentros.instituicao_id
       user.email = paramentros.email
       user.estado = paramentros.estado
+      user.username=paramentros.email
     }
+    console.log(user)
     await user.save()
     return {
       msg: 'dados actualizados com sucesso',

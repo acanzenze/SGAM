@@ -31,7 +31,7 @@
                   <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold">{{f_hoje?.dados}}</h3>
+                        <h3 class="mb-0 font-weight-semibold">{{f_hoje.dados==null? 0 : f_hoje.dados}}</h3>
                         <h5 class="mb-0 font-weight-medium text-primary">Facturaçao de Hoje</h5>
                         <!--<p class="mb-0 text-muted">+138.97(+0.54%)</p>-->
                       </div>
@@ -43,7 +43,7 @@
                   <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold">{{f_ontem?.dados}}</h3>
+                        <h3 class="mb-0 font-weight-semibold">{{f_ontem.dados==null? 0 :f_ontem.dados}}</h3>
                         <h5 class="mb-0 font-weight-medium text-primary">Facturação de ontem</h5>
                         <!--<p class="mb-0 text-muted">+57.62(+0.76%)</p>-->
                       </div>

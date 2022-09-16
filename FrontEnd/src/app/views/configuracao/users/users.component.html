@@ -73,9 +73,9 @@
                                                         <div class="dropdown-menu" aria-labelledby="dropdownexport">
                                                             <a class="dropdown-item" href="javascript:void(0)"
                                                                 (click)="setUser(item)" data-toggle="modal"
-                                                                data-target="#createOrEditUser">Editar</a>
+                                                                data-target="#EditUser">Editar</a>
                                                             <a class="dropdown-item"
-                                                                href="javascript:void(0)">Elimnar</a>
+                                                                href="javascript:void(0)">Alterar Password</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -113,4 +113,5 @@
     </div>
     <!-- page-body-wrapper ends -->
     <createOrEditUser [user]="user" [modal]=""></createOrEditUser>
+    <app-edit-users [user]="user" [modal]=""></app-edit-users>
 </div>

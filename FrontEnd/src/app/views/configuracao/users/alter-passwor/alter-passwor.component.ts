@@ -13,11 +13,11 @@ import { UserService } from '../user.service';
 import { UsersComponent } from '../users.component';
 
 @Component({
-  selector: 'app-edit-users',
-  templateUrl: './edit-users.component.html',
-  styleUrls: ['./edit-users.component.css']
+  selector: 'app-alter-passwor',
+  templateUrl: './alter-passwor.component.html',
+  styleUrls: ['./alter-passwor.component.css']
 })
-export class EditUsersComponent implements OnInit {
+export class AlterPassworComponent implements OnInit {
 
   @Input() modal: any = "EditUser";
   @Input() title: string = "Editar User";
@@ -100,7 +100,8 @@ export class EditUsersComponent implements OnInit {
     } 
   }
 
-  Edit() {
+  alterPassword() {
+    console.log("editar user",this.userForm.value)
     this.submitted = true
     
       this.userService.update(this.userForm.getRawValue().id, this.userForm.value).subscribe(res => {

@@ -4,7 +4,7 @@ import Solicitacao from 'App/Models/Solicitacao'
 
 export default class SolicitacaosController {
 
-  public async store({ request, response }: HttpContextContract) {
+  public async store({ request, response,auth }: HttpContextContract) {
     const data = request.only([
       'descricao',
       'tipo_solicitacao_id',
@@ -17,7 +17,8 @@ export default class SolicitacaosController {
       'estado_id',
       'user_id',
     ])
-    console.log(data)
+    console.log(auth.user?.id)
+    
     
     const client = await Solicitacao.create({
       descricao: data.descricao,
@@ -29,7 +30,7 @@ export default class SolicitacaosController {
       is_notificado: false,
       is_facturado:false,
       estado: data.estado_id,
-      user_id: data.user_id,
+      user_id: auth.user?.id,
     })
 
     response.status(201)
@@ -61,7 +62,8 @@ export default class SolicitacaosController {
         'solicitacaos.is_publicado',
         'solicitacao_prioridades.descricao as prioridade',
         'solicitacao_estados.id as estado_id',
-        'solicitacao_estados.descricao as estado_descricao'
+        'solicitacao_estados.descricao as estado_descricao',
+        'solicitacao_estados.slug as estado_slug'
       )
       .where((query) => {
         if (search && search !== 'null') {
@@ -141,5 +143,40 @@ export default class SolicitacaosController {
       msg: 'dados actualizados com sucesso',
       dados: result,
     })
+  }
+
+  public async totalAbertas(){
+    const total=await Database.from("solicitacaos").count("* as total")
+    .innerJoin("solicitacao_estados","solicitacao_estados.id","solicitacaos.estado")
+    .where("solicitacao_estados.slug",'ABERTO')
+
+    return{
+      dados:total[0].total
+    }
+  }
+  public async totalFinalizadas(){
+    const total=await Database.from("solicitacaos").count("* as total")
+    .innerJoin("solicitacao_estados","solicitacao_estados.id","solicitacaos.estado")
+    .where("solicitacao_estados.slug",'FINALIZADO')
+
+    return{
+      dados:total[0].total
+    }
+  }
+  public async totalCanceladas(){
+    const total=await Database.from("solicitacaos").count("* as total")
+    .innerJoin("solicitacao_estados","solicitacao_estados.id","solicitacaos.estado")
+    .where("solicitacao_estados.slug",'CANCELADO')
+
+    return{
+      dados:total[0].total
+    }
+  }
+  public async total(){
+    const total=await Database.from("solicitacaos").count("* as total")
+
+    return{
+      dados:total[0].total
+    }
   }
 }

@@ -13,19 +13,21 @@ export class AuthService {
   private currentUserValue: any;
 
 
-  private token = sessionStorage.getItem('sessionToken')
+  private token :any= JSON.parse(sessionStorage.getItem('sessionToken') || '')
 
   public headers = new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')
-    .set('Authorization', `Bearer ${this.token}`)
+    .set('Authorization', `Bearer ${this.token.token}`)
 
   constructor(
     private router: Router,
     private _http_client: HttpClient,
     private configService: ConfigService,
     private httpService: HttpService
-  ) { }
+  ) { console.log(this.token.token)
+  
+  }
 
   signIn(user: any) {
 
@@ -36,8 +38,8 @@ export class AuthService {
       response => {
         console.log(response)
         let data = response
-        sessionStorage.setItem('sasam:sessionToken', JSON.stringify(data.token))
-        sessionStorage.setItem('sasam:currentUser', JSON.stringify(data.user));
+        sessionStorage.setItem('sessionToken', JSON.stringify(data.token))
+        sessionStorage.setItem('currentUser', JSON.stringify(data.user));
         this.userLogged = true
 
         this.configService.SwalSuccess('Sessão iniciada com sucesso')
@@ -71,8 +73,8 @@ export class AuthService {
   }
 
   removeTokenOfUser() {
-    sessionStorage.removeItem('sasam:currentUser')
-    sessionStorage.removeItem('sasam:sessionToken')
+    sessionStorage.removeItem('currentUser')
+    sessionStorage.removeItem('sessionToken')
     this.userLogged = false
     this.router.navigateByUrl('/')
   }

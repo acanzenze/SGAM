@@ -5,11 +5,13 @@ import Database from '@ioc:Adonis/Lucid/Database'
 export default class TipoSolicitacaosController {
 
   public async store({ request, response }: HttpContextContract) {
-    const { descricao, estado } = request.body()
+    const { descricao, estado,sla,abreviatura,validade } = request.body()
     const res = await TipoSolicitacao.create({
       descricao,
       estado,
-      sla: 1
+      sla,
+      abreviatura,
+      validade
     })
 
     if (!res) throw Error('Erro ao cadastar dados.')
@@ -31,7 +33,7 @@ export default class TipoSolicitacaosController {
 
   public async update({ params, request, response }) {
     const { id } = params
-    const { descricao, estado } = request.body()
+    const { descricao, estado,sla } = request.body()
 
     const tipo = await TipoSolicitacao.find(id)
 
@@ -39,6 +41,7 @@ export default class TipoSolicitacaosController {
 
     tipo.descricao = descricao
     tipo.estado = estado
+    tipo.sla=sla
 
     const data = await tipo.save()
 

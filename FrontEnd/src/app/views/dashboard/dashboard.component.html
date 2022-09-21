@@ -4,23 +4,23 @@
   <!-- partial -->
   <div class="container-fluid page-body-wrapper">
     <!-- partial:partials/_sidebar.html -->
-    <app-sidebar></app-sidebar>   
+    <app-sidebar></app-sidebar>
     <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
         <!-- Page Title Header Starts-->
-       <app-header></app-header>
+        <app-header></app-header>
         <!-- Page Title Header Ends-->
         <div class="row">
           <div class="col-md-12 grid-margin">
             <div class="card">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-lg-3 col-md-6">
+                  <div class="col-lg-3 col-md-6 p-3 mb-2 bg-primary">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold">{{clientes?.dados}}</h3>
-                        <h5 class="mb-0 font-weight-medium text-primary">Total Municipes</h5>
+                        <h3 class="mb-0 font-weight-semibold ">{{clientes}}</h3>
+                        <h5 class="mb-0 font-weight-medium text-dark">Total Municipes</h5>
                         <!--<p class="mb-0 text-muted">+14.00(+0.50%)</p>-->
                       </div>
                       <div class="wrapper my-auto ml-auto ml-lg-4">
@@ -28,11 +28,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                  <div class="col-lg-3 col-md-6 mt-md-0 mt-4 p-3 mb-2 bg-success">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold">{{f_hoje.dados==null? 0 : f_hoje.dados}}</h3>
-                        <h5 class="mb-0 font-weight-medium text-primary">Facturaçao de Hoje</h5>
+                        <h3 class="mb-0 font-weight-semibold">{{f_hoje}}</h3>
+                        <h5 class="mb-0 font-weight-medium text-dark">Facturaçao de Hoje</h5>
                         <!--<p class="mb-0 text-muted">+138.97(+0.54%)</p>-->
                       </div>
                       <div class="wrapper my-auto ml-auto ml-lg-4">
@@ -40,11 +40,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                  <div class="col-lg-3 col-md-6 mt-md-0 mt-4 p-3 mb-2 bg-success">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold">{{f_ontem.dados==null? 0 :f_ontem.dados}}</h3>
-                        <h5 class="mb-0 font-weight-medium text-primary">Facturação de ontem</h5>
+                        <h3 class="mb-0 font-weight-semibold">{{f_ontem == null? 0 : f_ontem}}</h3>
+                        <h5 class="mb-0 font-weight-medium text-dark">Facturação de ontem</h5>
                         <!--<p class="mb-0 text-muted">+57.62(+0.76%)</p>-->
                       </div>
                       <div class="wrapper my-auto ml-auto ml-lg-4">
@@ -52,11 +52,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                  <div class="col-lg-3 col-md-6 mt-md-0 mt-4 p-3 mb-2 bg-success">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold">{{f_geral?.dados}}</h3>
-                        <h5 class="mb-0 font-weight-medium text-primary">Facturação Geral</h5>
+                        <h3 class="mb-0 font-weight-semibold">{{f_geral}}</h3>
+                        <h5 class="mb-0 font-weight-medium text-dark">Facturação Geral</h5>
                         <!--<p class="mb-0 text-muted">+138.97(+0.54%)</p>-->
                       </div>
                       <div class="wrapper my-auto ml-auto ml-lg-4">
@@ -68,7 +68,11 @@
               </div>
             </div>
           </div>
-        </div>        
+        </div>
+        <div>
+            <iframe style="width: 100%;" src="http://localhost:3000/public/dashboard/7369b541-2411-44bc-accf-00c72940194b"
+              frameborder="0" width="1500" height="700" allowtransparency></iframe>
+        </div>
       </div>
       <!-- content-wrapper ends -->
       <!-- partial:partials/_footer.html -->

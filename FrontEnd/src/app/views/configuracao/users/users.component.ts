@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
   public user: any
   public users: any = []
   public loading = false;
+  public cor:any
 
   constructor(
     private http: HttpClient,
@@ -48,6 +49,14 @@ export class UsersComponent implements OnInit {
         this.filters.pagination.total = Object(res).total;
         this.filters.pagination.perPage = Object(res).perPage;
         this.loading = false
+
+        if(this.users.estado==1){
+          this.cor="p-3 mb-2 bg-success text-white"
+        }
+        else{
+          this.cor="p-3 mb-2 bg-danger text-white"
+        }
+        console.log("cor",this.cor)
       })
   }
 

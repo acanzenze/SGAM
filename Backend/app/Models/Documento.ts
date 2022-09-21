@@ -1,24 +1,21 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
-export default class TipoSolicitacao extends BaseModel {
+export default class Documento extends BaseModel {
   @column({ isPrimary: true })
   public id: number
+  
+  @column()
+  public codigo: string
 
   @column()
-  public descricao: string
+  public data_validade: string
 
   @column()
-  public abreviatura: string
+  public assinatura: string
 
   @column()
-  public sla: number
-
-  @column()
-  public validade: number
-
-  @column()
-  public estado: boolean
+  public solicitacao_id: number
 
   @column()
   public user_id: number

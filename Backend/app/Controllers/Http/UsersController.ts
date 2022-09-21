@@ -44,7 +44,11 @@ export default class UsersController {
   public async login({ request, response, auth }) {
     const { email, password } = request.all()
 
-    const user = await User.query().where('email', email).firstOrFail()
+    //const user = await User.query().where('email', email).firstOrFail()
+    const user = await Database.from("users")
+    .select('users.*', 'perfils.nome as perfil')
+    .leftJoin('perfils','perfils.id','users.perfil_id')
+    .where('email', email).firstOrFail()
 
     if (!(await Hash.verify(user.password, password))) {
       return response.unauthorized('Invalid credentials')

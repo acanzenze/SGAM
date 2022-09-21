@@ -24,9 +24,10 @@ export class ListagemDeFacturaComponent implements OnInit {
   public facturas: any = []
   public produtos: any = []
   public loading = false;
-  public total_documentos: any
-  public municipes_facturados:any
-  public total_facturacao:any
+  public total_documentos=0
+  public municipes_facturados=0
+  public total_facturacao=0
+  public documentos_anulados=0
 
   constructor(
     private http: HttpClient,
@@ -39,6 +40,7 @@ export class ListagemDeFacturaComponent implements OnInit {
     this.getCountDocMunicipes();
     this.getCountDocumentos();
     this.getFacturacao();
+    this.getCountDocAnulados();
    }
 
   searchProdutos() {
@@ -72,18 +74,24 @@ export class ListagemDeFacturaComponent implements OnInit {
 
   getCountDocumentos(){
     this.http.post(this.apiUrl+"/factura/countdocumentos",null).subscribe(res=>{
-      this.total_documentos=Object(res)
+      this.total_documentos=Object(res).dados
     })
   }
 
   getCountDocMunicipes(){
     this.http.post(this.apiUrl+"/factura/countdocmunicipe",null).subscribe(res=>{
-      this.municipes_facturados=Object(res)
+      this.municipes_facturados=Object(res).dados
     })
   }
   getFacturacao(){
     this.http.post(this.apiUrl+"/factura/totalgeral",null).subscribe(res=>{
-      this.total_facturacao=Object(res)
+      this.total_facturacao=Object(res).dados
+    })
+  }
+
+  getCountDocAnulados(){
+    this.http.post(this.apiUrl+"/factura/countdocanulados",null).subscribe(res=>{
+      this.documentos_anulados=Object(res).dados
     })
   }
 

@@ -9,7 +9,7 @@
                 <ngx-loading [show]="loading"></ngx-loading>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Descrição</label>
                                 <input
@@ -25,7 +25,57 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Abreviatura</label>
+                                <input
+                                    type="text"
+                                    formControlName="abreviatura"
+                                    name="abreviatura"
+                                    class="form-control"
+                                    placeholder="Abreviatura"
+                                    required
+                                    />
+                                <div *ngIf="" class="validation-error">
+                                    <p>O campo Abreviatura é obrigatório</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> SLA</label>
+                                <input
+                                    type="text"
+                                    formControlName="sla"
+                                    name="sla"
+                                    class="form-control"
+                                    placeholder="SLA"
+                                    required
+                                    />
+                                <div *ngIf="" class="validation-error">
+                                    <p>O campo SLA é obrigatório</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Validade</label>
+                                <input
+                                    type="number"
+                                    formControlName="validade"
+                                    name="validade"
+                                    class="form-control"
+                                    placeholder="Validade"
+                                    required
+                                    />
+                                <div *ngIf="" class="validation-error">
+                                    <p>O campo validade é obrigatório</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Estado</label>
                                 <select formControlName="estado" name="estado" class="form-control" placeholder="estado" required>

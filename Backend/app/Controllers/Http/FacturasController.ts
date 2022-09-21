@@ -60,8 +60,7 @@ export default class FacturasController {
   public async facturacaoHoje(){
     const moment=require("moment")
     const hoje= moment(new Date()).format("YYYY-MM-DD")
-    
-  console.log(hoje);
+
 
     const total = await Database.from("facturas").sum("total as total")
     .where(Database.raw('DATE_FORMAT(facturas.created_at, "%Y-%m-%d")'),"=",hoje)
@@ -112,6 +111,14 @@ export default class FacturasController {
   public async countDocMunicipe(){
     const total=await Database.from("facturas").countDistinct("cliente_id as total")
     .where("estado_documento",1)
+
+    return{
+     dados:total[0].total
+    }
+  }
+  public async countDocAnulados(){
+    const total=await Database.from("facturas").countDistinct("cliente_id as total")
+    .where("estado_documento",0)
 
     return{
      dados:total[0].total

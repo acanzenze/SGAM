@@ -11,12 +11,12 @@
                 <!-- Page Title Header Starts-->
                 <app-header></app-header>
                 <!-- Page Title Header Ends-->
-                <div class="row" style="margin-left: 50px;">
-                    <div class="col-lg-3 col-md-6">
+                <div class="row" style="margin-left: 5px;">
+                    <div class="col-lg-3 col-md-6 p-3 mb-2 bg-warning">
                         <div class="d-flex">
                           <div class="wrapper">
-                            <h3 class="mb-0 font-weight-semibold">{{total_documentos?.dados}}</h3>
-                            <h5 class="mb-0 font-weight-medium text-primary">Total Documentos</h5>
+                            <h3 class="mb-0 font-weight-semibold">{{total_documentos}}</h3>
+                            <h5 class="mb-0 font-weight-medium text-dark">Total Documentos</h5>
                             <!--<p class="mb-0 text-muted">+14.00(+0.50%)</p>-->
                           </div>
                           <div class="wrapper my-auto ml-auto ml-lg-4">
@@ -24,11 +24,23 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-3 col-md-6">
+                      <div class="col-lg-3 col-md-6 p-3 mb-2 bg-danger">
                         <div class="d-flex">
                           <div class="wrapper">
-                            <h3 class="mb-0 font-weight-semibold">{{municipes_facturados?.dados}}</h3>
-                            <h5 class="mb-0 font-weight-medium text-primary">Municipes Facturados</h5>
+                            <h3 class="mb-0 font-weight-semibold">{{documentos_anulados}}</h3>
+                            <h5 class="mb-0 font-weight-medium text-dark">Documentos Anulados</h5>
+                            <!--<p class="mb-0 text-muted">+14.00(+0.50%)</p>-->
+                          </div>
+                          <div class="wrapper my-auto ml-auto ml-lg-4">
+                            <i class="mdi mdi-file-document"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 p-3 mb-2 bg-primary">
+                        <div class="d-flex">
+                          <div class="wrapper">
+                            <h3 class="mb-0 font-weight-semibold">{{municipes_facturados}}</h3>
+                            <h5 class="mb-0 font-weight-medium text-dark">Municipes Facturados</h5>
                             <!--<p class="mb-0 text-muted">+14.00(+0.50%)</p>-->
                           </div>
                           <div class="wrapper my-auto ml-auto ml-lg-4">
@@ -36,11 +48,11 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-3 col-md-6">
+                      <div class="col-lg-3 col-md-6 p-3 mb-2 bg-success">
                         <div class="d-flex">
                           <div class="wrapper">
-                            <h3 class="mb-0 font-weight-semibold">{{total_facturacao?.dados}}</h3>
-                            <h5 class="mb-0 font-weight-medium text-primary">Total Facturação</h5>
+                            <h3 class="mb-0 font-weight-semibold">{{total_facturacao}}</h3>
+                            <h5 class="mb-0 font-weight-medium text-dark">Total Facturação</h5>
                             <!--<p class="mb-0 text-muted">+14.00(+0.50%)</p>-->
                           </div>
                           <div class="wrapper my-auto ml-auto ml-lg-4">
@@ -103,7 +115,8 @@
                                                 <td>{{ item.bi}}</td>
                                                 <td>{{ item.sigla}}</td>
                                                 <td>{{ item.numero_documento}}</td>
-                                                <td>{{ item.estado_documento ? 'Normal': 'Anulado'}}</td>
+                                                <td class="p-3 mb-2 bg-primary" *ngIf="item.estado_documento==1">{{ item.estado_documento ? 'Normal': 'Anulado'}}</td>
+                                                <td class="p-3 mb-2 bg-danger" *ngIf="item.estado_documento==0">{{ item.estado_documento ? 'Normal': 'Anulado'}}</td>
                                                 <td>{{ item.total}}</td>
                                                 <td>{{ item.created_at | date: 'dd-MM-yyyy' }}</td>
                                                 <!--<td>

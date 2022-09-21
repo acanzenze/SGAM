@@ -45,7 +45,10 @@ export class CreatOrEditTipoSolicitacaoComponent implements OnInit {
     this.tipoSolicitacaoForm = this.fb.group({
       id: [{ value: null, disabled: true }],
       descricao: [null, Validators.required],
+      abreviatura: [null, Validators.required],
       estado: [null, Validators.required],
+      validade: [null, Validators.required],
+      sla: [null, Validators.required],
     })
   }
 

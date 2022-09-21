@@ -222,7 +222,7 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
   }
 
   getEstados(){
-    this.http.get(this.apiUrl+"/estados/list").subscribe(res=>{
+    this.http.get(this.apiUrl+"/estados/listAberto").subscribe(res=>{
        this.estados=Object(res).dados
        console.log("estados: ",res)
     })

@@ -18,6 +18,9 @@ export default class TipoSolicitacao extends BaseModel {
   public validade: number
 
   @column()
+  public contador: number
+
+  @column()
   public estado: boolean
 
   @column()

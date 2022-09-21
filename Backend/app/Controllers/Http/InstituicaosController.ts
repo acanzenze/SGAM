@@ -75,7 +75,7 @@ export default class InstituicaosController {
     const instituicao = await Instituicao.all()
 
     return {
-      dados: instituicao,
+      dados: instituicao[0],
     }
   }
 }

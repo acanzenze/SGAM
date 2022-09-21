@@ -19,4 +19,12 @@ export default class SolicitacaoEstadosController {
             dados:dados
         }
     }
+
+    public async estadoEmitido(){
+        const dados=await Database.from('solicitacao_estados').where('slug','EMITIDO').first()
+
+        return{
+            dados:dados
+        }
+    }
 }

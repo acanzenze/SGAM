@@ -58,6 +58,7 @@ Route.get('prioridades/list', 'SolicitacaoPrioridadesController.index')
 
 Route.get('estados/listAberto', 'SolicitacaoEstadosController.estadoAberto')
 Route.get('estados/listCancelado', 'SolicitacaoEstadosController.estadoCancelado')
+Route.get('estados/listEmitido', 'SolicitacaoEstadosController.estadoEmitido')
 
 
 Route.post('serie/create', 'SeriesController.store')

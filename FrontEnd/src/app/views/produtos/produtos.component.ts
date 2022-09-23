@@ -48,7 +48,7 @@ export class ProdutosComponent implements OnInit {
         this.filters.pagination.page = Object(res).page;
         this.filters.pagination.total = Object(res).total;
         this.filters.pagination.perPage = Object(res).perPage;
-        this.produtos = Object(res)
+        this.produtos = Object(res).dados
         this.loading = false
       })
   }

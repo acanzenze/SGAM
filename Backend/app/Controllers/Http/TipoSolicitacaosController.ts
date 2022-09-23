@@ -1,14 +1,18 @@
  import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Database from '@ioc:Adonis/Lucid/Database'
  import TipoSolicitacao from 'App/Models/TipoSolicitacao'
 
 export default class TipoSolicitacaosController {
 
   public async store({ request, response }: HttpContextContract) {
-    const { descricao, estado } = request.body()
+    const tipo = request.body()
     const res = await TipoSolicitacao.create({
-      descricao,
-      estado,
-      sla: 1
+      descricao:tipo.descricao,
+      estado:tipo.estado,
+      sla:tipo.sla,
+      abreviatura:tipo.abreviatura,
+      validade:tipo.validade,
+      contador:1
     })
 
     if (!res) throw Error('Erro ao cadastar dados.')
@@ -21,6 +25,7 @@ export default class TipoSolicitacaosController {
 
   public async index({ request, response }: HttpContextContract) {
     const res = await TipoSolicitacao.all()
+    console.log("entrou")
 
     return response.status(201).json({
       data: res,
@@ -29,7 +34,7 @@ export default class TipoSolicitacaosController {
 
   public async update({ params, request, response }) {
     const { id } = params
-    const { descricao, estado } = request.body()
+    const { descricao, estado,sla,validade,contador } = request.body()
 
     const tipo = await TipoSolicitacao.find(id)
 
@@ -37,6 +42,9 @@ export default class TipoSolicitacaosController {
 
     tipo.descricao = descricao
     tipo.estado = estado
+    tipo.sla=sla
+    tipo.validade=validade
+    tipo.contador=contador
 
     const data = await tipo.save()
 
@@ -52,7 +60,8 @@ export default class TipoSolicitacaosController {
     const data = await TipoSolicitacao.all()
 
     return response.status(201).json({
-      data: data,
+      data: data[0],
     })
   }
+
 }

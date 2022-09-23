@@ -15,8 +15,9 @@ export default class DistritosController {
 
   public async index({ request, response }) {
     const distrito = await Database.from('distritos')
-      .select('distritos.id', 'distritos.nome', 'distritos.estado', 'municipios.nome as municipio')
+      .select('distritos.*', 'municipios.nome as municipio','provincias.nome as provincia',)
       .leftJoin('municipios', 'municipios.id', 'distritos.municipio_id')
+      .leftJoin('provincias', 'provincias.id', 'municipios.provincia_id')
 
     return response.status(200).json({
       dados: distrito,

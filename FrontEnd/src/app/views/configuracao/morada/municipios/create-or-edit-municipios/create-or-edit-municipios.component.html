@@ -9,7 +9,7 @@
                 <ngx-loading [show]="loading"></ngx-loading>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Província</label>
                                 <select class="form-control" formControlName="provincia_id">
@@ -20,7 +20,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Nome</label>
+                                <input type="text" formControlName="nome" name="nome" class="form-control"
+                                    placeholder="Nome"
+                                    [ngClass]="{ 'is-invalid': submitted && f.nome.errors, 'is-valid': f.nome.touched && !f.nome.errors }" />
+                                <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['nome'].errors.required">O campo nome é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Estado</label>
                                 <select type="text" formControlName="estado" name="estado" class="form-control"
@@ -30,21 +41,11 @@
                                     <option value="2">Inactivo</option>
                                 </select>
                                 <div *ngIf="submitted && f['estado'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['estado'].errors.required">O campo descricao é obrigatório</div>
+                                    <div *ngIf="f['estado'].errors.required">O campo estado é obrigatório</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label"><i class="fa fa-edit"></i> Nome</label>
-                                <input type="text" formControlName="nome" name="nome" class="form-control"
-                                    placeholder="Nome"
-                                    [ngClass]="{ 'is-invalid': submitted && f.nome.errors, 'is-valid': f.nome.touched && !f.nome.errors }" />
-                                <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['nome'].errors.required">O campo designacao é obrigatório</div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
 

@@ -13,15 +13,7 @@
                 <!-- Page Title Header Ends-->
                 <div class="row">
                     <div class="col-lg-12 grid-margin stretch-card">
-                        <div class="col-md-2">
-                            <select class="form-control">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>15</option>
-                                <option>20</option>
-                                <option>25</option>
-                            </select>
-                        </div>
+                        
                     </div>
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
@@ -29,7 +21,16 @@
                                 <h4 class="card-title">Listagem de Utilizadores</h4>
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
+                                        <select class="form-control">
+                                            <option>5</option>
+                                            <option>10</option>
+                                            <option>15</option>
+                                            <option>20</option>
+                                            <option>25</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
                                         <input type="text" placeholder="Pesquisar..." class="form-control">
                                     </div>
                                     <div class="col-md-6" style="text-align:right;">
@@ -57,11 +58,12 @@
                                             <tr *ngFor="let item of users | paginate: { itemsPerPage: this.filters.pagination.perPage, currentPage: this.filters.pagination.page, totalItems: this.filters.pagination.total }; index as i">
                                                 <td> {{i+1}} </td>
                                                 <td>{{ item.nome}}</td>
-                                                <td>{{ item.username}}</td>
+                                                <td>{{ item.email}}</td>
                                                 <td>{{ item.email}}</td>
                                                 <td>{{ item.perfil}}</td>
-                                                <td>{{ item.instituicao}}</td>
-                                                <td>{{ item.estado=="1"?"Activo":"Inactivo"}}</td>
+                                                <td>{{ item.empresa}}</td>
+                                                <td class="p-3 mb-2 bg-success" *ngIf="item.estado==1">{{ item.estado=="1"? "Activo":"Inactivo"}}</td>
+                                                <td class="p-3 mb-2 bg-danger" *ngIf="item.estado==0">{{ item.estado=="1"? "Activo":"Inactivo"}}</td>
                                                 <td>{{ item.created_at | date: 'dd-MM-yyyy'}}</td>
                                                 <td>
                                                     <div class="dropdown ml-lg-auto ml-3 toolbar-item">
@@ -72,9 +74,9 @@
                                                         <div class="dropdown-menu" aria-labelledby="dropdownexport">
                                                             <a class="dropdown-item" href="javascript:void(0)"
                                                                 (click)="setUser(item)" data-toggle="modal"
-                                                                data-target="#createOrEditUser">Editar</a>
+                                                                data-target="#EditUser">Editar</a>
                                                             <a class="dropdown-item"
-                                                                href="javascript:void(0)">Elimnar</a>
+                                                                href="javascript:void(0)">Alterar Password</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -112,4 +114,5 @@
     </div>
     <!-- page-body-wrapper ends -->
     <createOrEditUser [user]="user" [modal]=""></createOrEditUser>
+    <app-edit-users [user]="user" [modal]=""></app-edit-users>
 </div>

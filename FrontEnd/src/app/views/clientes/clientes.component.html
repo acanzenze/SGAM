@@ -13,19 +13,7 @@
                 <!-- Page Title Header Ends-->
                 <div class="row">
                     <div class="col-lg-12 grid-margin stretch-card">
-                        <div class="col-md-2">
-                            <select class="form-control" [(ngModel)]="this.filters.pagination.perPage"
-                                (change)="getPageFilterData($event)">
-                                <option value="1">Entrada</option>
-                                <option value="1">1</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="T">Todos</option>
-                            </select>
-                        </div>
+                        
                     </div>
                     <div class="col-lg-12 grid-margin stretch-card ">
                         <div class="card">
@@ -33,7 +21,20 @@
                                 <h4 class="card-title">Listagem de Cientes</h4>
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
+                                        <select class="form-control" [(ngModel)]="this.filters.pagination.perPage"
+                                            (change)="getPageFilterData($event)">
+                                            <option value="1">Entrada</option>
+                                            <option value="1">1</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                            <option value="T">Todos</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
                                         <input type="text" name="search" [(ngModel)]="this.filters.search"
                                             placeholder="Pesquisar..." class="form-control" (keyup)="filterData()"
                                             class="form-control">

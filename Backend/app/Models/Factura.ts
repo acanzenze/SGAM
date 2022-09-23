@@ -22,7 +22,7 @@ export default class Factura extends BaseModel {
 
 
   @column()
-  public clinte_id: number
+  public cliente_id: number
 
   @column()
   public solicitacao_id: number

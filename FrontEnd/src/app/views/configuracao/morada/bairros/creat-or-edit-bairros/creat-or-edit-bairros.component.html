@@ -9,7 +9,21 @@
                 <ngx-loading [show]="loading"></ngx-loading>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> distrito</label>
+                                <select class="form-control" formControlName="distrito_id"
+                                [ngClass]="{ 'is-invalid': submitted && f.distrito_id.errors, 'is-valid': f.distrito_id.touched && !f.distrito_id.errors }"
+                                >
+                                    <option value="null">seleccione</option>
+                                    <option [value]="item.id" *ngFor="let item of distritos">{{item.nome}}</option>
+                                </select>
+                                <div *ngIf="submitted && f['distrito_id'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['distrito_id'].errors.required">O campo distrito é obrigatório</div>
+                                </div>
+                            </div>
+                          </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Nome</label>
                                 <input type="text" formControlName="nome" name="nome" class="form-control"
@@ -21,31 +35,14 @@
                             </div>
                         </div>
 
-
-                        <div class="col-md-12">
-
-                          <div class="form-group">
-                              <label class="control-label"><i class="fa fa-edit"></i> distrito</label>
-                              <select class="form-control" formControlName="distrito_id"
-                              [ngClass]="{ 'is-invalid': submitted && f.distrito_id.errors, 'is-valid': f.distrito_id.touched && !f.distrito_id.errors }"
-                              >
-                                  <option value="null">seleccione</option>
-                                  <option [value]="item.id" *ngFor="let item of distritos">{{item.nome}}</option>
-                              </select>
-                              <div *ngIf="submitted && f['distrito_id'].errors" class="invalid-feedback">
-                                  <div *ngIf="f['distrito_id'].errors.required">O campo distrito é obrigatório</div>
-                              </div>
-                          </div>
-                        </div>
-
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Estado</label>
                                 <select type="text" formControlName="estado" name="estado" class="form-control"
                                     placeholder="estado"
                                     [ngClass]="{ 'is-invalid': submitted && f.estado.errors, 'is-valid': f.estado.touched && !f.estado.errors }">
                                     <option value="1">Activo</option>
-                                    <option value="2">Inactivo</option>
+                                    <option value="0">Inactivo</option>
                                 </select>
                                 <div *ngIf="submitted && f['estado'].errors" class="invalid-feedback">
                                     <div *ngIf="f['estado'].errors.required">O campo descricao é obrigatório</div>

@@ -9,7 +9,7 @@
                 <ngx-loading [show]="loading"></ngx-loading>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Província</label>
                                 <select class="form-control" formControlName="provincia_id"
@@ -22,18 +22,21 @@
                                     <div *ngIf="f['nome'].errors.required">O campo provincia é obrigatório</div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label"><i class="fa fa-edit"></i> Município</label>
-                                <select class="form-control" formControlName="municipioId">
-                                  <option value="null">seleccione</option>
-                                  <option [value]="item.id" *ngFor="let item of municipios">{{item.nome}}</option>
-                                </select>
-                                <div *ngIf="submitted && f['municipioId'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['municipioId'].errors.required">O campo município é obrigatório</div>
+                        </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label"><i class="fa fa-edit"></i> Município</label>
+                                    <select class="form-control" formControlName="municipioId">
+                                      <option value="null">seleccione</option>
+                                      <option [value]="item.id" *ngFor="let item of municipios">{{item.nome}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f['municipioId'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['municipioId'].errors.required">O campo município é obrigatório</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
+                            
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Nome</label>
                                 <input type="text" formControlName="nome" name="nome" class="form-control"
@@ -44,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Estado</label>
                                 <select type="text" formControlName="estado" name="estado" class="form-control"

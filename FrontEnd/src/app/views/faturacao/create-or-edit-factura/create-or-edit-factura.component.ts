@@ -41,7 +41,6 @@ export class CreateOrEditFacturaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('factura', this.factura)
     this.listaOfProdutos()
     // this.listTipoSolicitacao(this.factura.tipo_solicitacao_id)
     this.listSerie()
@@ -52,7 +51,7 @@ export class CreateOrEditFacturaComponent implements OnInit {
   setFacturaData(target: any) {
     let produto_id = target.value || null
     let produto = this.produtos.filter((item: any) => item.id == produto_id)
-    console.log(this.facturacaoForm.value)
+
     this.factura = { ...this.factura, ...produto[0] }
   }
 
@@ -61,7 +60,6 @@ export class CreateOrEditFacturaComponent implements OnInit {
     this.http.post(`${this.httpService.api}/tipo-solicitacao/list/${id}`, null)
       .subscribe(res => {
         this.tipoSolicitacaos = Object(res).data
-        console.log(res)
         this.loading = false
       })
   }
@@ -70,7 +68,7 @@ export class CreateOrEditFacturaComponent implements OnInit {
     this.loading = true
     this.http.post(`${this.httpService.api}/serie/list`, null)
       .subscribe(res => {
-        this.series = Object(res)
+        this.series = Object(res).dados
         this.loading = false
       })
   }
@@ -98,9 +96,7 @@ export class CreateOrEditFacturaComponent implements OnInit {
   }
 
   createOrEdit() {
-
     this.factura = { ...this.factura, ...this.facturacaoForm.value, total: this.factura.preco }
-
     this.submitted = true
     if (this.facturacaoForm.invalid) {
       return

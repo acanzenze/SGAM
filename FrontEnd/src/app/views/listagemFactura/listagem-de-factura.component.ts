@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { HttpService } from '../../providers/http.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { HttpService } from '../../providers/http.service';
 })
 export class ListagemDeFacturaComponent implements OnInit {
 
-
+  private apiUrl: string = environment.apiUrl
   public filters = {
     search: null,
     pagination: {
@@ -23,6 +24,10 @@ export class ListagemDeFacturaComponent implements OnInit {
   public facturas: any = []
   public produtos: any = []
   public loading = false;
+  public total_documentos=0
+  public municipes_facturados=0
+  public total_facturacao=0
+  public documentos_anulados=0
 
   constructor(
     private http: HttpClient,
@@ -31,7 +36,12 @@ export class ListagemDeFacturaComponent implements OnInit {
     this.listFacturas();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getCountDocMunicipes();
+    this.getCountDocumentos();
+    this.getFacturacao();
+    this.getCountDocAnulados();
+   }
 
   searchProdutos() {
     this.listFacturas()
@@ -62,6 +72,28 @@ export class ListagemDeFacturaComponent implements OnInit {
     this.listFacturas()
   }
 
+  getCountDocumentos(){
+    this.http.post(this.apiUrl+"/factura/countdocumentos",null).subscribe(res=>{
+      this.total_documentos=Object(res).dados
+    })
+  }
+
+  getCountDocMunicipes(){
+    this.http.post(this.apiUrl+"/factura/countdocmunicipe",null).subscribe(res=>{
+      this.municipes_facturados=Object(res).dados
+    })
+  }
+  getFacturacao(){
+    this.http.post(this.apiUrl+"/factura/totalgeral",null).subscribe(res=>{
+      this.total_facturacao=Object(res).dados
+    })
+  }
+
+  getCountDocAnulados(){
+    this.http.post(this.apiUrl+"/factura/countdocanulados",null).subscribe(res=>{
+      this.documentos_anulados=Object(res).dados
+    })
+  }
 
 }
 

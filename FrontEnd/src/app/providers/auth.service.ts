@@ -13,7 +13,7 @@ export class AuthService {
   private currentUserValue: any;
 
 
-  private token :any= JSON.parse(sessionStorage.getItem('sessionToken') || '')
+  private token: any = sessionStorage.getItem('sessionToken') ? JSON.parse(sessionStorage.getItem('sessionToken') || '') : sessionStorage.getItem('sessionToken')
 
   public headers = new HttpHeaders()
     .set('content-type', 'application/json')
@@ -25,8 +25,9 @@ export class AuthService {
     private _http_client: HttpClient,
     private configService: ConfigService,
     private httpService: HttpService
-  ) { console.log(this.token.token)
-  
+  ) {
+    console.log(this.token.token)
+
   }
 
   signIn(user: any) {

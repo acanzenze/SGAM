@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AtestadoService } from 'src/app/providers/atestado.service';
 import { AuthService } from 'src/app/providers/auth.service';
 import { HttpService } from 'src/app/providers/http.service';
+import { SolicitacaoService } from 'src/app/providers/solicitacao.service';
 import { environment } from 'src/environments/environment';
 import { BairrosService } from '../configuracao/morada/bairros/bairros.service';
 
@@ -27,15 +29,17 @@ export class SolicitacaoComponent implements OnInit {
   public cliente: any;
   public Solicitacao: any = [];
   public loading = false;
-  public total_abertas=0
-  public total_finalizadas=0
-  public total_canceladas=0
-  public total:any
+  public total_abertas = 0
+  public total_finalizadas = 0
+  public total_canceladas = 0
+  public total: any
 
   constructor(
     private http: HttpClient,
     private authService: AuthService,
     private httpService: HttpService,
+    private printSolicitacao: SolicitacaoService,
+    private printAtestado: AtestadoService
   ) {
   }
 
@@ -69,7 +73,7 @@ export class SolicitacaoComponent implements OnInit {
     this.listTipoSolicitacao(item.solicitacao_id)
     this.produto = item;
   }
-  setPublicado(item:any){
+  setPublicado(item: any) {
 
   }
   getPageFilterData(event: any) {
@@ -87,7 +91,7 @@ export class SolicitacaoComponent implements OnInit {
   }
 
   listTipoSolicitacao(id: any) {
-    console.log("fa",id)
+    console.log("fa", id)
     this.loading = true
     this.http.post(`${this.httpService.api}/tipo-solicitacao/list/${id}`, null)
       .subscribe(res => {
@@ -97,27 +101,35 @@ export class SolicitacaoComponent implements OnInit {
       })
   }
 
-  getAbertas(){
-    this.http.post(this.apiUrl+"/solicitacao/getabertas",null).subscribe(res=>{
-      this.total_abertas=Object(res).dados
+  print() {
+    this.printSolicitacao.printSolicitacao()
+  }
+
+  printAtestadoPdf() {
+    this.printAtestado.print()
+  }
+
+  getAbertas() {
+    this.http.post(this.apiUrl + "/solicitacao/getabertas", null).subscribe(res => {
+      this.total_abertas = Object(res).dados
     })
   }
 
-  getFinalizadas(){
-    this.http.post(this.apiUrl+"/solicitacao/getfinalizadas",null).subscribe(res=>{
-      this.total_finalizadas=Object(res).dados
+  getFinalizadas() {
+    this.http.post(this.apiUrl + "/solicitacao/getfinalizadas", null).subscribe(res => {
+      this.total_finalizadas = Object(res).dados
     })
   }
 
-  getCanceladas(){
-    this.http.post(this.apiUrl+"/solicitacao/getcanceladas",null).subscribe(res=>{
-      this.total_canceladas=Object(res).dados
+  getCanceladas() {
+    this.http.post(this.apiUrl + "/solicitacao/getcanceladas", null).subscribe(res => {
+      this.total_canceladas = Object(res).dados
     })
   }
 
-  getTotal(){
-    this.http.post(this.apiUrl+"/solicitacao/gettotal",null).subscribe(res=>{
-      this.total=Object(res).dados
+  getTotal() {
+    this.http.post(this.apiUrl + "/solicitacao/gettotal", null).subscribe(res => {
+      this.total = Object(res).dados
     })
   }
 }

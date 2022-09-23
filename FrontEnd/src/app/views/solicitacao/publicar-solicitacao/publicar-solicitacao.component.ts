@@ -12,14 +12,14 @@ import { SolicitacaoComponent } from '../solicitacao.component';
   styleUrls: ['./publicar-solicitacao.component.css']
 })
 export class PublicarSolicitacaoComponent implements OnInit {
-  @Input() factura:any
+  @Input() factura: any
   @Input() modal: any = 'PublicarSolicitacaoModal'
   @Input() title: any = 'Publicar Solicitação'
 
   private apiUrl: string = environment.apiUrl
 
   constructor(
-    private listOfClienteCom:SolicitacaoComponent,
+    private listOfClienteCom: SolicitacaoComponent,
     private http: HttpClient,
     private configService: ConfigService,
     private httpService: HttpService,
@@ -29,10 +29,11 @@ export class PublicarSolicitacaoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  publicar(){
-    this.http.post(this.apiUrl+"/solicitacao/update/"+this.factura.solicitacao_id,{ ...this.factura, is_publicado: true }, { headers: this.authService.headers })
-    .subscribe(res=>{})
-    this.listOfClienteCom.listaOfSolicitacao()
+  publicar() {
+    this.http.post(this.apiUrl + "/solicitacao/update/" + this.factura.solicitacao_id, { ...this.factura, is_publicado: true }, { headers: this.authService.headers })
+      .subscribe(res => {
+        this.listOfClienteCom.listaOfSolicitacao()
+      })
   }
 
 }

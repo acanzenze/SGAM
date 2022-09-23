@@ -13,16 +13,16 @@ import { SolicitacaoComponent } from '../solicitacao.component';
   styleUrls: ['./create-documento.component.css']
 })
 export class CreateDocumentoComponent implements OnInit {
-  @Input() factura:any
+  @Input() factura: any
   @Input() modal: any = 'EmitirDocumentoModal'
   @Input() title: any = 'Emitir Documento'
 
   private apiUrl: string = environment.apiUrl
-  public instituicao:any
-  public codigo:any
-  public estado:any
+  public instituicao: any
+  public codigo: any
+  public estado: any
 
-  public hoje=new Date()
+  public hoje = new Date()
 
   public hoje_f = formatDate(this.hoje, 'yyyy-MM-dd', 'en-US');
 
@@ -30,7 +30,7 @@ export class CreateDocumentoComponent implements OnInit {
 
 
   constructor(
-    private listOfClienteCom:SolicitacaoComponent,
+    private listOfClienteCom: SolicitacaoComponent,
     private http: HttpClient,
     private configService: ConfigService,
     private httpService: HttpService,
@@ -40,39 +40,43 @@ export class CreateDocumentoComponent implements OnInit {
   ngOnInit(): void {
     this.getInstituicao()
     this.getEstadoEmitido()
-    this.data_validade.setDate(this.hoje.getDate()+30)
+    this.data_validade.setDate(this.hoje.getDate() + 30)
   }
 
-  incrementarContador(id:any){
-    this.http.post(this.apiUrl+"/tipo-solicitacao/update/"+id,{ ...this.factura, contador:this.factura.contador+1 }, { headers: this.authService.headers })
-    .subscribe(res=>{})
+  incrementarContador(id: any) {
+    this.http.post(this.apiUrl + "/tipo-solicitacao/update/" + id, { ...this.factura, contador: this.factura.contador + 1 }, { headers: this.authService.headers })
+      .subscribe(res => { })
   }
 
-  actualizarEstadoSolicitcao(id:any){
-    this.http.post(this.apiUrl+"/solicitacao/update/"+id,{ ...this.factura, estado: this.estado.id }, { headers: this.authService.headers })
-    .subscribe(res=>{})
+  actualizarEstadoSolicitcao(id: any) {
+    this.http.post(this.apiUrl + "/solicitacao/update/" + id, { ...this.factura, estado: this.estado.id }, { headers: this.authService.headers })
+      .subscribe(res => { })
   }
 
-  getEstadoEmitido(){
-    this.http.get(this.apiUrl+"/estados/listEmitido").subscribe(res=>{
-      this.estado=Object(res).dados
+  getEstadoEmitido() {
+    this.http.get(this.apiUrl + "/estados/listEmitido").subscribe(res => {
+      this.estado = Object(res).dados
     })
   }
 
-  emitir(){
-    this.data_validade.setDate(this.hoje.getDate()+this.factura.validade)
-    this.codigo=this.factura.abreviatura+this.factura.contador
-    
-    this.http.post(this.apiUrl+"/documento/create",{ ...this.factura, solicitacao_id:this.factura.solicitacao_id,assinatura:null,data_validade:formatDate(this.data_validade,'yyyy-MM-dd','en-US'),codigo:this.codigo }, { headers: this.authService.headers })
-    .subscribe(res=>{})
-    this.actualizarEstadoSolicitcao(this.factura.solicitacao_id)
-    this.incrementarContador(this.factura.tipo_solicitacao_id)
-    this.listOfClienteCom.ngOnInit()
+
+
+  emitir() {
+    this.data_validade.setDate(this.hoje.getDate() + this.factura.validade)
+    this.codigo = this.factura.abreviatura + this.factura.contador
+
+    this.http.post(this.apiUrl + "/documento/create", { ...this.factura, solicitacao_id: this.factura.solicitacao_id, assinatura: null, data_validade: formatDate(this.data_validade, 'yyyy-MM-dd', 'en-US'), codigo: this.codigo }, { headers: this.authService.headers })
+      .subscribe(res => {
+        this.actualizarEstadoSolicitcao(this.factura.solicitacao_id)
+        this.incrementarContador(this.factura.tipo_solicitacao_id)
+        this.listOfClienteCom.ngOnInit()
+
+      })
   }
 
-  getInstituicao(){
-    this.http.get(this.apiUrl+"/api/instituicaos").subscribe(res=>{
-      this.instituicao=Object(res)
+  getInstituicao() {
+    this.http.get(this.apiUrl + "/api/instituicaos").subscribe(res => {
+      this.instituicao = Object(res)
     })
   }
 

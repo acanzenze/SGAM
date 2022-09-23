@@ -36,11 +36,13 @@ export class SeriesComponent implements OnInit {
   listaOfSeries() {
     this.http.post(`${this.httpService.api}/serie/list`, { headers: this.authService.headers })
       .subscribe(res => {
-        this.series = Object(res).data
+        this.series = Object(res).dados
         this.filters.pagination.lastPage = Object(res).lastPage;
         this.filters.pagination.page = Object(res).page;
         this.filters.pagination.total = Object(res).total;
         this.filters.pagination.perPage = Object(res).perPage;
+
+        console.log("Series",this.series)
       })
   }
 

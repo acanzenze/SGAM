@@ -16,8 +16,10 @@ export default class BairrosController {
 
   public async index({ response }: HttpContextContract) {
     const bairro = await Database.from('bairros')
-      .select('bairros.id', 'bairros.nome', 'distritos.nome as distrito', 'bairros.created_at')
+      .select('bairros.*', 'distritos.nome as distrito','municipios.nome as municipio','provincias.nome as provincia')
       .leftJoin('distritos', 'distritos.id', 'bairros.distrito_id')
+      .leftJoin('municipios', 'municipios.id', 'distritos.municipio_id')
+      .leftJoin('provincias', 'provincias.id', 'municipios.provincia_id')
 
     return response.status(200).json({
       dados: bairro,

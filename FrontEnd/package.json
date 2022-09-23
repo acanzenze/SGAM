@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "8": "^0.0.1",
     "@angular/animations": "~12.1.0",
     "@angular/common": "~12.1.0",
     "@angular/compiler": "~12.1.0",
@@ -19,8 +20,9 @@
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
     "angular-archwizard": "^7.0.0",
+    "bootstrap": "^5.2.1",
     "bootstrap-material-design-icons": "^2.2.0",
-    "ngx-loading": "^13.0.0",
+    "ngx-loading": "13.0.1",
     "ngx-pagination": "^5.1.1",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.4.8",

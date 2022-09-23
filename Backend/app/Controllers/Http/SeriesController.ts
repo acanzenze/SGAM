@@ -4,17 +4,25 @@ import Serie from 'App/Models/Serie'
 
 export default class SeriesController {
   async index({  }: HttpContextContract) {
-      return Serie.all()
+    const series=await Serie.all()
+      return{
+        dados:series
+      }
   }
   async store({ request, response }: HttpContextContract) {
+    console.log("serie")
 
     const data = request.only([
       'nome',
-      'numero',
-      'tipo_documento',
+      'tipo_documento'
     ])
 
-    const res = await Serie.create(data)
+    const res = await Serie.create({
+      nome : data.nome,
+      tipo_documento: data.tipo_documento,
+      numero:1
+
+    })
 
     return response.status(201).json({
        msg: 'Registado com sucesso',

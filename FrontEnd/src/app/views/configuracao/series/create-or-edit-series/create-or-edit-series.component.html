@@ -8,16 +8,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label"><i class="fa fa-edit"></i> Documento série</label>
+                                <label class="control-label"><i class="fa fa-edit"></i> Documento</label>
                                 <select class="form-control" 
-                                formControlName="documento_serie_id"
-                                 [ngClass]="{ 'is-invalid': submitted && f.documento_serie_id.errors, 'is-valid': f.documento_serie_id.touched && !f.documento_serie_id.errors }">
-                                    <option value="{{item.id}}" *ngFor="let item of documento_series">{{item.nome}}</option>
+                                formControlName="tipo_documento"
+                                 [ngClass]="{ 'is-invalid': submitted && f.tipo_documento.errors, 'is-valid': f.tipo_documento.touched && !f.tipo_documento.errors }">
+                                    <option value="FR">FR</option>
                                 </select>
-                                <div *ngIf="submitted && f['documento_serie_id'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['documento_serie_id'].errors.required">O campo documento série é obrigatório</div>
+                                <div *ngIf="submitted && f['tipo_documento'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['tipo_documento'].errors.required">O campo documento série é obrigatório</div>
                                 </div>
                             </div>
                         </div>
@@ -37,9 +37,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!--<div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label"><i class="fa fa-edit"></i> tipo_movimento</label>
+                                <label class="control-label"><i class="fa fa-edit"></i> Documento</label>
                                 <input
                                     type="text"
                                     formControlName="tipo_movimento"
@@ -52,7 +52,7 @@
                                     <div *ngIf="f['tipo_movimento'].errors.required">O campo tipo de movimento é obrigatório</div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 

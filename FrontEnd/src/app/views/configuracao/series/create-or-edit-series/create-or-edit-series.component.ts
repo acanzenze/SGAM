@@ -32,10 +32,10 @@ export class CreateOrEditSeriesComponent implements OnInit {
     this.documentoSerieForm = this.fb.group({
       id: [{ value: null, disabled: true }],
       nome: [null, Validators.required],
-      tipo_movimento: [null, Validators.required],
-      documento_serie_id: [null, Validators.required],
+      tipo_documento: [null, Validators.required],
+      //documento_serie_id: [null, Validators.required],
     });
-    this.getDocumentoOfSerie()
+    //this.getDocumentoOfSerie()
   }
 
   ngOnInit(): void { }
@@ -67,7 +67,9 @@ export class CreateOrEditSeriesComponent implements OnInit {
     }
 
     this.loading = true;
-    const url = this.documentoSerieForm.getRawValue().id == null ? `${this.httpService.apiUrl}/configuracao/series/create` : `${this.httpService.apiUrl}/configuracao/series/update/` + this.documentoSerieForm.getRawValue().id
+    console.log(this.httpService.api)
+    
+    const url = this.documentoSerieForm.getRawValue().id == null ? `${this.httpService.api}/serie/create` : `${this.httpService.api}/series/update/` + this.documentoSerieForm.getRawValue().id
 
     this.http
       .post(url, this.documentoSerieForm.value, { headers: this.authService.headers })

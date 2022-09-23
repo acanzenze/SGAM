@@ -54,6 +54,12 @@ import { TipoSolicitacaoComponent } from './views/solicitacao/tipo-solicitacao/t
 import { CreatOrEditTipoSolicitacaoComponent } from './views/solicitacao/tipo-solicitacao/creat-or-edit-tipo-solicitacao/creat-or-edit-tipo-solicitacao.component';
 import { ListagemDeFacturaComponent } from './views/listagemFactura/listagem-de-factura.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
+//import { EditUsersComponent } from './users/edit-users/edit-users.component';
+import { EditUsersComponent } from './views/configuracao/users/edit-users/edit-users.component';
+import { AlterPassworComponent } from './views/configuracao/users/alter-passwor/alter-passwor.component';
+import { CancelSolicitacaoComponent } from './views/solicitacao/cancel-solicitacao/cancel-solicitacao.component';
+import { PublicarSolicitacaoComponent } from './views/solicitacao/publicar-solicitacao/publicar-solicitacao.component';
+import { CreateDocumentoComponent } from './views/solicitacao/create-documento/create-documento.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +110,12 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
     InstituicaoComponent,
     FaturacaoComponent,
     CreateOrEditFacturaComponent,
+    //EditUsersComponent,
+    EditUsersComponent,
+    AlterPassworComponent,
+    CancelSolicitacaoComponent,
+    PublicarSolicitacaoComponent,
+    CreateDocumentoComponent,
   ],
   imports: [
     HttpClientModule,

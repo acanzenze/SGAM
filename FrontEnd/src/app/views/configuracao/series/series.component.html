@@ -13,15 +13,7 @@
                 <!-- Page Title Header Ends-->
                 <div class="row">
                     <div class="col-lg-10 offset-md-1 grid-margin stretch-card">
-                        <div class="col-md-2">
-                            <select class="form-control">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>15</option>
-                                <option>20</option>
-                                <option>25</option>
-                            </select>
-                        </div>
+                        
                     </div>
                     <div class="col-lg-10 offset-md-1 grid-margin stretch-card">
                         <div class="card">
@@ -29,7 +21,16 @@
                                 <h4 class="card-title">Listagem de Série</h4>
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
+                                        <select class="form-control">
+                                            <option>5</option>
+                                            <option>10</option>
+                                            <option>15</option>
+                                            <option>20</option>
+                                            <option>25</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
                                         <input type="text" placeholder="Pesquisar..." class="form-control">
                                     </div>
                                     <div class="col-md-6" style="text-align:right;">
@@ -43,15 +44,19 @@
                                         <tbody *ngIf="series">
                                             <tr style="color: white;background: #1c45ef;position: sticky;top: 0;">
                                                 <th>#</th>
+                                                <th with="200px">Documento</th>
+                                                <th with="200px">Sigla</th>
                                                 <th with="200px">Nome</th>
-                                                <th with="200px">Tipo Movimento</th>
+                                                <th with="200px">Número</th>
                                                 <th with="200px">Data</th>
                                                 <th with="200px">Opções</th>
                                             </tr>
                                             <tr *ngFor="let item of series | paginate: { itemsPerPage: this.filters.pagination.perPage, currentPage: this.filters.pagination.page, totalItems: this.filters.pagination.total }; index as i">
                                                 <td> {{i+1}} </td>
+                                                <td>Factura Recibo</td>
+                                                <td>{{ item.tipo_documento}}</td>
                                                 <td>{{ item.nome}}</td>
-                                                <td>{{ item.tipo_movimento}}</td>
+                                                <td>{{ item.numero}}</td>
                                                 <td>{{ item.created_at | date: 'dd-MM-yyyy'}}</td>
                                                 <td>
                                                     <div class="dropdown ml-lg-auto ml-3 toolbar-item">
@@ -62,9 +67,7 @@
                                                         <div class="dropdown-menu" aria-labelledby="dropdownexport">
                                                             <a class="dropdown-item" href="javascript:void(0)"
                                                                 (click)="setCategoria(item)" data-toggle="modal"
-                                                                data-target="#createOrEditSerieModal">Editar</a>
-                                                            <a class="dropdown-item"
-                                                                href="javascript:void(0)">Elimnar</a>
+                                                                data-target="#createOrEditSerieModal" *ngIf="item.numero==1">Editar</a>
                                                         </div>
                                                     </div>
                                                 </td>

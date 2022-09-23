@@ -49,7 +49,7 @@ export class CreateOrEditUsersComponent implements OnInit {
     this.userForm = this.fb.group({
       id: [{ value: null, disabled: true }],
       nome: [null, Validators.required],
-      username: [null, Validators.required],
+      //username: [null, Validators.required],
       email: [null, Validators.compose([Validators.required])],
       password: [null, Validators.required],
       perfil_id: [null, Validators.required],
@@ -57,11 +57,11 @@ export class CreateOrEditUsersComponent implements OnInit {
       estado: [null],
       confirmPassword: [null,Validators.required]
     });
-    this.selectBoxRoles()
-    this.selectBoxInstituicaos();
   }
 
   ngOnInit(): void {
+    this.selectBoxRoles()
+    this.selectBoxInstituicaos();
   }
 
   // convenience getter for easy access to form fields
@@ -104,7 +104,6 @@ export class CreateOrEditUsersComponent implements OnInit {
   }
 
   createOrEdit() {
-
     this.submitted = true
     if (this.userForm.invalid) {
       return

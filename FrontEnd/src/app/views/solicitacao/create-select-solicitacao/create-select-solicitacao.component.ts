@@ -22,12 +22,16 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
   @Input() cliente: any;
   @Input() clienteForm: FormGroup;
 
+  private apiUrl: string = environment.apiUrl
+
   submitted = false;
   public loading = false;
   public view_client = true
 
   public provincias: any = [];
   public municipios: any = [];
+  public prioridades: any
+  public estados:any
   distritos: any = [];
   public filters = {
     search: null
@@ -49,15 +53,16 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
     this.clienteForm = this.fb.group({
       id: [null],
       tipo_solicitacao_id: [null, Validators.required],
-      prioridade_id: [null],
+      prioridade_id: [null, Validators.required],
       municipe_id: [null,Validators.required],
       nome: [null,Validators.required],
       documento: [null],
       is_publicado: [null],
       is_notificado: [null],
+      is_facturado:[null],
       user_id: [null],
       descricao: [null],
-      estado: [null],
+      estado_id: [null],
     });
 
     this.selectBoxProvinica();
@@ -67,8 +72,9 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
     this.listaOfMuicipios();
     this.getDistrito(1)
     this.listTipoSolicitacao()
+    this.getPrioridades();
+    this.getEstados();
   }
-
   listTipoSolicitacao() {
     this.loading = true
      this.http.post(`${this.httpService.api}/tipo-solicitacao/list`,null)
@@ -90,9 +96,10 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
       documento: cliente.documento,
       is_publicado: cliente.is_publicado,
       is_notificado: cliente.is_notificado,
+      is_facturado:cliente.is_facturado,
       user_id: cliente.user_id,
       descricao: cliente.descricao,
-      estado: cliente.estado,
+      estado_id: cliente.estado_id,
       nome: cliente.nome
 
     });
@@ -144,25 +151,27 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
       this.title = 'Editar Cliente';
       this.clienteForm.patchValue({
           id : this.cliente.solicitacao_id,
-         tipo_solicitacao_id: this.cliente.tipo_solicitacao_id,
+          tipo_solicitacao_id: this.cliente.tipo_solicitacao_id,
           prioridade_id: this.cliente.prioridade_id,
           municipe_id: this.cliente.municipe_id,
           documento: this.cliente.documento,
           is_publicado: this.cliente.is_publicado,
           is_notificado: this.cliente.is_notificado,
+          is_facturado:this.cliente.is_facturado,
           user_id: this.cliente.user_id,
           descricao: this.cliente.descricao,
-          estado: this.cliente.estado,
-          nome: this.cliente.nome
+          estado_id: this.cliente.estado_id,
+          nome: this.cliente.cliente
 
       });
     } else {
-      this.title = 'Registar Cliente';
+      this.title = 'Registar Solicitação';
     }
   }
 
 
   createOrEdit() {
+
     this.submitted = true;
     if (this.clienteForm.invalid) {
       return;
@@ -203,6 +212,20 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
       .subscribe((res) => {
         this.distritos = Object(res)
       });
+  }
+
+  getPrioridades(){
+    this.http.get(this.apiUrl+"/prioridades/list").subscribe(res=>{
+       this.prioridades=Object(res).dados
+       console.log("Prioridades: ",res)
+    })
+  }
+
+  getEstados(){
+    this.http.get(this.apiUrl+"/estados/listAberto").subscribe(res=>{
+       this.estados=Object(res).dados
+       console.log("estados: ",res)
+    })
   }
 
 }

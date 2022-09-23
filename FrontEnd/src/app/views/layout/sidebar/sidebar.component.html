@@ -9,8 +9,8 @@
 
         </div>
         <div class="text-wrapper">
-          <p class="profile-name">Alexandre Canzenze</p>
-          <p class="designation">Super Admin</p>
+          <p class="profile-name">{{ currentUser?.nome }}</p>
+          <p class="designation">{{currentUser?.perfil}}</p>
         </div>
       </a>
     </li>
@@ -112,12 +112,12 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/operacoes/permissoes" routerLinkActive> Permissions </a>
           </li>
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link" routerLink="/operacoes/categorias-produto" routerLinkActive> Categória </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/configuracao/documento-series" routerLinkActive> Documentos </a>
-          </li>
+          </li>-->
           <li class="nav-item">
             <a class="nav-link" routerLink="/configuracao/series" routerLinkActive> Séries </a>
           </li>

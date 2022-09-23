@@ -9,7 +9,16 @@ export default class TipoSolicitacao extends BaseModel {
   public descricao: string
 
   @column()
+  public abreviatura: string
+
+  @column()
   public sla: number
+
+  @column()
+  public validade: number
+
+  @column()
+  public contador: number
 
   @column()
   public estado: boolean

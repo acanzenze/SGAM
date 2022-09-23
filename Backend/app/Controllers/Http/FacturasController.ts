@@ -13,7 +13,10 @@ export default class FacturasController {
     const client = await Database.from('facturas')
       .select(
         'facturas.*',
+        'clientes.nome as cliente_nome',
+        'clientes.numero_documento as bi'
       )
+      .innerJoin("clientes","clientes.id","facturas.cliente_id")
       .where((query) => {
         if (search && search !== 'null') {
           query.where('clientes.nome', 'like', '%' + search + '%')
@@ -32,7 +35,7 @@ export default class FacturasController {
       'serie_id',
       'sigla',
       'estado_documento',
-      'clinte_id',
+      'cliente_id',
       'solicitacao_id'
     ])
 
@@ -52,5 +55,73 @@ export default class FacturasController {
       serieActualizado
     })
 
+  }
+
+  public async facturacaoHoje(){
+    const moment=require("moment")
+    const hoje= moment(new Date()).format("YYYY-MM-DD")
+
+
+    const total = await Database.from("facturas").sum("total as total")
+    .where(Database.raw('DATE_FORMAT(facturas.created_at, "%Y-%m-%d")'),"=",hoje)
+    .where("estado_documento",1)
+
+    
+    return{
+      dados:total[0].total
+    }
+  }
+
+  public async facturacaoOntem(){
+    const moment=require("moment")
+    var hoje = new Date()
+    var dataOntem = new Date(hoje.getTime());
+        dataOntem.setDate(hoje.getDate() - 1);
+        dataOntem = moment(dataOntem).format("YYYY-MM-DD");
+        console.log(dataOntem);
+
+    const total = await Database.from("facturas").sum("total as total")
+    .where(Database.raw('DATE_FORMAT(facturas.created_at, "%Y-%m-%d")'),"=",dataOntem)
+    .where("estado_documento",1)
+
+    
+    return{
+      dados:total[0].total
+    }
+    
+  }
+
+  public async facturacaoGeral(){
+    const total = await Database.from("facturas").sum("total as total")
+    .where("estado_documento",1)
+    
+    return{
+      dados:total[0].total
+    }
+  }
+
+  public async countDocumento(){
+     const total=await Database.from("facturas").count("* as total")
+     .where("estado_documento",1)
+
+     return{
+      dados:total[0].total
+     }
+  }
+  public async countDocMunicipe(){
+    const total=await Database.from("facturas").countDistinct("cliente_id as total")
+    .where("estado_documento",1)
+
+    return{
+     dados:total[0].total
+    }
+  }
+  public async countDocAnulados(){
+    const total=await Database.from("facturas").countDistinct("cliente_id as total")
+    .where("estado_documento",0)
+
+    return{
+     dados:total[0].total
+    }
   }
 }

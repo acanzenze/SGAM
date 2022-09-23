@@ -21,9 +21,9 @@ export class LoaderInterceptor implements HttpInterceptor {
       console.log(events)
       if (events instanceof HttpResponse) {
         if (events.status === 200 || events.status === 201) {
-          this.toast.SwalSuccess(events.body.message)
+          this.toast.SwalSuccess('')
         } else {
-          this.toast.SwalError(events.body.message + " [Erro na comunicação]")
+          this.toast.SwalError( " [Erro na comunicação]")
         }
       }
     }),

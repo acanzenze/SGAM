@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/providers/auth.service';
 import { HttpService } from 'src/app/providers/http.service';
+import { SolicitacaoService } from 'src/app/providers/solicitacao.service';
 import { BairrosService } from '../configuracao/morada/bairros/bairros.service';
 
 @Component({
@@ -29,6 +30,7 @@ export class SolicitacaoComponent implements OnInit {
     private http: HttpClient,
     private authService: AuthService,
     private httpService: HttpService,
+    private printSolicitacao: SolicitacaoService
   ) {
   }
 
@@ -81,5 +83,9 @@ export class SolicitacaoComponent implements OnInit {
         console.log(res, this.produto)
         this.loading = false
       })
+  }
+
+  print() {
+    this.printSolicitacao.printSolicitacao()
   }
 }

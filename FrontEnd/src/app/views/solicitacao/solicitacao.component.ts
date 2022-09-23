@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AtestadoService } from 'src/app/providers/atestado.service';
 import { AuthService } from 'src/app/providers/auth.service';
 import { HttpService } from 'src/app/providers/http.service';
 import { SolicitacaoService } from 'src/app/providers/solicitacao.service';
@@ -37,7 +38,8 @@ export class SolicitacaoComponent implements OnInit {
     private http: HttpClient,
     private authService: AuthService,
     private httpService: HttpService,
-    private printSolicitacao: SolicitacaoService
+    private printSolicitacao: SolicitacaoService,
+    private printAtestado: AtestadoService
   ) {
   }
 
@@ -102,6 +104,11 @@ export class SolicitacaoComponent implements OnInit {
   print() {
     this.printSolicitacao.printSolicitacao()
   }
+
+  printAtestadoPdf() {
+    this.printAtestado.print()
+  }
+
   getAbertas() {
     this.http.post(this.apiUrl + "/solicitacao/getabertas", null).subscribe(res => {
       this.total_abertas = Object(res).dados

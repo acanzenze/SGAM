@@ -13,7 +13,7 @@ export class AuthService {
   private currentUserValue: any;
 
 
-  private token: any = sessionStorage.getItem('sessionToken') ? JSON.parse(sessionStorage.getItem('sessionToken') || '') : sessionStorage.getItem('sessionToken')
+  private token: any = sessionStorage.getItem('sessionToken') ? JSON.parse(sessionStorage.getItem('sessionToken') || '') : {}
 
   public headers = new HttpHeaders()
     .set('content-type', 'application/json')

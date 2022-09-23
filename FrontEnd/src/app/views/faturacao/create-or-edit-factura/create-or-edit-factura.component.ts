@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/providers/auth.service';
 import { ConfigService } from 'src/app/providers/config.service';
 import { HttpService } from 'src/app/providers/http.service';
+import { SolicitacaoComponent } from '../../solicitacao/solicitacao.component';
 
 @Component({
   selector: 'app-create-or-edit-factura',
@@ -29,6 +30,7 @@ export class CreateOrEditFacturaComponent implements OnInit {
     private configService: ConfigService,
     private httpService: HttpService,
     private authService: AuthService,
+    private solicitacaolist:SolicitacaoComponent
   ) {
 
     this.facturacaoForm = this.fb.group({
@@ -121,6 +123,7 @@ export class CreateOrEditFacturaComponent implements OnInit {
         }
         this.loading = false;
       })
+      this.solicitacaolist.listaOfSolicitacao();
   }
 
 }

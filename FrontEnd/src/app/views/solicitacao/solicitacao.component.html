@@ -176,7 +176,7 @@
                                 *ngIf="(item.estado_slug == 'ABERTO') && (!item.is_facturado)">Cancelar</a>
 
 
-                              <a class="dropdown-item" href="javascript:void(0)" (click)="print()">Imprimir</a>
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="print(item)">Imprimir</a>
                               <a class="dropdown-item" href="javascript:void(0)"
                                 (click)="printAtestadoPdf()">Visualizar</a>
                             </div>

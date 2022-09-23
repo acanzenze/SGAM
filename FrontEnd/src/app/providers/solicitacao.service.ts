@@ -10,7 +10,9 @@ export class SolicitacaoService {
   //container: any = new Container()
   constructor() { }
 
-  printSolicitacao() {
+  printSolicitacao(item:any) {
+
+    console.log("imprimir",item)
 
     // You'll need to make your image into a Data URL
     // Use http://dataurl.net/#dataurlmaker

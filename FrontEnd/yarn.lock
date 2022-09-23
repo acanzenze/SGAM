@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"8@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/8/-/8-0.0.1.tgz#27d049aaac32267b9c7377b9472bf2df15b53e28"
+  integrity sha512-MPiOAlzVNIMcfUI/2kcUYRvGb9KROnAkOy9R7+47zwpAGlS7vkzfd8ivRpXi6dPfhjzDrzh0okNgczo3x6EUsQ==
+
 "@ampproject/remapping@^2.1.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.0.tgz#56c133824780de3174aed5ab6834f3026790154d"
@@ -2073,6 +2078,11 @@ bootstrap-material-design-icons@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/bootstrap-material-design-icons/-/bootstrap-material-design-icons-2.2.0.tgz#60e2f584367a73c960c511584d6fd5512dbe151e"
   integrity sha512-aIk2e7y8U4ZcS64Qyey8vN09gKB3cJevALaWD1/FdmAb+XhCrozDu9fnZFCpEdWgrLTe6oTvDOjDXYxFLJVpcg==
+
+bootstrap@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.2.1.tgz#45f97ff05cbe828bad807b014d8425f3aeb8ec3a"
+  integrity sha512-UQi3v2NpVPEi1n35dmRRzBJFlgvWHYwyem6yHhuT6afYF+sziEt46McRbT//kVXZ7b1YUYEVGdXEH74Nx3xzGA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -5201,7 +5211,7 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ngx-loading@^13.0.0:
+ngx-loading@13.0.1:
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/ngx-loading/-/ngx-loading-13.0.1.tgz#e183cedf97ebc4d76ed1f2821d4990b821fdaec3"
   integrity sha512-3nDWcZOw5cT1Nnm1WBoioO9kCjjmQeJfFQZymzWPVyQN5pewhedVhhApXpZuCmbNv8S8sKnpOqqoBGtb42MT9w==

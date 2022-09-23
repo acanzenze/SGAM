@@ -101,8 +101,8 @@ export class SolicitacaoComponent implements OnInit {
       })
   }
 
-  print() {
-    this.printSolicitacao.printSolicitacao()
+  print(item:any) {
+    this.printSolicitacao.printSolicitacao(item)
   }
 
   printAtestadoPdf() {
@@ -132,4 +132,5 @@ export class SolicitacaoComponent implements OnInit {
       this.total = Object(res).dados
     })
   }
+
 }

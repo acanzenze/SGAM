@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FacturaService } from 'src/app/providers/factura.service';
 import { HttpService } from '../../providers/http.service';
 
 
@@ -26,7 +27,8 @@ export class ListarFaturacaoComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private printPdf: FacturaService
   ) {
     this.listFacturas();
   }
@@ -57,6 +59,8 @@ export class ListarFaturacaoComponent implements OnInit {
   getPageFilterData(event: any) {
 
   }
+
+
 
 
 }

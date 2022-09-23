@@ -25,6 +25,7 @@
     "ngx-loading": "13.0.1",
     "ngx-pagination": "^5.1.1",
     "rxjs": "~6.6.0",
+    "styled-pdf": "^1.0.9",
     "sweetalert2": "^11.4.8",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -34,7 +35,7 @@
     "@angular/cli": "~12.1.4",
     "@angular/compiler-cli": "~12.1.0",
     "@types/jasmine": "~3.8.0",
-    "@types/node": "^12.11.1",
+    "@types/node": "^18.7.18",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

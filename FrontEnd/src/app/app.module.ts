@@ -63,6 +63,7 @@ import { CreateDocumentoComponent } from './views/solicitacao/create-documento/c
 import { ListarDocumentoComponent } from './views/solicitacao/listar-documento/listar-documento.component';
 import { ListarIdentificacaoComponent } from './views/clientes/listar-identificacao/listar-identificacao.component';
 import { ListarAfiliacaoComponent } from './views/clientes/listar-afiliacao/listar-afiliacao.component';
+import { AssinarDocumentoComponent } from './views/solicitacao/assinar-documento/assinar-documento.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +123,7 @@ import { ListarAfiliacaoComponent } from './views/clientes/listar-afiliacao/list
     ListarDocumentoComponent,
     ListarIdentificacaoComponent,
     ListarAfiliacaoComponent,
+    AssinarDocumentoComponent,
   ],
   imports: [
     HttpClientModule,

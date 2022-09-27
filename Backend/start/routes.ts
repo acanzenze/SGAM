@@ -59,6 +59,7 @@ Route.get('prioridades/list', 'SolicitacaoPrioridadesController.index')
 Route.get('estados/listAberto', 'SolicitacaoEstadosController.estadoAberto')
 Route.get('estados/listCancelado', 'SolicitacaoEstadosController.estadoCancelado')
 Route.get('estados/listEmitido', 'SolicitacaoEstadosController.estadoEmitido')
+Route.get('estados/listFinalizado', 'SolicitacaoEstadosController.estadoFinalizado')
 
 
 Route.post('serie/create', 'SeriesController.store')
@@ -91,3 +92,4 @@ Route.post('produto/list', 'ProdutosController.index')
 
 Route.post('documento/create', 'DocumentosController.create').middleware('auth')
 Route.post('documento/list/:id', 'DocumentosController.index')
+Route.post('documento/update/:id', 'DocumentosController.update')

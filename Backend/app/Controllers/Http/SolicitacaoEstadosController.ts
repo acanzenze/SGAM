@@ -27,4 +27,12 @@ export default class SolicitacaoEstadosController {
             dados:dados
         }
     }
+
+    public async estadoFinalizado(){
+        const dados=await Database.from('solicitacao_estados').where('slug','FINALIZADO').first()
+
+        return{
+            dados:dados
+        }
+    }
 }

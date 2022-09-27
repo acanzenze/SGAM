@@ -169,9 +169,6 @@
                                 data-toggle="modal" data-target="#EmitirDocumentoModal"
                                 *ngIf="(item.estado_slug == 'ABERTO') && (item.is_facturado)">Emitir Documento</a>
                               <a class="dropdown-item" href="javascript:void(0)" (click)="setFacturacao(item)"
-                                data-toggle="modal" data-target="" *ngIf="item.estado_slug == 'EMITIDO'">Assinar e
-                                Finalizar</a>
-                              <a class="dropdown-item" href="javascript:void(0)" (click)="setFacturacao(item)"
                                 data-toggle="modal" data-target="#CancelSolicitacaoModal"
                                 *ngIf="(item.estado_slug == 'ABERTO') && (!item.is_facturado)">Cancelar</a>
 

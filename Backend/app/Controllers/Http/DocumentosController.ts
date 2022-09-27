@@ -20,13 +20,30 @@ export default class DocumentosController {
         }
     }
 
-    public update(){
-
+    public async update({params,request,response}:HttpContextContract){
+        const data = request.only([
+            'assinatura',
+          ])
+          console.log("Save",data)
+          
+          const documento = await Documento.find(params.id)
+          if (!documento) throw new Error('erro ao cadastrar')
+      
+          documento.merge(data)
+      
+          const result = await documento.save()
+      
+          return response.json({
+            msg: 'dados actualizados com sucesso',
+            dados: result,
+          })
     }
 
     public async index({params}:HttpContextContract){
         const dados = await Database.from('documentos')
         .select('*',
+        'documentos.id as documento_id',
+        'documentos.data_validade as validade_documento',
         'tipo_solicitacaos.descricao as tipo_documento',
         'users.nome as operador',
         'documentos.created_at as data_criacao',

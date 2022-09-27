@@ -15,9 +15,9 @@
                           <th>#</th>
                           <th>Tipo de Documento</th>
                           <th>Codigo</th>
-                          <th>Assinado?</th>
-                          <th with="200px">Data Validade</th>
+                          <th>Assinado?</th>    
                           <th with="200px">Data Emissão</th>
+                          <th with="200px">Data Validade</th>
                           <th with="200px">Operador</th>
                           <th with="200px">Opções</th>
                         </tr>
@@ -27,10 +27,10 @@
                           <td>{{item.codigo}}</td>
                           <td class="p-3 mb-2 bg-warning" *ngIf="item.assinatura==null">{{ item.assinatura === null ? 'Não'
                             : 'Sim'}}</td>
-                          <td class="p-3 mb-2 bg-success" *ngIf="item.assinatura">{{ item.is_facturado? 'Sim'
+                          <td class="p-3 mb-2 bg-success" *ngIf="item.assinatura">{{ item.assinatura? 'Sim'
                             : 'Não'}}</td>
-                          <td>{{ item.data_validade | date: 'dd-MM-yyyy' }}</td>
                           <td>{{item.data_criacao | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{ item.validade_documento | date: 'dd-MM-yyyy' }}</td>
                           <td>{{item.operador}}</td>
                           <td>
                             <div class="dropdown ml-lg-auto ml-3 toolbar-item">
@@ -39,6 +39,8 @@
                               <div class="dropdown-menu" aria-labelledby="dropdownexport">
                                 <a class="dropdown-item" href="javascript:void(0)"
                                   (click)="imprimir(item)">Imprimir</a>
+                                  <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#AssinarDocumentoModal"
+                                (click)="setDocumento(item)" *ngIf="!item.assinatura">Assinar Documento</a>
                               </div>
                             </div>
                           </td>
@@ -52,4 +54,5 @@
             </div>
           </div>
     </div>
+    <app-assinar-documento [documento]="documento" [modal]=""></app-assinar-documento>
 </div>

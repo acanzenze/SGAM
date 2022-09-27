@@ -44,5 +44,8 @@ export class ListarDocumentoComponent implements OnInit {
   imprimir(item:any){
     this.atestadoService.print(item)
   }
+  setDocumento(item:any){
+    this.documento=item
+  }
 
 }

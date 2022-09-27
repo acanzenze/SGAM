@@ -29,8 +29,8 @@ export class CreateOrEditUsersComponent implements OnInit {
   submitted = false;
   public loading = false;
 
-  public roles: any = []
-  public instituicaos: any = []
+  public roles: any
+  public instituicaos: any
 
   constructor(
     private http: HttpClient,
@@ -89,7 +89,7 @@ export class CreateOrEditUsersComponent implements OnInit {
   selectBoxInstituicaos() {
     this.instituicaoService.getInstituicao().subscribe(res => {
       this.instituicaos = Object(res).dados
-      console.log(this.instituicaos)
+      console.log("inst",this.instituicaos)
     })
   }
 

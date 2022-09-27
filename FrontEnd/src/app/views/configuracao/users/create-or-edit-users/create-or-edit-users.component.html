@@ -26,7 +26,7 @@
                                 <label class="control-label"><i class="fa fa-edit"></i> Instituição</label>
                                 <select class="form-control" formControlName="instituicao_id"
                                     [ngClass]="{ 'is-invalid': submitted && f.instituicao_id.errors, 'is-valid': f.instituicao_id.touched && !f.instituicao_id.errors }">
-                                    <option *ngFor="let item of instituicaos" value="{{item.id}}">{{item.nome}}</option>
+                                    <option *ngFor="let item of instituicaos" value="{{item.id}}">{{item?.nome}}</option>
                                 </select>
                                 <div *ngIf="submitted && f['instituicao_id'].errors" class="invalid-feedback">
                                     <div *ngIf="f['instituicao_id'].errors.required">O campo Instituição é obrigatório

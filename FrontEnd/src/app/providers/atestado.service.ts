@@ -15,7 +15,7 @@ export class AtestadoService {
 
     var data_nasc=new Date(item.data_nascimento)
     var created_at=new Date(item.data_criacao)
-    var data_validade=new Date(item.data_validade)
+    var data_validade=new Date(item.validade_documento)
 
 
     data_nasc.setDate(data_nasc.getDate())
@@ -196,7 +196,7 @@ export class AtestadoService {
         marginTop: '44.5%',
         marginLeft: '12.5%',
       })
-      container.p(', requer o presente atestado para efeitos de XXXX.', {
+      container.p(', requer o presente '+item.tipo_documento+' para efeitos de XXXX.', {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '46.5%',

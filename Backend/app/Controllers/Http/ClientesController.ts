@@ -70,6 +70,7 @@ export default class ClientesController {
       .leftJoin("bairros","bairros.id","clientes.bairro_id")
       .leftJoin("distritos","distritos.id","bairros.distrito_id")
       .leftJoin("municipios","municipios.id","distritos.municipio_id")
+      .orderBy('clientes.id','desc')
       .paginate(page, perPage === 'T' ? total : perPage)
 
     return response.json(client)

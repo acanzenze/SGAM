@@ -18,7 +18,7 @@ import { DistritosService } from '../../configuracao/morada/distritos/distritos.
 })
 export class CreateOrEditClientesComponent implements OnInit {
   @Input() modal: any = 'createOrEditclienteModal';
-  @Input() title: string = 'Registar Cliente';
+  @Input() title: string = 'Registar Munícipe';
   @Input() cliente: any;
   @Input() clienteForm: FormGroup;
 
@@ -102,7 +102,7 @@ export class CreateOrEditClientesComponent implements OnInit {
   }
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     if (this.cliente?.id !== undefined) {
-      this.title = 'Editar Cliente';
+      this.title = 'Editar Munícipe';
       this.clienteForm.patchValue({
         id: this.cliente.id,
         nome: this.cliente.nome,
@@ -126,7 +126,7 @@ export class CreateOrEditClientesComponent implements OnInit {
 
       });
     } else {
-      this.title = 'Registar Cliente';
+      this.title = 'Registar Munícipe';
     }
   }
 

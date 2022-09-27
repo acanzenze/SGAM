@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 import { imgData } from '../utils/blobSolicitacao'
@@ -10,7 +11,25 @@ export class AtestadoService {
   //container: any = new Container()
   constructor() { }
 
-  print() {
+  print(item:any) {
+
+    var data_nasc=new Date(item.data_nascimento)
+    var created_at=new Date(item.data_criacao)
+    var data_validade=new Date(item.data_validade)
+
+
+    data_nasc.setDate(data_nasc.getDate())
+    var dia_n = formatDate(data_nasc,'dd','en-US')
+    var mes_n = formatDate(data_nasc,'MMMM','en-US')
+    var ano_n = formatDate(data_nasc,'yyyy','en-US')
+
+    data_nasc.setDate(created_at.getDate())
+    var dia_c = formatDate(created_at,'dd','en-US')
+    var mes_c = formatDate(created_at,'MMMM','en-US')
+    var ano_c = formatDate(created_at,'yyyy','en-US')
+
+    var validade=formatDate(data_validade,'dd-MM-yyyy','en-US')
+
 
     // You'll need to make your image into a Data URL
     // Use http://dataurl.net/#dataurlmaker
@@ -62,20 +81,21 @@ export class AtestadoService {
         marginTop: '20.5%',
         marginLeft: '36%',
       })
-      container.p('ADMINISTRAÇÃO MUNICIPAL DE CACUACO', {
+      
+      container.p(item.instituicao.toUpperCase(), {
         fontWeigth: 'bold',
         fontSize: 10,
         marginTop: '22%',
         marginLeft: '33%',
       })
-      container.p('ADMINISTRAÇÃO DO DISTRITO DO KIKOLO', {
+      /*container.p('ADMINISTRAÇÃO DO DISTRITO DO KIKOLO', {
         fontWeigth: 'bold',
         fontSize: 10,
         marginTop: '23.5%',
         marginLeft: '33%',
-      })
+      })*/
 
-      container.p(' Atestado de Residência Nº 763/2017', {
+      container.p(item.tipo_documento+' Nº '+item.codigo, {
         fontWeigth: 'bold',
         fontSize: 12,
         marginTop: '27.5%',
@@ -94,21 +114,21 @@ export class AtestadoService {
     header()
 
     function body() {
-      container.p('LUÍS GONZAGAS RODRUGUES,', {
+      container.p(item.administrador.toUpperCase()+',', {
         fontWeigth: 'bold',
         fontSize: 10,
         marginTop: '38.5%',
         marginLeft: '4%',
       })
 
-      container.p('Administrador, atesta que o(a) Sr(a).', {
+      container.p('Administrador, confirma que o(a) Sr(a).             ', {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '38.5%',
         marginLeft: '30.5%',
       })
 
-      container.p('ANTÓNIO ALFREDO,', {
+      container.p(item.cliente+',', {
         fontWeigth: 'bold',
         fontSize: 10,
         marginTop: '38.5%',
@@ -121,35 +141,35 @@ export class AtestadoService {
         marginTop: '38.5%',
         marginLeft: '74%',
       })
-      container.p('Alfredo Manuel,', {
+      container.p(item.pai+',', {
         fontWeigth: 'bold',
         fontSize: 10,
         marginTop: '38.5%',
         marginLeft: '80%',
       })
 
-      container.p('e de Isabel Alvaro,', {
+      container.p('e de '+item.mae+',', {
         fontWeigth: 'bold',
         fontSize: 10,
         marginTop: '40.5%',
         marginLeft: '4%',
       })
 
-      container.p('natural da Província de Luanda, solteiro,', {
+      container.p('natural da Província de '+item.provincia+', '+item.estado_civil+',', {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '40.5%',
         marginLeft: '18.5%',
       })
 
-      container.p('nascido(a) aos 15 dias do mês de setembro do ano de 1986,', {
+      container.p('      nascido(a) aos '+dia_n+' dias do mês de '+mes_n+' do ano de '+ano_n+',', {
         fontWeigth: 'bold',
         fontSize: 10,
         marginTop: '40.5%',
         marginLeft: '47%',
       })
 
-      container.p('portador(a) do Bilhete de Identidade nº 001593059LA033 e contribuinte nº 101593059LA0336,', {
+      container.p('portador(a) do Bilhete de Identidade nº '+item.numero_documento+' e contribuinte nº '+item.numero_documento+',', {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '42.5%',
@@ -163,20 +183,20 @@ export class AtestadoService {
         marginLeft: '70.5%',
       })
 
-      container.p('Augusto Ngangula, próximo a DISTRITO DOS MULENVOS, no bairro do(a) Kikolo , no', {
+      container.p(item.bairro+', no ', {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '44.5%',
         marginLeft: '4%',
       })
 
-      container.p('distrito/comuna do(a) Kikolo ,', {
+      container.p('distrito/comuna do(a) '+item.distrito+' ,'+' no município do(a) '+item.municipio+' , na província de '+item.provincia+' , telefone nº +(244) '+item.cliente_telefone, {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '44.5%',
-        marginLeft: '67.5%',
+        marginLeft: '12.5%',
       })
-      container.p('no município do(a) Cacuaco , na província de Luanda , telefone nº +(244) 938 542 369, requer o presente atestado para efeitos de XXXX.', {
+      container.p(', requer o presente atestado para efeitos de XXXX.', {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '46.5%',
@@ -190,7 +210,7 @@ export class AtestadoService {
         marginLeft: '4%',
       })
 
-      container.p('Administração Do Distrito Do Kikolo, 13 de julho de 2017.', {
+      container.p(item.instituicao+', '+dia_c+' de '+mes_c+' de '+ano_c+' ', {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '56.5%',
@@ -215,7 +235,7 @@ export class AtestadoService {
         bottom: '67.1%'
       })
 
-      container.p('LUÍS GONZAGAS RODRUGUES', {
+      container.p(item.administrador.toUpperCase(), {
         fontWeigth: 'bold',
         fontSize: 10,
         marginTop: '69%',
@@ -229,13 +249,13 @@ export class AtestadoService {
         bottom: '90.1%'
       })
 
-      container.p('Este documento tem validade até 09/01/2018 e o poderá ser validado através dos seguintes passos:', {
+      container.p('Este documento tem validade até '+validade+'.', {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '93%',
         marginLeft: '4%',
       })
-      if (true) {
+      if (item.assinatura) {
         container.Image(assinatura, {
           marginTop: "92.1%",
           width: "20%",
@@ -244,7 +264,7 @@ export class AtestadoService {
         })
 
       }
-      container.p(`
+      /*container.p(`
        1. Aceda ao Portal das Administrações Municipais (www.municipal.minfin.gov.ao);
        2. Marque a opção “Validar Documento”;
        3. Introduza o código B5f884c3c no campo “Código de Validação” e clique em “Validar”.`, {
@@ -252,7 +272,7 @@ export class AtestadoService {
         fontSize: 10,
         marginTop: '94%',
         marginLeft: '2%',
-      })
+      })*/
     }
 
     footer()

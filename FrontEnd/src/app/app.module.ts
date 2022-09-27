@@ -60,6 +60,7 @@ import { AlterPassworComponent } from './views/configuracao/users/alter-passwor/
 import { CancelSolicitacaoComponent } from './views/solicitacao/cancel-solicitacao/cancel-solicitacao.component';
 import { PublicarSolicitacaoComponent } from './views/solicitacao/publicar-solicitacao/publicar-solicitacao.component';
 import { CreateDocumentoComponent } from './views/solicitacao/create-documento/create-documento.component';
+import { ListarDocumentoComponent } from './views/solicitacao/listar-documento/listar-documento.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import { CreateDocumentoComponent } from './views/solicitacao/create-documento/c
     CancelSolicitacaoComponent,
     PublicarSolicitacaoComponent,
     CreateDocumentoComponent,
+    ListarDocumentoComponent,
   ],
   imports: [
     HttpClientModule,

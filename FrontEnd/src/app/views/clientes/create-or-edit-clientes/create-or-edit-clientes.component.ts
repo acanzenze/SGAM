@@ -48,6 +48,7 @@ export class CreateOrEditClientesComponent implements OnInit {
       telefone: [null, Validators.required],
       numeroDocumento: [null, Validators.required],
       generoId: [null, Validators.required],
+      estado_civil: [null, Validators.required],
       dataNascimento: [null],
       nomePai: [null],
       nomeMae: [null],
@@ -106,7 +107,8 @@ export class CreateOrEditClientesComponent implements OnInit {
         id: this.cliente.id,
         nome: this.cliente.nome,
         telefone: this.cliente.telefone,
-        generoId: this.cliente.genero,
+        generoId: this.cliente.genero_id,
+        estado_civil: this.cliente.estado_civil,
         dataNascimento: this.cliente.data_nascimento,
         nomePai: this.cliente.pai,
         email: this.cliente.email,
@@ -120,7 +122,7 @@ export class CreateOrEditClientesComponent implements OnInit {
         bairroId: this.cliente.bairro,
         /* tipoDocumentoId:, */
         dataEmissao: this.cliente.data_emissao,
-        dataValidade: this.cliente.enderecoId,
+        dataValidade: this.cliente.datavalidade,
 
       });
     } else {

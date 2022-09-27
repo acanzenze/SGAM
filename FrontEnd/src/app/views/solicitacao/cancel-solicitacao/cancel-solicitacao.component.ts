@@ -31,7 +31,6 @@ export class CancelSolicitacaoComponent implements OnInit {
     private httpService: HttpService,
     private authService: AuthService,
     private listOfClienteCom: SolicitacaoComponent,
-    private router:Router
     ) { }
 
   ngOnInit(): void {
@@ -41,8 +40,9 @@ export class CancelSolicitacaoComponent implements OnInit {
 
   cancelar(){   
     this.http.post(this.apiUrl+"/solicitacao/update/"+this.factura.solicitacao_id,{ ...this.factura, estado: this.estado.id }, { headers: this.authService.headers })
-    .subscribe(res=>{})
-    this.listOfClienteCom.listaOfSolicitacao()
+    .subscribe(res=>{
+      this.listOfClienteCom.listaOfSolicitacao()
+    })
   }
 
   public getCancelado(){

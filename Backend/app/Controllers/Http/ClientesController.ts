@@ -8,6 +8,7 @@ export default class ClientesController {
       'nome',
       'telefone',
       'generoId',
+      'estado_civil',
       'dataNascimento',
       'nomePai',
       'email',
@@ -34,6 +35,7 @@ export default class ClientesController {
       mae: data.nomeMae,
       endereco: data.enderecoId,
       genero_id: data.generoId,
+      estado_civil: data.estado_civil,
       dataEmissao: data.dataEmissao,
       dataValidade: data.dataValidade,
       numeroDocumento: data.numeroDocumento
@@ -120,6 +122,7 @@ export default class ClientesController {
       'nome',
       'telefone',
       'generoId',
+      'estado_civil',
       'dataNascimento',
       'nomePai',
       'email',
@@ -148,6 +151,7 @@ export default class ClientesController {
       mae: data.nomeMae,
       endereco: data.enderecoId,
       genero_id: data.generoId,
+      estado_civil: data.estado_civil,
       dataEmissao: data.dataEmissao,
       dataValidade: data.dataValidade,
       numeroDocumento: data.numeroDocumento

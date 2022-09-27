@@ -40,7 +40,6 @@ export class CreateDocumentoComponent implements OnInit {
   ngOnInit(): void {
     this.getInstituicao()
     this.getEstadoEmitido()
-    this.data_validade.setDate(this.hoje.getDate() + 30)
   }
 
   incrementarContador(id: any) {
@@ -69,8 +68,7 @@ export class CreateDocumentoComponent implements OnInit {
       .subscribe(res => {
         this.actualizarEstadoSolicitcao(this.factura.solicitacao_id)
         this.incrementarContador(this.factura.tipo_solicitacao_id)
-        this.listOfClienteCom.ngOnInit()
-
+        this.listOfClienteCom.listaOfSolicitacao()
       })
   }
 

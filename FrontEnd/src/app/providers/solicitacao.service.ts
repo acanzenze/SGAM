@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 import { imgData } from '../utils/blobSolicitacao'
@@ -13,6 +14,18 @@ export class SolicitacaoService {
   printSolicitacao(item:any) {
 
     console.log("imprimir",item)
+    var created_at = new Date(item.solicitacao_created_at)
+    var created_at_f = formatDate(new Date(item.solicitacao_created_at),'dd-MM-yyyy', 'en-US')
+
+    created_at.setDate(created_at.getDate()+item.sla)
+    var data_prevista=formatDate(created_at,'dd-MM-yyyy','en-US')
+    console.log("prevista",created_at)
+
+   
+    //var data_levantamento = new Date(created_at.getDate()+1)
+    //var data_levantamento_f=formatDate(new Date(data_levantamento),'dd-MM-yyyy', 'en-US')
+
+
 
     // You'll need to make your image into a Data URL
     // Use http://dataurl.net/#dataurlmaker
@@ -47,7 +60,7 @@ export class SolicitacaoService {
       style.subTitle.fontWeigth = 'normal'
       container.p('ORIGINAL', style.subTitle)
     }
-    facturaTitle(container, 'RECIBO CLIENTE')
+    facturaTitle(container, 'SOLICITAÇÃO DE MUNÍCIPE')
 
     function header(data: any, container: any) {
       let style = {
@@ -88,12 +101,12 @@ export class SolicitacaoService {
           }
         },
       }
-      container.p('Empresa Pública de Águas, EPAL-EP', style.streat)
-      container.p('Rua Frederich Engels, nº 3 Luanda / Angola', style.companyTitle)
+      container.p(item.instituicao,style.companyTitle)
+      container.p(item.instituicao_endereco, style.streat)
       container.p('NIF:', style.nif)
-      container.p('5410001109', style.nif.value)
+      container.p(item.instituicao_nif, style.nif.value)
       container.p('email:', style.phone)
-      container.p('johndoe@gmail.com', style.phone.value)
+      container.p(item.instituicao_email, style.phone.value)
     }
     header('', container)
 
@@ -119,28 +132,28 @@ export class SolicitacaoService {
       style.cliente.heigth = '40%'
       style.cliente.text.marginTop = '32.5%'
       container.p('Nome', style.cliente.text)
-      container.p('Alexandre Aanzenze', { ...style.cliente.text, marginTop: '34%' })
+      container.p(item.cliente, { ...style.cliente.text, marginTop: '34%' })
       style.cliente.text.marginTop = '32.5%'
       style.cliente.text.marginLeft = '30.5%'
       container.p('Email', style.cliente.text)
-      container.p('alexandrecanzenze@gmail.com', { ...style.cliente.text, marginTop: '34%' })
+      container.p(item.cliente_email, { ...style.cliente.text, marginTop: '34%' })
       style.cliente.text.marginTop = '32.5%'
       style.cliente.text.marginLeft = '50.5%'
       container.p('Bilhete de Identidade', style.cliente.text)
-      container.p('BI-999000-000', { ...style.cliente.text, marginTop: '34%' })
+      container.p(item.numero_documento, { ...style.cliente.text, marginTop: '34%' })
       style.cliente.text.marginTop = '32.5%'
       style.cliente.text.marginLeft = '80.5%'
       container.p('Telefone', style.cliente.text)
-      container.p('925 75 80 37', { ...style.cliente.text, marginTop: '34%' })
+      container.p(item.telefone.toString(), { ...style.cliente.text, marginTop: '34%' })
 
       container.p('Município', { ...style.cliente.text, marginTop: '36%', marginLeft: '5%' })
-      container.p('Talatona', { ...style.cliente.text, marginTop: '37.5%', marginLeft: '5%' })
+      container.p(item.municipio, { ...style.cliente.text, marginTop: '37.5%', marginLeft: '5%' })
 
       container.p('Distrito', { ...style.cliente.text, marginTop: '36%', marginLeft: '30.5%' })
-      container.p('Kelenba 2', { ...style.cliente.text, marginTop: '37.5%', marginLeft: '30.5%' })
+      container.p(item.distrito, { ...style.cliente.text, marginTop: '37.5%', marginLeft: '30.5%' })
 
       container.p('Bairro', { ...style.cliente.text, marginTop: '36%', marginLeft: '50.5%' })
-      container.p('Projecto Nando', { ...style.cliente.text, marginTop: '37.5%', marginLeft: '50.5%' })
+      container.p(item.bairro, { ...style.cliente.text, marginTop: '37.5%', marginLeft: '50.5%' })
 
     }
     municipeInfo()
@@ -162,17 +175,17 @@ export class SolicitacaoService {
           }
         }
       }
-      container.p('Tipo de solicitação', style.cliente.text)
+      container.p('Tipo de solicitação - '+item.estado_descricao, style.cliente.text)
       container.div(style.cliente)
 
       container.p('Tipo', { ...style.cliente.text, marginTop: '44.5%' })
-      container.p('Bilhete de indentidade', { ...style.cliente.text, marginTop: '46%' })
+      container.p(item.tipo_solicitacao, { ...style.cliente.text, marginTop: '46%' })
 
       container.p('Prioridade', { ...style.cliente.text, marginTop: '44.5%', marginLeft: '30.5%' })
-      container.p('Urgente', { ...style.cliente.text, marginTop: '46%', marginLeft: '30.5%' })
+      container.p(item.prioridade, { ...style.cliente.text, marginTop: '46%', marginLeft: '30.5%' })
 
       container.p('Data Prevista de Levantamento', { ...style.cliente.text, marginTop: '44.5%', marginLeft: '60.5%' })
-      container.p('02/04/2022', { ...style.cliente.text, marginTop: '46%', marginLeft: '60.5%' })
+      container.p(data_prevista, { ...style.cliente.text, marginTop: '46%', marginLeft: '60.5%' })
 
     }
     tipoSolicitacaoInfo()
@@ -198,9 +211,9 @@ export class SolicitacaoService {
       container.p('INFORMAÇÃO DO OPERADOR', style.div.text)
       style.div.text.marginTop = '17%'
       style.div.text.fontWeigth = 'normal'
-      container.p('OPERADOR', style.div.text)
+      container.p('OPERADOR: '+item.user, style.div.text)
       style.div.text.marginTop = '18.5%'
-      container.p('DATA', style.div.text)
+      container.p('DATA: '+created_at_f, style.div.text)
     }
     bordInfo('')
     //line(35, 35)

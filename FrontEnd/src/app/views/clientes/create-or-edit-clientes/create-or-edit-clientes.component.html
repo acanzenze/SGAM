@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Gênero</label>
                                 <select class="form-control"
@@ -104,6 +104,20 @@
                                 </select>
                                 <div *ngIf="submitted && f['generoId'].errors" class="invalid-feedback">
                                     <div *ngIf="f['generoId'].errors.required">O campo Gênero é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label"><i class="fa fa-edit"></i> Estado Civil</label>
+                                <select class="form-control"
+                                formControlName="estado_civil">
+                                    <option value="Solteiro(a)">Solteiro</option>
+                                    <option value="Casado(a)">Casado</option>
+                                    <option value="N/A">N/A</option>
+                                </select>
+                                <div *ngIf="submitted && f['estado_civil'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['estado_civil'].errors.required">O campo estado civil é obrigatório</div>
                                 </div>
                             </div>
                         </div>

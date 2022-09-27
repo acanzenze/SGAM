@@ -90,3 +90,4 @@ Route.post('produto/update/:id', 'ProdutosController.update')
 Route.post('produto/list', 'ProdutosController.index')
 
 Route.post('documento/create', 'DocumentosController.create').middleware('auth')
+Route.post('documento/list/:id', 'DocumentosController.index')

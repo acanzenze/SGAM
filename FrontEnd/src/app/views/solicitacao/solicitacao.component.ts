@@ -33,6 +33,7 @@ export class SolicitacaoComponent implements OnInit {
   public total_finalizadas = 0
   public total_canceladas = 0
   public total: any
+  public documento:any
 
   constructor(
     private http: HttpClient,
@@ -73,8 +74,11 @@ export class SolicitacaoComponent implements OnInit {
     this.listTipoSolicitacao(item.solicitacao_id)
     this.produto = item;
   }
-  setPublicado(item: any) {
-
+  setDocumento(item:any){
+    this.http.post(this.apiUrl+"/documento/list/"+item.solicitacao_id,null).subscribe(res=>{
+      this.documento=Object(res).dados
+      console.log("documentos",this.documento)
+    })
   }
   getPageFilterData(event: any) {
     console.log(event.target.value)
@@ -105,8 +109,8 @@ export class SolicitacaoComponent implements OnInit {
     this.printSolicitacao.printSolicitacao(item)
   }
 
-  printAtestadoPdf() {
-    this.printAtestado.print()
+  printAtestadoPdf(item:any) {
+    this.printAtestado.print(item)
   }
 
   getAbertas() {

@@ -1,0 +1,55 @@
+<div class="modal modal-info fade in" id="{{modal}}">
+    <div class="modal-dialog modal-lg" style="max-width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">{{title}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive" style="overflow: auto;height:100px;">
+                    <table class="table table-hover">
+                      <tbody>
+                        <tr style="color: white;background:  #1c45ef;position: -webkit-sticky;position: sticky;top: 0">
+                          <th>#</th>
+                          <th>Tipo de Documento</th>
+                          <th>Codigo</th>
+                          <th>Assinado?</th>
+                          <th with="200px">Data Validade</th>
+                          <th with="200px">Data Emissão</th>
+                          <th with="200px">Operador</th>
+                          <th with="200px">Opções</th>
+                        </tr>
+                        <tr *ngFor="let item of factura;index as i">
+                          <td>{{i+1}}</td>
+                          <td>{{item.tipo_documento}}</td>
+                          <td>{{item.codigo}}</td>
+                          <td class="p-3 mb-2 bg-warning" *ngIf="item.assinatura==null">{{ item.assinatura === null ? 'Não'
+                            : 'Sim'}}</td>
+                          <td class="p-3 mb-2 bg-success" *ngIf="item.assinatura">{{ item.is_facturado? 'Sim'
+                            : 'Não'}}</td>
+                          <td>{{ item.data_validade | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{item.data_criacao | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{item.operador}}</td>
+                          <td>
+                            <div class="dropdown ml-lg-auto ml-3 toolbar-item">
+                              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownexport"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Operações</button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownexport">
+                                <a class="dropdown-item" href="javascript:void(0)"
+                                  (click)="imprimir(item)">Imprimir</a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btn" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+    </div>
+</div>

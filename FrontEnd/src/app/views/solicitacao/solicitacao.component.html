@@ -168,7 +168,7 @@
                               <a class="dropdown-item" href="javascript:void(0)" (click)="setFacturacao(item)"
                                 data-toggle="modal" data-target="#EmitirDocumentoModal"
                                 *ngIf="(item.estado_slug == 'ABERTO') && (item.is_facturado)">Emitir Documento</a>
-                              <a class="dropdown-item" href="javascript:void(0)" (click)="setPublicado(item)"
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="setFacturacao(item)"
                                 data-toggle="modal" data-target="" *ngIf="item.estado_slug == 'EMITIDO'">Assinar e
                                 Finalizar</a>
                               <a class="dropdown-item" href="javascript:void(0)" (click)="setFacturacao(item)"
@@ -176,9 +176,9 @@
                                 *ngIf="(item.estado_slug == 'ABERTO') && (!item.is_facturado)">Cancelar</a>
 
 
-                              <a class="dropdown-item" href="javascript:void(0)" (click)="print(item)">Imprimir</a>
-                              <a class="dropdown-item" href="javascript:void(0)"
-                                (click)="printAtestadoPdf()">Visualizar</a>
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="print(item)">Imprimir Solicitação</a>
+                              <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#ListarDocumentoModal"
+                                (click)="setDocumento(item)" *ngIf="(item.estado_slug == 'EMITIDO' || item.estado_slug == 'FINALIZADO')">Ver Documento</a>
                             </div>
                           </div>
                         </td>
@@ -221,6 +221,7 @@
   <app-cancel-solicitacao [factura]="produto" [modal]=""></app-cancel-solicitacao>
   <app-publicar-solicitacao [factura]="produto" [modal]=""></app-publicar-solicitacao>
   <app-create-documento [factura]="produto" [modal]=""></app-create-documento>
+  <app-listar-documento [factura]="documento" [modal]=""></app-listar-documento>
 
 
 </div>

@@ -121,9 +121,9 @@ export class CreateOrEditFacturaComponent implements OnInit {
           tipo_solicitacao: null,
           preco: null
         }
+        this.solicitacaolist.listaOfSolicitacao();
         this.loading = false;
       })
-      this.solicitacaolist.listaOfSolicitacao();
   }
 
 }

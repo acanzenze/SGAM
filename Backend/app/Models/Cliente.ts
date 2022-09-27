@@ -31,6 +31,8 @@ export default class Cliente extends BaseModel {
   @column()
   public generoId: string
   @column()
+  public estado_civil: string
+  @column()
   public dataNascimento: string
   @column()
   public municipioId: string

@@ -10,6 +10,8 @@ export default class Instituicao extends BaseModel {
 
   @column()
   public logotipo: string
+  @column()
+  public administrador: string
 
   @column({})
   public nif: string

@@ -53,7 +53,9 @@ export default class SolicitacaosController {
         '*',
         'clientes.nome as cliente',
         'solicitacaos.id as solicitacao_id',
+        'solicitacaos.created_at as solicitacao_created_at',
         'clientes.id as cliente_id',
+        'clientes.email as cliente_email',
         'bairros.nome as bairro',
         'distritos.nome as distrito',
         'municipios.nome as municipio',
@@ -63,7 +65,12 @@ export default class SolicitacaosController {
         'solicitacao_prioridades.descricao as prioridade',
         'solicitacao_estados.id as estado_id',
         'solicitacao_estados.descricao as estado_descricao',
-        'solicitacao_estados.slug as estado_slug'
+        'solicitacao_estados.slug as estado_slug',
+        'instituicaos.nome as instituicao',
+        'instituicaos.nif as instituicao_nif',
+        'instituicaos.endereco as instituicao_endereco',
+        'instituicaos.email as instituicao_email',
+        'users.nome as user'
       )
       .where((query) => {
         if (search && search !== 'null') {
@@ -78,6 +85,9 @@ export default class SolicitacaosController {
       .leftJoin("municipios", "municipios.id", "distritos.municipio_id")
       .leftJoin("solicitacao_prioridades", "solicitacao_prioridades.id", "solicitacaos.prioridade_id")
       .leftJoin("solicitacao_estados", "solicitacao_estados.id", "solicitacaos.estado")
+      .leftJoin("users", "users.id", "solicitacaos.user_id")
+      .leftJoin("instituicaos","instituicaos.id","users.instituicao_id")
+
       .orderBy('solicitacaos.created_at', 'desc')
       .paginate(setPage, setPerPage)
 

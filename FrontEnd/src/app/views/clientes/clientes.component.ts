@@ -35,7 +35,11 @@ export class ClientesComponent implements OnInit {
     this.listaOfClientes();
   }
 
+setCliente(item:any){
+  this.cliente=item
 
+  console.log("clientes",this.cliente)
+}
 
   public listaOfClientes() {
     // this.clientes = []

@@ -57,14 +57,11 @@
                                                 <th with="200px">Número Documento</th>
                                                 <th with="200px">Data Nascimento</th>
                                                 <th with="200px">Genero</th>
-                                                <th with="200px">Pai</th>
-                                                <th with="200px">Mãe</th>
+                                                <th with="200px">Estado Civil</th>
                                                 <th with="200px">Município</th>
                                                 <th with="200px">Distrito</th>
                                                 <th with="200px">Bairro</th>
                                                 <th with="200px">Endereço</th>
-                                                <th with="200px">Data Emissão</th>
-                                                <th with="200px">Data Validade</th>
                                                 <th with="200px">Opções</th>
                                             </tr>
                                             <tr *ngFor="let item of clientes; index as i">
@@ -75,14 +72,11 @@
                                                 <td>{{ item.numero_documento}}</td>
                                                 <td>{{ item.data_nascimento | date: 'dd-MM-yyyy'}}</td>
                                                 <td>{{ item.genero === 'F' ? 'Femenino': 'Masculino'}}</td>
-                                                <td>{{ item.pai}}</td>
-                                                <td>{{ item.mae}}</td>
+                                                <td>{{ item.estado_civil}}</td>
                                                 <td>{{ item.municipio}}</td>
                                                 <td>{{ item.distrito}}</td>
                                                 <td>{{ item.bairro}}</td>
                                                 <td>{{ item.endereco}}</td>
-                                                <td>{{ item.data_emissao | date: 'dd-MM-yyyy'}}</td>
-                                                <td>{{ item.data_validade | date: 'dd-MM-yyyy'}}</td>
                                                 <td>
                                                     <div class="dropdown ml-lg-auto ml-3 toolbar-item">
                                                         <button class="btn btn-primary dropdown-toggle" type="button"
@@ -94,7 +88,12 @@
                                                                 (click)="setCategoria(item)" data-toggle="modal"
                                                                 data-target="#createOrEditclienteModal">Editar</a>
 
-
+                                                                <a class="dropdown-item" href="javascript:void(0)"
+                                                                (click)="setCategoria(item)" (click)="setCliente(item)" data-toggle="modal"
+                                                                data-target="#ListarIdentificacaoModal">Documento de Identificação</a>
+                                                                <a class="dropdown-item" href="javascript:void(0)"
+                                                                (click)="setCliente(item)" data-toggle="modal"
+                                                                data-target="#ListarAfiliacaoModal">Afiliação</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -132,5 +131,7 @@
     </div>
     <!-- page-body-wrapper ends -->
     <createOrEditcliente [cliente]="cliente" [modal]=""></createOrEditcliente>
+    <app-listar-identificacao [cliente]="cliente" [modal]=""></app-listar-identificacao>
+    <app-listar-afiliacao [cliente]="cliente" [modal]=""></app-listar-afiliacao>app-listar-afiliacao
 
 </div>

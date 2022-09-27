@@ -61,6 +61,8 @@ import { CancelSolicitacaoComponent } from './views/solicitacao/cancel-solicitac
 import { PublicarSolicitacaoComponent } from './views/solicitacao/publicar-solicitacao/publicar-solicitacao.component';
 import { CreateDocumentoComponent } from './views/solicitacao/create-documento/create-documento.component';
 import { ListarDocumentoComponent } from './views/solicitacao/listar-documento/listar-documento.component';
+import { ListarIdentificacaoComponent } from './views/clientes/listar-identificacao/listar-identificacao.component';
+import { ListarAfiliacaoComponent } from './views/clientes/listar-afiliacao/listar-afiliacao.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +120,8 @@ import { ListarDocumentoComponent } from './views/solicitacao/listar-documento/l
     PublicarSolicitacaoComponent,
     CreateDocumentoComponent,
     ListarDocumentoComponent,
+    ListarIdentificacaoComponent,
+    ListarAfiliacaoComponent,
   ],
   imports: [
     HttpClientModule,

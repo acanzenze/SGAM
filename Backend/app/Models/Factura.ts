@@ -15,6 +15,9 @@ export default class Factura extends BaseModel {
   public serie_id: number
 
   @column()
+  public user_id: number
+
+  @column()
   public sigla: string
 
   @column()

@@ -20,16 +20,20 @@ export class LoaderInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(tap((events: any) => {
       console.log(events)
       if (events instanceof HttpResponse) {
-        if (events.status === 200 || events.status === 201) {
-          this.toast.SwalSuccess('')
-        } else {
-          this.toast.SwalError( " [Erro na comunicação]")
+        if (events.status === 201) {
+          this.toast.SwalSuccess('Sucesso')
         }
       }
     }),
       catchError((err: any) => {
         // if (err instanceof HttpErrorResponse) {
-        this.toast.SwalError("Erro do servidor")
+          console.log(err)
+          if (err.status === 401) {
+            this.toast.SwalInfo('Já existe um municipe com este documento')
+          }
+          else{
+            this.toast.SwalError("Erro do servidor")
+          }
         return throwError(err);
         //}
       })

@@ -10,6 +10,7 @@ import { environment } from '../../../../environments/environment';
 import { MunicipioService } from '../../configuracao/morada/municipios/municipio.service';
 import { BairrosService } from '../../configuracao/morada/bairros/bairros.service';
 import { DistritosService } from '../../configuracao/morada/distritos/distritos.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'createOrEditcliente',
@@ -49,24 +50,23 @@ export class CreateOrEditClientesComponent implements OnInit {
       numeroDocumento: [null, Validators.required],
       generoId: [null, Validators.required],
       estado_civil: [null, Validators.required],
-      dataNascimento: [null],
-      nomePai: [null],
-      nomeMae: [null],
+      dataNascimento: [null,Validators.required],
+      nomePai: [null,Validators.required],
+      nomeMae: [null,Validators.required],
       municipioId: [null],
       distritoId: [null],
-      bairroId: [null],
+      bairroId: [null,Validators.required],
       /* tipoDocumentoId:[null], */
-      dataEmissao: [null],
-      dataValidade: [null],
+      dataEmissao: [null,Validators.required],
+      dataValidade: [null,Validators.required],
       enderecoId: [null],
       estado: [null],
       email: [null],
       residencia: [null],
-      estado_cil_id: [null],
       doc_indentificacao: [null],
     });
 
-    this.selectBoxProvinica();
+    //this.selectBoxProvinica();
   }
 
   ngOnInit(): void {
@@ -102,6 +102,25 @@ export class CreateOrEditClientesComponent implements OnInit {
   }
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     if (this.cliente?.id !== undefined) {
+
+      var nasc=new  Date(this.cliente.data_nascimento)
+      var ano_n=nasc.getFullYear()
+      var mes_n=String(nasc.getMonth()+1).padStart(2,'0')
+      var dia_n=String(nasc.getDate()).padStart(2,'0')
+      var date = ano_n+ "-" +mes_n+ "-" +dia_n
+
+      var emissao=new  Date(this.cliente.data_emissao)
+      var ano_e=emissao.getFullYear()
+      var mes_e=String(emissao.getMonth()+1).padStart(2,'0')
+      var dia_e=String(emissao.getDate()).padStart(2,'0')
+      var date_e = ano_e+ "-" +mes_e+ "-" +dia_e
+
+      var valide=new  Date(this.cliente.data_validade)
+      var ano_v=valide.getFullYear()
+      var mes_v=String(valide.getMonth()+1).padStart(2,'0')
+      var dia_v=String(valide.getDate()).padStart(2,'0')
+      var date_v = ano_v+ "-" +mes_v+ "-" +dia_v
+
       this.title = 'Editar Munícipe';
       this.clienteForm.patchValue({
         id: this.cliente.id,
@@ -109,7 +128,7 @@ export class CreateOrEditClientesComponent implements OnInit {
         telefone: this.cliente.telefone,
         generoId: this.cliente.genero_id,
         estado_civil: this.cliente.estado_civil,
-        dataNascimento: this.cliente.data_nascimento,
+        dataNascimento: date.split('T')[0],
         nomePai: this.cliente.pai,
         email: this.cliente.email,
         nomeMae: this.cliente.mae,
@@ -121,8 +140,8 @@ export class CreateOrEditClientesComponent implements OnInit {
         distritoId: this.cliente.distrito,
         bairroId: this.cliente.bairro,
         /* tipoDocumentoId:, */
-        dataEmissao: this.cliente.data_emissao,
-        dataValidade: this.cliente.datavalidade,
+        dataEmissao: date_e.split('T')[0],
+        dataValidade: date_v.split('T')[0],
 
       });
     } else {
@@ -145,16 +164,14 @@ export class CreateOrEditClientesComponent implements OnInit {
         ? `http://127.0.0.1:3333/clientes/create`
         : `http://127.0.0.1:3333/clientes/update/` +
         this.clienteForm.getRawValue().id;
-    console.log(url);
+        
     this.http
       .post(url, this.clienteForm.value, { headers: this.authService.headers })
       .subscribe((res) => {
         this.loading = false;
         this.submitted = false;
-        if (Object(res).code == 200) {
-          this.configService.SwalSuccess('Cliente registado com sucesso!');
-          this.clienteForm.reset();
-        }
+
+        this.clienteForm.reset();
         this.listOfClienteCom.listaOfClientes();
         this.loading = false;
       });

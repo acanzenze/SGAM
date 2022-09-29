@@ -44,7 +44,6 @@ export default class SolicitacaosController {
     const { pagination, search } = request.all()
     let { page = 1, total, perPage } = pagination
     if (page === null) page = 1
-    console.log(request.all())
 
     let setPage = perPage === 'T' ? 1 : page
     let setPerPage = perPage === 'T' ? total : perPage
@@ -90,8 +89,9 @@ export default class SolicitacaosController {
 
       .orderBy('solicitacaos.created_at', 'desc')
       .paginate(setPage, setPerPage)
-
-    return response.json(client)
+    
+      response.status(200)
+      return client
   }
 
 
@@ -120,7 +120,9 @@ export default class SolicitacaosController {
       .where('solicitacaos.id', params.id)
       .first()
 
-    return response.json(client)
+      response.status(200)
+
+    return client
   }
 
   public async show({ params }: HttpContextContract) {
@@ -151,7 +153,7 @@ export default class SolicitacaosController {
     solicitacao.merge(data)
 
     const result = await solicitacao.save()
-
+    response.status(201)
     return response.json({
       msg: 'dados actualizados com sucesso',
       dados: result,

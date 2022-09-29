@@ -37,7 +37,6 @@ export class ClientesComponent implements OnInit {
 
 setCliente(item:any){
   this.cliente=item
-
   console.log("clientes",this.cliente)
 }
 
@@ -51,7 +50,7 @@ setCliente(item:any){
       this.filters.pagination.total = Object(res).meta.total;
       this.filters.pagination.perPage = Object(res).meta.first_page;
       this.loading = false;
-      console.log('cliente', this.clientes)
+      console.log('cliente', res)
     });
   }
 
@@ -59,14 +58,13 @@ setCliente(item:any){
     this.cliente = item;
   }
 
-
   getPageFilterData(event: any) {
     console.log(event.target.value)
     if (this.filters.pagination.perPage == null) {
       return;
     }
 
-    this.filters.pagination.page = Number(event.target.value);
+    //this.filters.pagination.page = Number(event.target.value);
     this.listaOfClientes();
   }
 

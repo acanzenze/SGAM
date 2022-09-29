@@ -170,9 +170,9 @@
                             <option value="null">seleccione</option>
                             <option   *ngFor="let item of municipios" [value]="item.id">{{item.nome}}</option>
                         </select>
-                        <div *ngIf="submitted && f['municipioId'].errors" class="invalid-feedback">
-                            <div *ngIf="f['municipioId'].errors.required">O campo municipio é obrigatório</div>
-                        </div>
+                        <!--<div *ngIf="submitted && f['municipioId'].errors" class="invalid-feedback">
+                            <div *ngIf="f['municipi>O campo municipio é obrigatório']"></div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -185,9 +185,9 @@
                             <option value="null">Selecionar</option>
                             <option [value]="item.id" *ngFor="let item of distritos">{{item.nome}}</option>
                         </select>
-                        <div *ngIf="submitted && f['distritoId'].errors" class="invalid-feedback">
+                        <!--<div *ngIf="submitted && f['distritoId'].errors" class="invalid-feedback">
                             <div *ngIf="f['distritoId'].errors.required">O campo distrito é obrigatório</div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -227,7 +227,7 @@
                       [ngClass]="{ 'is-invalid': submitted && f.enderecoId.errors, 'is-valid': f.enderecoId.touched && !f.enderecoId.errors }">
                     </textarea>
                     <div *ngIf="submitted && f['enderecoId'].errors" class="invalid-feedback">
-                      <div *ngIf="f['enderecoId'].errors.required">O campo valor fecho é obrigatório</div>
+                      <div *ngIf="f['enderecoId'].errors.required">O campo endereco é obrigatório</div>
                     </div>
                   </div>
                 </div>

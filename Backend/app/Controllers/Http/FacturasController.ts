@@ -27,7 +27,7 @@ export default class FacturasController {
 
     return response.json(client)
   }
-  async store({ request, response }: HttpContextContract) {
+  async store({ request, response,auth }: HttpContextContract) {
     const seriesController: SeriesController = new SeriesController()
     const data = request.only([
       'numero_documento',
@@ -36,7 +36,8 @@ export default class FacturasController {
       'sigla',
       'estado_documento',
       'cliente_id',
-      'solicitacao_id'
+      'solicitacao_id',
+      'user_id'
     ])
 
     const serie = await Serie.findBy('id', data.serie_id)
@@ -47,7 +48,16 @@ export default class FacturasController {
     }
     data.sigla = `${serie?.tipo_documento} ${serie?.nome} ${serie?.numero}`
     data.numero_documento = serie?.numero
-    const res = await Factura.create(data)
+    const res = await Factura.create({
+      numero_documento:data.numero_documento,
+      total:data.total,
+      serie_id:data.serie_id,
+      sigla:data.sigla,
+      estado_documento:data.estado_documento,
+      cliente_id:data.cliente_id,
+      solicitacao_id:data.solicitacao_id,
+      user_id:auth.user?.id
+    })
     const serieActualizado = await seriesController.actualizarNumero(data.serie_id)
     return response.status(201).json({
       msg: 'Registado com sucesso',

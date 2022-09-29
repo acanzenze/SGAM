@@ -3,7 +3,7 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import Cliente from 'App/Models/Cliente'
 
 export default class ClientesController {
-  public async store({ request, response }: HttpContextContract) {
+  public async store({ request, response,auth }: HttpContextContract) {
     const data = request.only([
       'nome',
       'telefone',
@@ -19,39 +19,63 @@ export default class ClientesController {
       'residencia',
       'enderecoId',
       'dataEmissao',
-      'dataValidade'
+      'dataValidade',
+      'user_id'
     ])
     console.log(data)
-
-    const client = await Cliente.create({
-      nome: data.nome,
-      telefone: data.telefone,
-      email: data.email,
-      dataNascimento: data.dataNascimento,
-      bairroId: data.bairroId,
-      estado: data.estado,
-      residencia: data.residencia,
-      pai: data.nomePai,
-      mae: data.nomeMae,
-      endereco: data.enderecoId,
-      genero_id: data.generoId,
-      estado_civil: data.estado_civil,
-      dataEmissao: data.dataEmissao,
-      dataValidade: data.dataValidade,
-      numeroDocumento: data.numeroDocumento
-    })
-
-    response.status(201)
-    return {
-      msg: 'Registado com sucesso',
-      dados: client,
+    const cliente = await Cliente.findBy('numero_documento',data.numeroDocumento)
+    if(cliente){
+      response.status(401)
+      return {
+        msg: 'Ja existe um municipe com este documento',
+        dados: null,
+      }
     }
+    try{
+      const client = await Cliente.create({
+        nome: data.nome,
+        telefone: data.telefone,
+        email: data.email,
+        dataNascimento: data.dataNascimento,
+        bairroId: data.bairroId,
+        estado: data.estado,
+        residencia: data.residencia,
+        pai: data.nomePai,
+        mae: data.nomeMae,
+        endereco: data.enderecoId,
+        genero_id: data.generoId,
+        estado_civil: data.estado_civil,
+        dataEmissao: data.dataEmissao,
+        dataValidade: data.dataValidade,
+        numeroDocumento: data.numeroDocumento,
+        user_id:auth.user?.id
+      })
+  
+      response.status(201)
+      return {
+        msg: 'Registado com sucesso',
+        dados: client,
+      }
+
+    }catch(error){
+      response.status(400)
+      return {
+        msg: 'Erro ao registar',
+        dados: null,
+      }
+    }
+
+
+    
   }
 
   public async index({ request, response }: HttpContextContract) {
     const { pagination, search } = request.all()
     let { page, total, perPage } = pagination
+
+    console.log(pagination)
     if (page === null) page = 1
+    if (!search) perPage=5
 
     const client = await Database.from('clientes')
       .select(
@@ -62,9 +86,11 @@ export default class ClientesController {
         'distritos.nome as distrito',
         'municipios.nome as municipio'
         )
-      .where((query) => {
-        if (search && search !== 'null') {
+      .where(function(query) {
+        if (search != null && search != 'null' && search) {
+          console.log("Pesquisa",search)
           query.where('clientes.nome', 'like', '%' + search + '%')
+          query.orWhere('clientes.numero_documento', 'like', '%' + search + '%')
         }
       })
       .leftJoin("bairros","bairros.id","clientes.bairro_id")
@@ -140,6 +166,16 @@ export default class ClientesController {
     const cliente = await Cliente.find(params.id)
     if (!cliente) throw new Error('erro ao cadastrar')
 
+    if(cliente.numeroDocumento!=data.numeroDocumento){
+      const doc = await Cliente.findBy('numero_documento',data.numeroDocumento)
+      if(doc){
+        response.status(401)
+        return {
+          msg: 'Ja existe um municipe com este documento',
+          dados: null,
+        }
+      }
+    }
     cliente.merge({
       nome: data.nome,
       telefone: data.telefone,
@@ -159,10 +195,10 @@ export default class ClientesController {
     })
 
     const result = await cliente.save()
-
-    return response.json({
+    response.status(201)
+    return{
       msg: 'dados actualizados com sucesso',
       dados: result,
-    })
+    }
   }
 }

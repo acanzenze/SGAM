@@ -31,7 +31,7 @@ Route.get('/municipios/list', 'MunicipiosController.index')
 Route.get('/distritos/list', 'DistritosController.index')
 Route.get('/distritos/show/:id', 'DistritosController.show') */
 
-Route.post('clientes/create', 'ClientesController.store')
+Route.post('clientes/create', 'ClientesController.store').middleware('auth')
 Route.post('clientes/update/:id', 'ClientesController.update')
 Route.post('clientes/list', 'ClientesController.index')
 Route.post('clientes/select', 'ClientesController.searchMunicipe')
@@ -69,7 +69,7 @@ Route.post('serie/list', 'SeriesController.index')
 Route.post('serie/select', 'SeriesController.show')
 
 
-Route.post('factura/create', 'FacturasController.store')
+Route.post('factura/create', 'FacturasController.store').middleware('auth')
 Route.post('factura/update/:id', 'FacturasController.update')
 Route.post('factura/list', 'FacturasController.index')
 Route.post('factura/select', 'FacturasController.show')

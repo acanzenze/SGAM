@@ -115,9 +115,10 @@ export default class ClientesController {
       'distritos.nome as distrito',
       'municipios.nome as municipio'
       )
-      .where((query) => {
-        if (search && search !== 'null') {
+      .where(function(query){
+        if (search != null && search != 'null' && search) {
           query.where('clientes.nome', 'like', '%' + search + '%')
+          query.orWhere('clientes.numero_documento', 'like', '%' + search + '%')
         }
       })
       .innerJoin("bairros","bairros.id","clientes.bairro_id")

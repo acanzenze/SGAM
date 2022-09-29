@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 import { imgData } from '../utils/blobSolicitacao'
@@ -10,7 +11,7 @@ export class FacturaService {
   //container: any = new Container()
   constructor() { }
 
-  print() {
+  print(item:any) {
 
     // You'll need to make your image into a Data URL
     // Use http://dataurl.net/#dataurlmaker
@@ -104,14 +105,14 @@ export class FacturaService {
           }
         },
       }
-      container.p('Empresa Pública de Águas, EPAL-EP', style.streat)
-      container.p('Rua Frederich Engels, nº 3 Luanda / Angola', style.companyTitle)
+      container.p(item.instituicao, style.companyTitle)
+      container.p(item.endereco, style.streat)
       container.p('NIF:', style.nif)
-      container.p('5410001109', style.nif.value)
-      container.p('Telefone:', style.phone)
-      container.p('222 335 001', style.phone.value)
-      container.p('Fax:', style.fax)
-      container.p('222 330 380', style.fax.value)
+      container.p(item.nif, style.nif.value)
+      container.p('email:', style.phone)
+      container.p(item.instituicao_email, style.phone.value)
+      /*container.p('Fax:', style.fax)
+      container.p('222 330 380', style.fax.value)*/
     }
     header()
 
@@ -136,7 +137,7 @@ export class FacturaService {
       container.p('Exmo(a) Senhor(a)', style.div.text)
       style.div.text.marginTop = '17%'
       style.div.text.fontWeigth = 'normal'
-      container.p('Matondo pedro', style.div.text)
+      container.p(item.cliente_nome.toUpperCase(), style.div.text)
 
     }
     bordInfo()
@@ -188,13 +189,13 @@ export class FacturaService {
 
 
       container.p(
-        'REFERENTE A:',
+        'TOTAL:',
         style.th.text)
 
 
       style.th.text.marginLeft = '88%'
       container.p(
-        '8.683,28 AOA',
+        item.total+' AOA',
         style.th.text)
       container.p('Página 1 de 1', style.pagination)
 
@@ -211,15 +212,17 @@ export class FacturaService {
         fontWeigth: 'bold',
         fontSize: 8,
       }
-      container.p('LOCAL DO ABASTECIMENTO', style)
+      container.p('MORADA DO MUNÍCIPE:', style)
       style.marginTop = '28%'
       style.fontWeigth = 'normal'
-      container.p('RUA DIREITA DO CAMAMA', style)
+      container.p('MUNÍCIPIO: '+item.municipio.toUpperCase(), style)
       style.marginTop = '30%'
-      container.p('JUNTO ANGOLA TELECOM', style)
+      container.p('DISTRITO: '+item.distrito.toUpperCase(), style)
+      style.marginTop = '32%'
+      container.p('BAIRRO: '+item.bairro.toUpperCase(), style)
       style.marginTop = '28%'
       style.marginLeft = '30%'
-      container.p('- SN', style)
+      container.p(item.cliente_endereco, style)
     }
     abastecimentoSpace()
 
@@ -261,18 +264,18 @@ export class FacturaService {
       container.div(style.td)
 
 
-      container.p('CÓD. CLIENTE',
+      container.p('CÓD. MUNÍCIPE',
         style.th.text)
-      container.p('CÓD. CLIENTE',
+      container.p(item.cliente_id.toString(),
         style.td.text)
 
       style.th.text.marginLeft = '18%'
       style.td.text.marginLeft = '18%'
       container.p(
-        'Nº CONTRIBUINTE',
+        'Nº BILHETE',
         style.th.text)
       container.p(
-        '898877676',
+        item.bi,
         style.td.text)
 
 
@@ -323,20 +326,22 @@ export class FacturaService {
 
       container.p('VALOR', style.th.text)
 
-      container.p('8.683,28', style.td.text)
+      container.p(item.total.toString(), style.td.text)
 
       style.th.text.marginLeft = '74%'
       style.td.text.marginLeft = '72%'
       container.p(
-        'RECIBO Nº',
+        'Documento Nº',
         style.th.text)
-      container.p('488681', style.td.text)
-
+      container.p(item.numero_factura.toString(), style.td.text)
+      
+      var data_c=new Date(item.data_factura)
+      var data_f = formatDate(data_c,'dd-MM-yyyy','en-US')
       style.th.text.marginLeft = '86%'
       container.p('DATA DE EMISSÃO',
         style.th.text)
       style.td.text.marginLeft = '87%'
-      container.p('27-06-2022 08:05:05',
+      container.p(data_f,
         style.td.text)
 
 
@@ -379,65 +384,67 @@ export class FacturaService {
         'REFERENTE A:',
         style.th.text)
       container.p(
-        'DOCUMENTO NºE',
+        'DOCUMENTO Nº',
         style.td.text)
       style.td.text.marginLeft = '18%'
       container.p(
-        '9518542341',
+        item.sigla,
         style.td.text)
       style.td.text.marginLeft = '27%'
       container.p(
-        'Periodo de Facturação 05/2022',
+        item.produto,
         style.td.text)
 
 
       style.th.text.marginLeft = '49%'
       style.td.text.marginLeft = '49%'
       container.p(
-        'BASE',
+        'V.UNITARIO',
         style.th.text)
       container.p(
-        '7.616,91',
+        item.preco.toString(),
         style.td.text)
 
       style.th.text.marginLeft = '60%'
       container.p(
         'IVA',
         style.th.text)
+        var iva = item.preco*item.imposto
+        
       style.td.text.marginLeft = '60%'
       container.p(
-        '1.215,66',
+        iva.toFixed(2)+'',
         style.td.text)
 
       style.th.text.marginLeft = '74%'
       container.p(
-        'VALOR',
+        'VALOR S/IVA',
         style.th.text)
       style.td.text.marginLeft = '74%'
       container.p(
-        '8.683,28',
+        item.preco.toString(),
         style.td.text)
 
       style.th.text.marginLeft = '88%'
       container.p(
-        'VALOR PAGO',
+        'TOTAL',
         style.th.text)
       style.td.text.marginLeft = '88%'
       container.p(
-        '8.683,28 AOA',
+        item.total.toString(),
         style.td.text)
 
       style.td.text.marginTop = '45%'
       style.td.text.marginLeft = '3%'
       style.td.text.fontWeigth = 'bold'
-      container.p(
+      /*container.p(
         'Recebemos o valor de: ',
         style.td.text)
       style.td.text.fontWeigth = 'normal'
       style.td.text.marginLeft = '18%'
       container.p(
         'OITO MIL SEISCENTOS E OITENTA E TRÊS Kwanza(s) E VINTE E OITO Centimos(s)',
-        style.td.text)
+        style.td.text)*/
 
       style.td.text.fontWeigth = 'bold'
       style.td.text.marginTop = '47%'

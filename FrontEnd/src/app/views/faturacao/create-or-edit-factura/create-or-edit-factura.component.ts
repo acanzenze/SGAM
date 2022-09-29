@@ -98,7 +98,8 @@ export class CreateOrEditFacturaComponent implements OnInit {
   }
 
   createOrEdit() {
-    this.factura = { ...this.factura, ...this.facturacaoForm.value, total: this.factura.preco }
+    this.factura = { ...this.factura, ...this.facturacaoForm.value, total: this.factura.preco+(this.factura.preco*this.factura.imposto) }
+    
     this.submitted = true
     if (this.facturacaoForm.invalid) {
       return

@@ -12,16 +12,39 @@ export default class FacturasController {
 
     const client = await Database.from('facturas')
       .select(
-        'facturas.*',
+        '*',
+        'facturas.numero_documento as numero_factura',
+        'facturas.created_at as data_factura',
         'clientes.nome as cliente_nome',
-        'clientes.numero_documento as bi'
+        'clientes.numero_documento as bi',
+        'clientes.endereco as cliente_endereco',
+        'bairros.nome as bairro',
+        'distritos.nome as distrito',
+        'municipios.nome as municipio',
+        'users.nome as user',
+        'instituicaos.nome as instituicao',
+        'instituicaos.email as instituicao_email',
+        'produtos.nome as produto',
+        'produtos.preco as preco_unitario'
+
+
       )
       .innerJoin("clientes","clientes.id","facturas.cliente_id")
-      .where((query) => {
+      .innerJoin("bairros","bairros.id","clientes.bairro_id")
+      .innerJoin("distritos","distritos.id","bairros.distrito_id")
+      .innerJoin("municipios","municipios.id","distritos.municipio_id")
+      .innerJoin("users","users.id","facturas.user_id")
+      .innerJoin("instituicaos","instituicaos.id","users.instituicao_id")
+      .innerJoin("solicitacaos","solicitacaos.id","facturas.solicitacao_id")
+      .innerJoin("tipo_solicitacaos","tipo_solicitacaos.id","solicitacaos.tipo_solicitacao_id")
+      .innerJoin("produtos","produtos.tipo_solicitacao_id","tipo_solicitacaos.id")
+      .where(function(query) {
         if (search && search !== 'null') {
           query.where('clientes.nome', 'like', '%' + search + '%')
+          query.orWhere('clientes.numero_documento', 'like', '%' + search + '%')
+          query.orWhere('facturas.sigla', 'like', '%' + search + '%')
         }
-      }).orderBy('created_at', 'desc')
+      }).orderBy('facturas.created_at', 'desc')
       .paginate(page, perPage === 'T' ? total : perPage)
 
 

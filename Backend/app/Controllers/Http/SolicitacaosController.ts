@@ -44,6 +44,7 @@ export default class SolicitacaosController {
     const { pagination, search } = request.all()
     let { page = 1, total, perPage } = pagination
     if (page === null) page = 1
+    if (!search && !perPage) perPage=5
 
     let setPage = perPage === 'T' ? 1 : page
     let setPerPage = perPage === 'T' ? total : perPage
@@ -71,10 +72,11 @@ export default class SolicitacaosController {
         'instituicaos.email as instituicao_email',
         'users.nome as user'
       )
-      .where((query) => {
+      .where(function(query) {
         if (search && search !== 'null') {
-          console.log('debug code', search)
           query.where('clientes.nome', 'like', '%' + search + '%')
+          query.orWhere('clientes.numero_documento', 'like', '%' + search + '%')
+          query.orWhere('tipo_solicitacaos.descricao', 'like', '%' + search + '%')
         }
       })
       .innerJoin("clientes", "clientes.id", "solicitacaos.municipe_id")
@@ -110,6 +112,7 @@ export default class SolicitacaosController {
         'produtos.id as produto_id',
         'produtos.nome as produto',
         'produtos.preco',
+        'produtos.imposto',
         'clientes.id as cliente_id',
         'clientes.nome as cliente_nome'
 

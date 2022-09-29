@@ -39,22 +39,19 @@
                                     </div> -->
                                 </div>
                                 <br>
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="overflow: auto; height:400px;">
                                     <ngx-loading [show]="loading"></ngx-loading>
                                     <table class="table table-hover">
-                                        <tbody>
-                                            <tr
-                                                style="color: white;background:  #1c45ef;position: -webkit-sticky;position: sticky;top: 0">
+                                        <tbody *ngIf="clientes">
+                                            <tr style="color: white;background:  #1c45ef;position: -webkit-sticky;position: sticky;top: 0">
                                                 <th>Nome</th>
                                                 <th>E-mail</th>
                                                 <th>Telefone</th>
                                                 <th>Número Documento</th>
                                                 <th>Opções</th>
                                             </tr>
-
-
                                             <tr
-                                                *ngFor="let item of clientes | paginate: { itemsPerPage: this.filters.pagination.perPage, currentPage: this.filters.pagination.page, totalItems: this.filters.pagination.total }; index as i">
+                                                *ngFor="let item of clientes; index as i">
 
                                                 <td>{{ item.nome}}</td>
                                                 <td>{{ item.email}}</td>

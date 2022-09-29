@@ -138,7 +138,8 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
     this.view_client = true;
     this.clientes = []
     this.loading = true;
-    this.filters.search = this.clienteForm.value.municipe_id
+    this.filters.search = this.clienteForm.value.nome
+    console.log("filtro",this.filters)
     this.http.post(`http://127.0.0.1:3333/clientes/select`, this.filters).subscribe((res) => {
       this.clientes = Object(res);
       this.loading = false;
@@ -190,10 +191,7 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
       .subscribe((res) => {
         this.loading = false;
         this.submitted = false;
-        if (Object(res).code == 200) {
-          this.configService.SwalSuccess('Cliente registado com sucesso!');
-          this.clienteForm.reset();
-        }
+        this.clienteForm.reset();
         this.listOfClienteCom.listaOfSolicitacao();
         this.loading = false;
       });

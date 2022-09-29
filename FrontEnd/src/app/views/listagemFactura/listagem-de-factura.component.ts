@@ -98,8 +98,9 @@ export class ListagemDeFacturaComponent implements OnInit {
     })
   }
 
-  print() {
-    this.printPdf.print()
+  print(item:any) {
+    console.log(item)
+    this.printPdf.print(item)
   }
 
 }

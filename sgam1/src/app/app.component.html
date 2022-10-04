@@ -1,0 +1,50 @@
+<div class="main">
+  <div class="header">
+    <img src="../assets/rep3.png" alt="republic of Angola">
+
+    <div class="description">
+      <h2>Pesquise o seu documento.</h2>
+    </div> 
+  </div>
+
+ 
+
+  <div class="search-bar">
+    <div class="input-container">
+      <svg class="svg-icon search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">A magnifying glass icon.</desc><g class="search-path" fill="none" stroke="#848F91"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
+     <input type="search" placeholder="Pesquise pelo nº do B.I" id="username" [(ngModel)]="this.filters.search"     >
+    </div>
+     <button class="btn" (click)="post()">pesquisar</button>
+  </div>  
+
+  <div class="user-data"  *ngIf="Solicitacao && Solicitacao.is_publicado">
+      <table cellpadding="10" cellspacing="0">
+      <thead class="theader" >
+        <tr>
+          <th scope="col"> Prioridade</th>
+          <th scope="col"> Estado</th>
+          <th scope="col1">Nome</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Município	</th>
+          <th scope="col">Distrito</th>
+        </tr>
+      </thead>
+
+      <!--					Distrito		  -->
+      <tbody>
+        
+        <tr>
+          <td >{{Solicitacao.prioridade}}</td>
+        
+          <td>{{Solicitacao.estado}}</td>
+          <td>{{Solicitacao.cliente}}</td>
+          <td>{{Solicitacao.telefone}} </td>
+
+          <td>{{Solicitacao.municipio}} </td>
+          <td>{{Solicitacao.distrito}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</div>

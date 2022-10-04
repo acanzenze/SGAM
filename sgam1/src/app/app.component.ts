@@ -10,7 +10,7 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  implements OnInit { 
-public Solicitacao:any = {}
+public Solicitacao:any = []
 
   public filters = {
       search: null,
@@ -39,12 +39,13 @@ let paginate = {
 }
   this.http.post('http://localhost:3333/solicitacao/list-one',this.filters).subscribe(
     (res) => {
-      this.Solicitacao = Object(res);
-      const isEmpty = Object.keys(this.Solicitacao ).length === 0;
-      if(isEmpty){
+      this.Solicitacao = Object(res).dados;
+      const isEmpty = this.Solicitacao === 0;
+      console.log("emp",isEmpty)
+      if(!this.Solicitacao || this.Solicitacao.length===0){
         this.show()
       }  
-      console.log('helloooo',this.Solicitacao)
+      console.log('solicitacaos',this.Solicitacao)
     }
   )
 }

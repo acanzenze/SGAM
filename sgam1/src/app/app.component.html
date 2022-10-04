@@ -17,7 +17,7 @@
      <button class="btn" (click)="post()">pesquisar</button>
   </div>  
 
-  <div class="user-data"  *ngIf="Solicitacao && Solicitacao.is_publicado">
+  <div class="user-data"  *ngIf="Solicitacao">
       <table cellpadding="10" cellspacing="0">
       <thead class="theader" >
         <tr>
@@ -33,7 +33,7 @@
       <!--					Distrito		  -->
       <tbody>
         
-        <tr>
+        <tr *ngFor="let Solicitacao of Solicitacao">
           <td >{{Solicitacao.prioridade}}</td>
         
           <td>{{Solicitacao.estado}}</td>

@@ -139,10 +139,14 @@ export default class SolicitacaosController {
       .leftJoin("solicitacao_estados", "solicitacao_estados.id", "solicitacaos.estado")
       .leftJoin("users", "users.id", "solicitacaos.user_id")
       .leftJoin("instituicaos","instituicaos.id","users.instituicao_id")
+      .where("solicitacaos.is_publicado",true)
       .orderBy('solicitacaos.created_at', 'desc')
-      .first()
+      //.first()
 
-    return response.json(client)
+    //return response.json(client)
+    return{
+      dados:client
+    }
   }
 
 

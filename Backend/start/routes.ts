@@ -41,6 +41,8 @@ Route.post('clientes/count', 'ClientesController.countCliente')
 Route.post('solicitacao/create', 'SolicitacaosController.store').middleware('auth')
 Route.post('solicitacao/update/:id', 'SolicitacaosController.update')
 Route.post('solicitacao/list', 'SolicitacaosController.index')
+Route.post('solicitacao/list-one', 'SolicitacaosController.getSolicitacao')
+
 Route.post('solicitacao/getabertas', 'SolicitacaosController.totalAbertas')
 Route.post('solicitacao/getfinalizadas', 'SolicitacaosController.totalFinalizadas')
 Route.post('solicitacao/getcanceladas', 'SolicitacaosController.totalCanceladas')

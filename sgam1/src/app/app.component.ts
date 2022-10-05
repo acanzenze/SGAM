@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
- import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 import { HttpService } from './http.service';
 
 @Component({
@@ -38,7 +38,7 @@ let paginate = {
   lastPage:0,
 }
   this.http.post('http://localhost:3333/solicitacao/list-one',this.filters).subscribe(
-    (res) => {
+    (res:any) => {
       this.Solicitacao = Object(res).dados;
       const isEmpty = this.Solicitacao === 0;
       console.log("emp",isEmpty)
@@ -57,7 +57,7 @@ submit(item: any) {
   Swal.fire({
     position: 'top-end',
     icon: 'error',
-    title: 'Documento Indisponível',
+    title: 'Sem resultados',
     showConfirmButton: false,
     timer: 3000
   })

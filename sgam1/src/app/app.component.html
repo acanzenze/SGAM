@@ -1,9 +1,11 @@
 <div class="main">
   <div class="header">
-    <img src="../assets/rep3.png" alt="republic of Angola">
+    <a href="" alt="Republica de Angola">
+      <img src="../assets/Emblem_of_Angola.png" alt="republic of Angola" style="height:180px ;width:210px">
+    </a>
 
     <div class="description">
-      <h2>Pesquise o seu documento.</h2>
+      <h2>Pesquise aqui o seu documento</h2>
     </div> 
   </div>
 
@@ -18,9 +20,11 @@
   </div>  
 
   <div class="user-data"  *ngIf="Solicitacao">
-      <table cellpadding="10" cellspacing="0">
+    <div class="table-responsive">
+      <table class="table-info" cellpadding="10" cellspacing="0">
       <thead class="theader" >
-        <tr>
+        <tr style="color: white;background:  #1c45ef;position: -webkit-sticky;position: sticky;top: 0">
+          <th scope="col"> Tipo de Solicitação</th>
           <th scope="col"> Prioridade</th>
           <th scope="col"> Estado</th>
           <th scope="col1">Nome</th>
@@ -34,9 +38,10 @@
       <tbody>
         
         <tr *ngFor="let Solicitacao of Solicitacao">
+          <td >{{Solicitacao.tipo_solicitacao}}</td>
           <td >{{Solicitacao.prioridade}}</td>
         
-          <td>{{Solicitacao.estado}}</td>
+          <td>{{Solicitacao.estado_descricao}}</td>
           <td>{{Solicitacao.cliente}}</td>
           <td>{{Solicitacao.telefone}} </td>
 
@@ -46,5 +51,6 @@
         
       </tbody>
     </table>
+    </div>
   </div>
 </div>

@@ -20,6 +20,7 @@ export class ListarDocumentoComponent implements OnInit {
   @Input() title:any='Listar Documento'
 
   public documento:any
+  public currentUser: any;
 
   constructor(
     private http: HttpClient,
@@ -31,6 +32,9 @@ export class ListarDocumentoComponent implements OnInit {
 
   ngOnInit(): void {
     //this.listar()
+    let data: any = sessionStorage.getItem('currentUser')
+    this.currentUser = JSON.parse(data)
+    console.log(this.currentUser)
   }
 
   listar(){
@@ -43,6 +47,7 @@ export class ListarDocumentoComponent implements OnInit {
 
   imprimir(item:any){
     this.atestadoService.print(item)
+    console.log(item)
   }
   setDocumento(item:any){
     this.documento=item

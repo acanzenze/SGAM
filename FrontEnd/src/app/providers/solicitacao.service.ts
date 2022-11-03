@@ -183,6 +183,8 @@ export class SolicitacaoService {
 
       container.p('Prioridade', { ...style.cliente.text, marginTop: '44.5%', marginLeft: '30.5%' })
       container.p(item.prioridade, { ...style.cliente.text, marginTop: '46%', marginLeft: '30.5%' })
+      container.p('Motivo', { ...style.cliente.text, marginTop: '44.5%', marginLeft: '42.5%' })
+      container.p(item.motivo, { ...style.cliente.text, marginTop: '46%', marginLeft: '42.5%' })
 
       container.p('Data Prevista de Levantamento', { ...style.cliente.text, marginTop: '44.5%', marginLeft: '60.5%' })
       container.p(data_prevista, { ...style.cliente.text, marginTop: '46%', marginLeft: '60.5%' })

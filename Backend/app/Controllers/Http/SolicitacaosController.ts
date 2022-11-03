@@ -70,7 +70,8 @@ export default class SolicitacaosController {
         'instituicaos.nif as instituicao_nif',
         'instituicaos.endereco as instituicao_endereco',
         'instituicaos.email as instituicao_email',
-        'users.nome as user'
+        'users.nome as user',
+        'solicitacaos.descricao as motivo'
       )
       .where(function(query) {
         if (search && search !== 'null') {
@@ -122,7 +123,8 @@ export default class SolicitacaosController {
         'instituicaos.nif as instituicao_nif',
         'instituicaos.endereco as instituicao_endereco',
         'instituicaos.email as instituicao_email',
-        'users.nome as user'
+        'users.nome as user',
+        'solicitacaos.descricao as motivo'
       )
       .where((query) => {
         if (search && search !== 'null') {
@@ -167,7 +169,8 @@ export default class SolicitacaosController {
         'produtos.preco',
         'produtos.imposto',
         'clientes.id as cliente_id',
-        'clientes.nome as cliente_nome'
+        'clientes.nome as cliente_nome',
+        'solicitacaos.descricao as motivo'
 
       )
       .innerJoin("produtos", "produtos.tipo_solicitacao_id", "solicitacaos.tipo_solicitacao_id")

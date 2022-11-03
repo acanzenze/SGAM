@@ -53,7 +53,8 @@ export default class DocumentosController {
         'bairros.nome as bairro',
         'distritos.nome as distrito',
         'municipios.nome as municipio',
-        'provincias.nome as provincia'
+        'provincias.nome as provincia',
+        'solicitacaos.descricao as motivo'
         )
         .leftJoin('solicitacaos','solicitacaos.id','documentos.solicitacao_id')
         .leftJoin('tipo_solicitacaos','tipo_solicitacaos.id','solicitacaos.tipo_solicitacao_id')

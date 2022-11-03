@@ -107,6 +107,7 @@ export class SolicitacaoComponent implements OnInit {
 
   print(item:any) {
     this.printSolicitacao.printSolicitacao(item)
+    console.log(item)
   }
 
   printAtestadoPdf(item:any) {

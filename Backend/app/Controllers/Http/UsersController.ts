@@ -46,7 +46,7 @@ export default class UsersController {
 
     //const user = await User.query().where('email', email).firstOrFail()
     const user = await Database.from("users")
-    .select('users.*', 'perfils.nome as perfil')
+    .select('users.*', 'perfils.nome as perfil','perfils.slug as perfil_slug')
     .leftJoin('perfils','perfils.id','users.perfil_id')
     .where('email', email).firstOrFail()
 

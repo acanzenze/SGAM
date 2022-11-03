@@ -79,6 +79,15 @@
                         </div>
                     </div>
                   </div>
+                  <div class="col-md-6">
+                    <label class="control-label"><i class="fa fa-edit"></i>Motivo</label>
+                    <div class="form-group">
+                      <input type="text" class="form-control" formControlName="descricao" placeholder="Digito e motivo da solicitação">
+                      <div *ngIf="submitted && f['descricao'].errors" class="invalid-feedback">
+                          <div *ngIf="f['descricao'].errors.required">O campo prioridade é obrigatório</div>
+                      </div>
+                  </div>
+                </div>
 
                     </div>
                 </div>

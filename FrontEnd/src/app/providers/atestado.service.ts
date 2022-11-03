@@ -196,7 +196,7 @@ export class AtestadoService {
         marginTop: '44.5%',
         marginLeft: '12.5%',
       })
-      container.p(', requer o presente '+item.tipo_documento+' para efeitos de XXXX.', {
+      container.p(', requer o presente '+item.tipo_documento+' para efeitos de '+item.motivo+'.', {
         fontWeigth: 'normal',
         fontSize: 10,
         marginTop: '46.5%',

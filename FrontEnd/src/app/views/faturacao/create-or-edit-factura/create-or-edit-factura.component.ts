@@ -117,12 +117,12 @@ export class CreateOrEditFacturaComponent implements OnInit {
         }
         this.updateSolicitacao(this.factura.solicitacao_id)
         this.facturacaoForm.reset()
+        this.solicitacaolist.listaOfSolicitacao();
         this.factura = {
           produto: null,
           tipo_solicitacao: null,
           preco: null
         }
-        this.solicitacaolist.listaOfSolicitacao();
         this.loading = false;
       })
   }

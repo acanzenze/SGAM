@@ -61,8 +61,8 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
       is_notificado: [null],
       is_facturado:[null],
       user_id: [null],
-      descricao: [null],
-      estado_id: [null],
+      descricao: [null,Validators.required],
+      estado_id: [null,Validators.required],
     });
 
     //this.selectBoxProvinica();
@@ -150,6 +150,7 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     if (this.cliente !== undefined) {
       this.title = 'Editar Cliente';
+      console.log(this.cliente)
       this.clienteForm.patchValue({
           id : this.cliente.solicitacao_id,
           tipo_solicitacao_id: this.cliente.tipo_solicitacao_id,
@@ -160,7 +161,7 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
           is_notificado: this.cliente.is_notificado,
           is_facturado:this.cliente.is_facturado,
           user_id: this.cliente.user_id,
-          descricao: this.cliente.descricao,
+          descricao: this.cliente.motivo,
           estado_id: this.cliente.estado_id,
           nome: this.cliente.cliente
 

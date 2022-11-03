@@ -2,7 +2,7 @@
   <ul class="nav">
     <br>
     <br>
-    <li class="nav-item nav-profile">
+    <li class="nav-item nav-profile" style="background-color:#0000cd">
       <a href="#" class="nav-link" routerLink="/dashboard">
         <div class="profile-image">
           <i class="mdi mdi-account-circle" style="font-size: 45px"></i>
@@ -94,7 +94,7 @@
         </ul>
       </div>
     </li>-->
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="currentUser.perfil_slug==='super_adiministrador'">
       <a class="nav-link" data-toggle="collapse" href="#configuracoes" aria-expanded="false"
         aria-controls="configuracoes">
         <i class="menu-icon typcn typcn-document-add"></i>

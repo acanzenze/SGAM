@@ -102,7 +102,6 @@ export class EditUsersComponent implements OnInit {
 
   Edit() {
     console.log("user",this.userForm.getRawValue())
-    return
     this.submitted = true
     
       this.userService.update(this.userForm.getRawValue().id, this.userForm.value).subscribe(res => {

@@ -43,7 +43,7 @@ export class CreateOrEditProdutosComponent implements OnInit {
       descricao: [null],
     });
 
-    this.selectBoxCategorias()
+    //this.selectBoxCategorias()
   }
 
   ngOnInit(): void {

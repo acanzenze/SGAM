@@ -93,7 +93,7 @@ export default class SolicitacaosController {
       .orderBy('solicitacaos.created_at', 'desc')
       .paginate(setPage, setPerPage)
     
-      response.status(200)
+      //response.status(200)
       return client
   }
 
@@ -179,7 +179,7 @@ export default class SolicitacaosController {
       .where('solicitacaos.id', params.id)
       .first()
 
-      response.status(200)
+      //response.status(200)
 
     return client
   }

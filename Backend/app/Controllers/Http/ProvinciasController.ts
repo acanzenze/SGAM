@@ -20,7 +20,7 @@ export default class ProvinciasController {
   public async index({ request, response }: HttpContextContract) {
     const provincia = await Provincia.all()
 
-    return response.status(201).json({
+    return response.status(200).json({
       data: provincia,
     })
   }

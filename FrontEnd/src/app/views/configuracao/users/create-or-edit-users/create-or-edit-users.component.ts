@@ -121,7 +121,7 @@ export class CreateOrEditUsersComponent implements OnInit {
           this.loading = false;
           this.submitted = false
           this.userForm.reset
-          this.usersComp.ngOnInit()
+          this.usersComp.listaOfUsers()
         })
       }
 

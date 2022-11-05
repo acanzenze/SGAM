@@ -27,7 +27,7 @@ export default class TipoSolicitacaosController {
     const res = await TipoSolicitacao.all()
     console.log("entrou")
 
-    return response.status(201).json({
+    return response.status(200).json({
       data: res,
     })
   }

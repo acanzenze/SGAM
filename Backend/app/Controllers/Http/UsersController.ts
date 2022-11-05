@@ -7,6 +7,15 @@ export default class UsersController {
   public async store({ request, response }: HttpContextContract) {
     const data = request.only(['nome', 'email', 'username', 'password','instituicao_id','perfil_id','estado'])
     
+    const user = await User.findBy('username',data.email)
+    if(user){
+      response.status(501)
+      return {
+        msg: 'Este user name já existe',
+        dados: null,
+      }
+    }
+
     if(data){
       const user = await User.create({
         nome: data.nome,
@@ -26,19 +35,31 @@ export default class UsersController {
     }
   }
 
-  public async index({response }) {
+  public async index({response,request }) {
+    const { pagination, search } = request.all()
+    let { page = 1, total, perPage } = pagination
+    if (page === null) page = 1
+    if (!search && !perPage) perPage=5
+
+    let setPage = perPage === 'T' ? 1 : page
+    let setPerPage = perPage === 'T' ? total : perPage
     const user = await Database.from('users')
     .select(
       'users.*',
       'instituicaos.nome as empresa',
       'perfils.nome as perfil'
-      )
+      ).where(function(query) {
+        if (search && search !== 'null') {
+          query.where('users.nome', 'like', '%' + search + '%')
+          query.orWhere('users.username', 'like', '%' + search + '%')
+        }
+      })
       .innerJoin('perfils','perfils.id','users.perfil_id')
       .innerJoin('instituicaos','instituicaos.id','users.instituicao_id')
+      .orderBy('users.created_at', 'desc')
+      .paginate(setPage, setPerPage)
 
-    return{
-      dados:user
-    }
+    return user
   }
 
   public async login({ request, response, auth }) {
@@ -53,7 +74,6 @@ export default class UsersController {
     if (!(await Hash.verify(user.password, password))) {
       return response.unauthorized('Invalid credentials')
     }
-
     const token = await auth.use('api').generate(user)
     return { user, token }
   }
@@ -66,8 +86,7 @@ export default class UsersController {
     }
   }
 
-  public async update({ params, request }: HttpContextContract) {
-    console.log("bck")
+  public async update({ params, request,response }: HttpContextContract) {
 
     const user = await User.findOrFail(params.id)
 
@@ -83,6 +102,7 @@ export default class UsersController {
     }
     console.log(user)
     await user.save()
+    response.status(201)
     return {
       msg: 'dados actualizados com sucesso',
       dados: user,

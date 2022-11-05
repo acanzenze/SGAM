@@ -31,6 +31,9 @@ export class LoaderInterceptor implements HttpInterceptor {
           if (err.status === 401) {
             this.toast.SwalInfo('Já existe um municipe com este documento')
           }
+          else if (err.status === 501) {
+            this.toast.SwalInfo('Este email já esta registado como usuario')
+          }
           else{
             this.toast.SwalError("Erro do servidor")
           }

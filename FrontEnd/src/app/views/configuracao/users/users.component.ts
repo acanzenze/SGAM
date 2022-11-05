@@ -13,7 +13,10 @@ import { UserService } from './user.service';
 })
 export class UsersComponent implements OnInit {
 
+  private apiUrl: string = environment.apiUrl
+
   public filters = {
+    search: null,
     pagination: {
       page: 1,
       perPage: 5,
@@ -40,9 +43,9 @@ export class UsersComponent implements OnInit {
 
  public listaOfUsers() {
     this.loading = true
-    this.userService.getAllUser()
+    this.http.post(this.apiUrl+"/users/list",this.filters)
       .subscribe(res => {
-        this.users = Object(res).dados
+        this.users = Object(res).data
         console.log("users:",this.users)
         this.filters.pagination.lastPage = Object(res).lastPage;
         this.filters.pagination.page = Object(res).page;
@@ -65,7 +68,17 @@ export class UsersComponent implements OnInit {
     this.user=item 
   }
   getPageFilterData(event: any) {
+    console.log(event.target.value)
+    if (this.filters.pagination.perPage == null) {
+      return;
+    }
 
+    // this.filters.pagination.page = Number(event.target.value);
+    this.listaOfUsers();
+  }
+
+  filterData() {
+    this.listaOfUsers();
   }
 
 }

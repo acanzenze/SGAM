@@ -20,7 +20,7 @@ Route.group(() => {
 Route.post('/login', 'UsersController.login')
 
 Route.post('users/create', 'UsersController.store')
-Route.get('users/list', 'UsersController.index')
+Route.post('users/list', 'UsersController.index')
 
 //Route.get('/provincias/list', 'ProvinciasController.index')
 

@@ -54,7 +54,7 @@ export class EditUsersComponent implements OnInit {
       //password: [null, Validators.required],
       perfil_id: [null, Validators.required],
       instituicao_id: [null, Validators.required],
-      estado: [null],
+      estado: [null, Validators.required],
       //confirmPassword: [null,Validators.required]
     });
   }
@@ -101,11 +101,12 @@ export class EditUsersComponent implements OnInit {
   }
 
   Edit() {
-    console.log("user",this.userForm.getRawValue())
+    console.log("user",this.user)
     this.submitted = true
     
       this.userService.update(this.userForm.getRawValue().id, this.userForm.value).subscribe(res => {
         console.log(res)
+        this.usersComp.listaOfUsers()
         this.loading = false;
         this.submitted = false
       })

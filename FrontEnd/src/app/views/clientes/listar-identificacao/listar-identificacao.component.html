@@ -25,6 +25,8 @@
                           <td>{{cliente?.numero_documento}}</td>
                           <td>{{cliente?.data_emissao | date: 'dd-MM-yyyy'}}</td>
                           <td>{{cliente?.data_validade | date: 'dd-MM-yyyy'}}</td>
+                          <td class="p-3 mb-2 bg-success" *ngIf="estado==true">Válido</td>
+                          <td class="p-3 mb-2 bg-danger" *ngIf="estado==false">Inválido</td>
                         </tr>
                       </tbody>
                     </table>

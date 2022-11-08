@@ -71,11 +71,12 @@ export default class ClientesController {
 
   public async index({ request, response }: HttpContextContract) {
     const { pagination, search } = request.all()
-    let { page, total, perPage } = pagination
-
-    console.log(pagination)
+    let { page = 1, total, perPage } = pagination
     if (page === null) page = 1
-    if (!search) perPage=5
+    if (!search && !perPage) perPage=5
+
+    let setPage = perPage === 'T' ? 1 : page
+    let setPerPage = perPage === 'T' ? total : perPage
 
     const client = await Database.from('clientes')
       .select(
@@ -97,7 +98,7 @@ export default class ClientesController {
       .leftJoin("distritos","distritos.id","bairros.distrito_id")
       .leftJoin("municipios","municipios.id","distritos.municipio_id")
       .orderBy('clientes.id','desc')
-      .paginate(page, perPage === 'T' ? total : perPage)
+      .paginate(setPage, setPerPage)
 
     return response.json(client)
   }

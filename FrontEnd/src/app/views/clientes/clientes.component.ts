@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/providers/auth.service';
@@ -24,6 +25,8 @@ export class ClientesComponent implements OnInit {
 
   public loading = false;
 
+  public estado:  any
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -36,6 +39,23 @@ export class ClientesComponent implements OnInit {
   }
 
 setCliente(item:any){
+  console.log(this.cliente)
+  var hoje = new Date()
+  var v= new Date(this.cliente?.data_validade)
+
+
+  if(hoje.valueOf() < v.valueOf()){
+    console.log("Valido")
+    this.estado=true
+  }
+  else{
+    console.log("Invalido")
+    this.estado=false
+  }
+
+
+  console.log("ef",hoje)
+  console.log("vf",v)
   this.cliente=item
   console.log("clientes",this.cliente)
 }
@@ -46,9 +66,9 @@ setCliente(item:any){
     this.http.post(`http://127.0.0.1:3333/clientes/list`, this.filters).subscribe((res) => {
       this.clientes = Object(res).data;
       this.filters.pagination.lastPage = Object(res).meta.last_page;
-      this.filters.pagination.page = Object(res).meta.per_page;
+      this.filters.pagination.page = Object(res).meta.first_page;
       this.filters.pagination.total = Object(res).meta.total;
-      this.filters.pagination.perPage = Object(res).meta.first_page;
+      this.filters.pagination.perPage = Object(res).meta.per_page;
       this.loading = false;
       console.log('cliente', res)
     });

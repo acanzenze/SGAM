@@ -111,8 +111,8 @@ export class CreateOrEditUsersComponent implements OnInit {
 
     if (this.userForm.getRawValue().id == null) {
 
-      if (this.userForm.controls.password.value != this.userForm.controls.confirmPassword.value) {
-        this.messageService.add('Password incopativel')
+      if (this.userForm.controls.password.value != this.userForm.controls.confirmPassword.value) {  
+        alert("As passwords inseridas não são iguais")
         return
       }
       else {

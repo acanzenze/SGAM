@@ -194,7 +194,6 @@ export default class SolicitacaosController {
 
   public async update({ params, request, response }: HttpContextContract) {
     const data = request.only([
-      'descricao',
       'tipo_solicitacao_id',
       'prioridade_id',
       'municipe_id',
@@ -202,7 +201,6 @@ export default class SolicitacaosController {
       'is_publicado',
       'is_notificado',
       'estado',
-      'user_id',
       'is_facturado',
     ])
     console.log("Save",data)

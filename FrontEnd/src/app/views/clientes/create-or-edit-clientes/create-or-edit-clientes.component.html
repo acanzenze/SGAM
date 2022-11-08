@@ -22,11 +22,11 @@
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Telefone</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     formControlName="telefone"
                                     name="telefone"
                                     class="form-control"
-                                    placeholder="Nome"
+                                    placeholder="Nº de Telefone"
                                 />
                                 <div *ngIf="submitted && f['telefone'].errors" class="invalid-feedback">
                                     <div *ngIf="f['telefone'].errors.required">O campo telefone é obrigatório</div>

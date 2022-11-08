@@ -53,17 +53,15 @@ export class CreateOrEditClientesComponent implements OnInit {
       dataNascimento: [null,Validators.required],
       nomePai: [null,Validators.required],
       nomeMae: [null,Validators.required],
-      municipioId: [null],
-      distritoId: [null],
+      municipioId: [null, Validators.required],
+      distritoId: [null,Validators.required],
       bairroId: [null,Validators.required],
       /* tipoDocumentoId:[null], */
       dataEmissao: [null,Validators.required],
       dataValidade: [null,Validators.required],
-      enderecoId: [null],
+      enderecoId: [null,Validators.required],
       estado: [null],
-      email: [null],
-      residencia: [null],
-      doc_indentificacao: [null],
+      email: [null,Validators.required],
     });
 
     //this.selectBoxProvinica();
@@ -157,14 +155,25 @@ export class CreateOrEditClientesComponent implements OnInit {
     }
 
     this.clienteForm.patchValue({ tipo_documento_id: 1 });
-
-    this.loading = true;
     const url =
       this.clienteForm.getRawValue().id == null
         ? `http://127.0.0.1:3333/clientes/create`
         : `http://127.0.0.1:3333/clientes/update/` +
         this.clienteForm.getRawValue().id;
-        
+
+    var dtv = new Date(this.clienteForm.controls.dataValidade.value)
+    var dte = new Date(this.clienteForm.controls.dataEmissao.value)
+
+    console.log("v",dtv)
+    console.log("e",dte)
+
+    if(dte.valueOf() > dtv.valueOf()){
+      alert("Data de emissão não pode ser superior a data de validade do documento")
+      return
+    }
+
+    this.loading = true;
+
     this.http
       .post(url, this.clienteForm.value, { headers: this.authService.headers })
       .subscribe((res) => {

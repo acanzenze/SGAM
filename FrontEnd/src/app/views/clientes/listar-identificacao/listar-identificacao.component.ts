@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -10,11 +11,17 @@ export class ListarIdentificacaoComponent implements OnInit {
   @Input() modal: any = 'ListarIdentificacaoModal'
   @Input() cliente:any
   @Input() title:any='Listar Documento'
+  @Input() estado:any
+  
+  public validade:any
+  public emissao:any
 
-  constructor() { }
+
+  constructor() { 
+    
+  }
 
   ngOnInit(): void {
-    console.log(this.cliente)
   }
 
 }

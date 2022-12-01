@@ -19,12 +19,11 @@ import { UsersComponent } from '../users.component';
 })
 export class AlterPassworComponent implements OnInit {
 
-  @Input() modal: any = "EditUser";
-  @Input() title: string = "Editar User";
+  @Input() modal: any = "AlterSenha";
+  @Input() title: string = "Alterar password";
   @Input() user: any;
 
   @Input() userForm: FormGroup;
-  @Input() ocultar: string = "Sim"
 
   submitted = false;
   public loading = false;
@@ -48,20 +47,13 @@ export class AlterPassworComponent implements OnInit {
 
     this.userForm = this.fb.group({
       id: [{ value: null, disabled: true }],
-      nome: [null, Validators.required],
-      //username: [null, Validators.required],
-      email: [null, Validators.compose([Validators.required])],
-      //password: [null, Validators.required],
-      perfil_id: [null, Validators.required],
-      instituicao_id: [null, Validators.required],
-      estado: [null],
-      //confirmPassword: [null,Validators.required]
+      senha: [null, Validators.required],
+      confirmPassword: [null,Validators.required]
     });
   }
 
   ngOnInit(): void {
-    this.selectBoxRoles()
-    this.selectBoxInstituicaos();
+    
   }
 
   // convenience getter for easy access to form fields
@@ -74,28 +66,10 @@ export class AlterPassworComponent implements OnInit {
     this.submitted = false;
     this.userForm.reset();
   }
-  resetOcultarForm(){
-    this.ocultar="Sim"
-  }
-
-  selectBoxRoles() {
-    this.rolesService.getAllPerfil()
-      .subscribe(res => {
-        this.roles = Object(res).dados
-        console.log(this.roles)
-      })
-  }
-
-  selectBoxInstituicaos() {
-    this.instituicaoService.getInstituicao().subscribe(res => {
-      this.instituicaos = Object(res).dados
-      console.log(this.instituicaos)
-    })
-  }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     if (this.user) {
-      this.title = "Editar User";
+      this.title = "Alterar password";
       this.userForm.patchValue(this.user);
     } 
   }

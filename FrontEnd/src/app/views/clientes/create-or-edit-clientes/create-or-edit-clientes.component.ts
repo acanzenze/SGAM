@@ -31,6 +31,7 @@ export class CreateOrEditClientesComponent implements OnInit {
   distritos: any = [];
 
   public bairros: any = []
+  public bi: string="";
 
   constructor(
     private http: HttpClient,
@@ -61,7 +62,7 @@ export class CreateOrEditClientesComponent implements OnInit {
       dataValidade: [null,Validators.required],
       enderecoId: [null,Validators.required],
       estado: [null],
-      email: [null,Validators.required],
+      email: [null,Validators.email],
     });
 
     //this.selectBoxProvinica();
@@ -164,13 +165,17 @@ export class CreateOrEditClientesComponent implements OnInit {
     var dtv = new Date(this.clienteForm.controls.dataValidade.value)
     var dte = new Date(this.clienteForm.controls.dataEmissao.value)
 
-    console.log("v",dtv)
-    console.log("e",dte)
-
     if(dte.valueOf() > dtv.valueOf()){
       alert("Data de emissão não pode ser superior a data de validade do documento")
       return
     }
+
+   this.bi = this.clienteForm.controls.numeroDocumento.value
+
+   if(this.bi.length != 14){
+    alert("Numero de bilhete invalido.")
+    return
+   }
 
     this.loading = true;
 

@@ -79,7 +79,8 @@
                                                                 (click)="setUser(item)" data-toggle="modal"
                                                                 data-target="#EditUser">Editar</a>
                                                             <a class="dropdown-item"
-                                                                href="javascript:void(0)">Alterar Password</a>
+                                                                href="javascript:void(0)" (click)="setUser(item)" data-toggle="modal"
+                                                                data-target="#AlterSenha">Alterar Password</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -118,4 +119,5 @@
     <!-- page-body-wrapper ends -->
     <createOrEditUser [modal]=""></createOrEditUser>
     <app-edit-users [user]="user" [modal]=""></app-edit-users>
+    <app-alter-passwor [user]="user" [modal]=""></app-alter-passwor>
 </div>

@@ -29,7 +29,7 @@ export class CreateOrEditProdutosComponent implements OnInit {
     private configService: ConfigService,
     private httpService: HttpService,
     private authService: AuthService,
-    private listOfPodutoComp: ProdutosComponent
+    private listOfPodutoComp: ProdutosComponent,
   ) {
 
     this.produtoForm = this.fb.group({

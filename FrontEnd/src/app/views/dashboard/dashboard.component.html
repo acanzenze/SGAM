@@ -69,7 +69,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div *ngIf="currentUser.perfil_slug==='super_adiministrador'">
             <iframe style="width: 100%;" src="http://localhost:3000/public/dashboard/7369b541-2411-44bc-accf-00c72940194b"
               frameborder="0" width="1500" height="700" allowtransparency></iframe>
         </div>

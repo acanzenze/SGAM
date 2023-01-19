@@ -31,7 +31,7 @@
                                     <div class="col-md-4">
                                         <input type="text" (keyup)="searchProdutos()" [(ngModel)]="filters.search" placeholder="Pesquisar..." class="form-control">
                                     </div>
-                                    <div class="col-md-6" style="text-align:right;">
+                                    <div class="col-md-6" style="text-align:right;" *ngIf="currentUser.perfil_slug==='super_adiministrador'">
                                         <button class="btn btn-primary btn-flat" data-toggle="modal"
                                             data-target="#createOrEditProdutoModal">Registar Produto</button>
                                     </div>

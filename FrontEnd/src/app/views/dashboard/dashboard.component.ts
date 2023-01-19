@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/providers/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,14 +17,19 @@ export class DashboardComponent implements OnInit {
   public f_hoje: any;
   public f_ontem: any;
   public f_geral:any;
+  public currentUser: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getCliente();
     this.getFHoje();
     this.getFOntem();
     this.getFGeral();
+
+    let data: any = sessionStorage.getItem('currentUser')
+    this.currentUser = JSON.parse(data)
   }
 
   getCliente(){

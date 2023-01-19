@@ -24,6 +24,7 @@ export class ProdutosComponent implements OnInit {
   public produto: any
   public produtos: any = []
   public loading = false;
+  public currentUser: any;
 
   constructor(
     private http: HttpClient,
@@ -34,7 +35,10 @@ export class ProdutosComponent implements OnInit {
     this.listaOfProdutos();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    let data: any = sessionStorage.getItem('currentUser')
+    this.currentUser = JSON.parse(data)
+  }
 
   searchProdutos() {
     this.listaOfProdutos()

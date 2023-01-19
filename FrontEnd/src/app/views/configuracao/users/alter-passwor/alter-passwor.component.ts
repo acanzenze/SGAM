@@ -47,7 +47,7 @@ export class AlterPassworComponent implements OnInit {
 
     this.userForm = this.fb.group({
       id: [{ value: null, disabled: true }],
-      senha: [null, Validators.required],
+      password: [null, Validators.required],
       confirmPassword: [null,Validators.required]
     });
   }
@@ -70,18 +70,22 @@ export class AlterPassworComponent implements OnInit {
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     if (this.user) {
       this.title = "Alterar password";
-      this.userForm.patchValue(this.user);
+      this.userForm.patchValue(this.user.id);
     } 
   }
 
   alterPassword() {
-    console.log("editar user",this.userForm.value)
+  if(this.userForm.controls.password.value!=this.userForm.controls.confirmPassword.value){
+    alert('As passwords introduzidas são diferentes')
+    return
+  }
     this.submitted = true
     
-      this.userService.update(this.userForm.getRawValue().id, this.userForm.value).subscribe(res => {
+      this.userService.update(this.user.id, this.userForm.value).subscribe(res => {
         console.log(res)
         this.loading = false;
         this.submitted = false
+        this.onReset()
       })
     
   }

@@ -12,11 +12,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-edit"></i> Nova Senha</label>
-                                <input type="password" formControlName="senha" name="senha" class="form-control"
+                                <input type="password" formControlName="password" name="password" class="form-control"
                                     placeholder="Nova Senha"
-                                    [ngClass]="{ 'is-invalid': submitted && f.senha.errors, 'is-valid': f.senha.touched && !f.senha.errors }" />
-                                <div *ngIf="submitted && f['senha'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['senha'].errors.required">O campo nome é obrigatório</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors, 'is-valid': f.password.touched && !f.password.errors }" />
+                                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['password'].errors.required">O campo nome é obrigatório</div>
                                 </div>
                             </div>
                         </div>

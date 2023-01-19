@@ -127,7 +127,6 @@ export class CreateOrEditUsersComponent implements OnInit {
 
     }
     else {
-      console.log('Entrou')
       this.userService.update(this.userForm.getRawValue().id, this.userForm.value).subscribe(res => {
         console.log(res)
         this.loading = false;

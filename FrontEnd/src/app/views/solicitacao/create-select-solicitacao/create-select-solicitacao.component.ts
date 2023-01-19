@@ -77,7 +77,7 @@ export class CreateSelectSolicitacaoComponent implements OnInit {
   }
   listTipoSolicitacao() {
     this.loading = true
-     this.http.post(`${this.httpService.api}/tipo-solicitacao/list`,null)
+     this.http.post(`${this.httpService.api}/tipo-solicitacao/listtipos`,null)
        .subscribe(res => {
          this.tipoSolicitacaos = Object(res).data
          this.loading = false

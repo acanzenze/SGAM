@@ -55,6 +55,7 @@ Route.post('tipo-solicitacao/create', 'TipoSolicitacaosController.store')
 Route.post('tipo-solicitacao/update/:id', 'TipoSolicitacaosController.update')
 Route.post('tipo-solicitacao/list', 'TipoSolicitacaosController.index')
 Route.post('tipo-solicitacao/select', 'TipoSolicitacaosController.show')
+Route.post('tipo-solicitacao/listtipos', 'TipoSolicitacaosController.gettipos')
 
 Route.get('prioridades/list', 'SolicitacaoPrioridadesController.index')
 

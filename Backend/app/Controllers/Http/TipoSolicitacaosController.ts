@@ -32,6 +32,19 @@ export default class TipoSolicitacaosController {
     })
   }
 
+  public async gettipos({ request, response }: HttpContextContract) {
+    const res = await await Database.from("tipo_solicitacaos").
+    select("*")
+    .where("tipo_solicitacaos.estado",true)
+    console.log("entrou")
+
+    return response.status(200).json({
+      data: res,
+    })
+  }
+
+
+
   public async update({ params, request, response }) {
     const { id } = params
     const { descricao, estado,sla,validade,contador } = request.body()

@@ -35,7 +35,7 @@ export class LoaderInterceptor implements HttpInterceptor {
             this.toast.SwalInfo('Este email já esta registado como usuario')
           }
           else{
-            this.toast.SwalError("Erro do servidor")
+            this.toast.SwalError("Erro de comunicação com servidor")
           }
         return throwError(err);
         //}

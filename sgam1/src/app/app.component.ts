@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -44,8 +45,8 @@ let paginate = {
       console.log("emp",isEmpty)
       if(!this.Solicitacao || this.Solicitacao.length===0){
         this.show()
-      }  
-      console.log('solicitacaos',this.Solicitacao)
+      } 
+    
     }
   )
 }

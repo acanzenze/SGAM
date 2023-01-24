@@ -113,6 +113,7 @@ export default class SolicitacaosController {
         'distritos.nome as distrito',
         'municipios.nome as municipio',
         'tipo_solicitacaos.descricao as tipo_solicitacao',
+        'tipo_solicitacaos.sla as sla',
         'solicitacaos.is_facturado',
         'solicitacaos.is_publicado',
         'solicitacao_prioridades.descricao as prioridade',

@@ -1,15 +1,78 @@
 <div class="main">
+  <!--começa aqui aqui-->
+  <div class="content">
+    <div class="content first-content">
+      <div class="first-column">
+        <h2><a href="" alt="Republica de Angola">
+            <img src="../assets/Emblem_of_Angola.png" alt="republic of Angola" style="height:180px ;width:210px">
+          </a></h2>
+        <h2 class="tilte">Sistema de Gestão das Administrações Munícipais</h2>
+      </div>
+      <div class="second-column">
+        <h2 class="title">Pesquise aqui o seu documento</h2>
+        <div class="search-bar">
+          <div class="input-container">
+            <svg class="svg-icon search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 19.9 19.7">
+              <title id="title">Search Icon</title>
+              <desc id="desc">A magnifying glass icon.</desc>
+              <g class="search-path" fill="none" stroke="#848F91">
+                <path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4" />
+                <circle cx="8" cy="8" r="7" />
+              </g>
+            </svg>
+            <input type="search" placeholder="Pesquise pelo nº do B.I" id="username" [(ngModel)]="this.filters.search">
+          </div>
+          <button class="btn" (click)="post()">pesquisar</button>
+        </div>
+        <div class="user-data" *ngIf="Solicitacao">
+          <div class="table-responsive">
+            <table class="table-info" cellpadding="10" cellspacing="0">
+              <thead class="theader">
+                <tr style="color: white;background:  #1c45ef;position: -webkit-sticky;position: sticky;top: 0">
+                  <th scope="col1">Nome</th>
+                  <th scope="col">Município </th>
+                  <th scope="col">Distrito</th>
+                  <th scope="col"> Tipo de Solicitação</th>
+                  <th scope="col"> Prioridade</th>
+                  <th scope="col"> Estado</th>
+                  <th scope="col"> Data Prevista</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let Solicitacao of Solicitacao">
+
+                  <td>{{Solicitacao.cliente}}</td>
+                  <td>{{Solicitacao.municipio}} </td>
+                  <td>{{Solicitacao.distrito}}</td>
+                  <td>{{Solicitacao.tipo_solicitacao}}</td>
+                  <td>{{Solicitacao.prioridade}}</td>
+                  <td>{{Solicitacao.estado_descricao}}</td>
+                  <td>{{ Solicitacao.solicitacao_created_at | date: 'dd-MM-yyyy'}}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--termina aqui-->
+
+  <!--
   <div class="header">
     <a href="" alt="Republica de Angola">
       <img src="../assets/Emblem_of_Angola.png" alt="republic of Angola" style="height:180px ;width:210px">
     </a>
 
+
+
     <div class="description">
       <h2>Pesquise aqui o seu documento</h2>
     </div> 
   </div>
-
- 
 
   <div class="search-bar">
     <div class="input-container">
@@ -34,7 +97,7 @@
         </tr>
       </thead>
 
-      <!--					Distrito		  -->
+      <!--					Distrito		  
       <tbody>
         
         <tr *ngFor="let Solicitacao of Solicitacao">
@@ -53,4 +116,4 @@
     </table>
     </div>
   </div>
-</div>
+</div>-->

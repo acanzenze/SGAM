@@ -47,8 +47,11 @@ export class AuthService {
         this.router.navigateByUrl('/dashboard')
       },
       (error) => {
-        console.log(error)
-        if (!error.ok) {
+        console.log("Erro ao acessar",error.status)
+        if(error.status==405){
+          this.configService.SwalInfo('Utilizador bloqueiado')
+        }
+        else if (!error.ok) {
           this.userLogged = false
           this.configService.SwalError('Senha ou e-mail invalido')
           this.router.navigate(['/'])

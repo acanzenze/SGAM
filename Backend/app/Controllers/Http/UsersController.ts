@@ -74,6 +74,18 @@ export default class UsersController {
     if (!(await Hash.verify(user.password, password))) {
       return response.unauthorized('Invalid credentials')
     }
+
+    const user_status = await Database.from("users")
+    .select('users.*')
+    .where('email', email)
+    .where('users.estado',false).first()
+    console.log(user_status)
+
+    if(user_status){
+      return response.status(405).json('bloqueiado')
+    }
+
+
     const token = await auth.use('api').generate(user)
     return { user, token }
   }
